@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "test_id": "fleet-T894-board-race-1",
+  "scope": "cooperative create-only claim and stale-SHA update prototype; not production board migration or identity enforcement",
+  "task_path": "fleet-verification/T894-board/tasks/race-1.json",
+  "actors": [
+    "fleet-T894-board-A",
+    "fleet-T894-board-B"
+  ],
+  "phase": "prepare_only_do_not_claim_until_explicit_start",
+  "forbidden": [
+    "native worker job creation",
+    "new credentials",
+    "private Drive IDs or KOS data",
+    "other branches",
+    "ordinary parallel update/delete of same file",
+    "retrying uncertain create"
+  ],
+  "expected": {
+    "exactly_one_create_success": true,
+    "loser_does_not_work": true,
+    "conditional_updates_serial": true,
+    "stale_sha_rejected": true
+  },
+  "public_artifact_url": "https://github.com/career091101/-/issues/3#issuecomment-6248834299"
+}
