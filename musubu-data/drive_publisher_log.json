@@ -70,10 +70,12 @@
     {
       "name": "key_people_pages_00204-00403.tar.gz",
       "tar_sha256": "63a369060993d57069788a548484e01dc22e5c1724f9d84821c50f6bca57d0d2",
+      "text_sha256": "11f977249fa1942934439a907cc0938072690dbb121899e3561152e17e138145",
       "local_verified": true,
-      "readback_verified": false,
-      "status": "queued_mcp_binary",
-      "queued_at_epoch": 1792304827
+      "readback_verified": true,
+      "status": "verified_b64_parts",
+      "part_count": 490,
+      "note": "490 Drive text parts. Local concatenation matches tar SHA256. Each recorded part read-back matched its slice SHA256. Part 483 was replaced after a one-character mismatch; replacement id 1QMxgHWnYRgd0wjdeWEUvNz81uFI7yXTY matches."
     },
     {
       "name": "key_people_pages_00404-00603.tar.gz",
