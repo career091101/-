@@ -187,7 +187,7 @@ def append_artifact_manifest(out_dir: Path, manifest_name: str, rec: dict[str, A
             if not (e.get("page_start") == page_start and e.get("page_end") == rec.get("page_end"))
         ]
     entries.append(rec)
-    entries.sort(key=lambda e: (e.get("page") or 0))
+    entries.sort(key=lambda e: (e.get("page") or e.get("page_start") or 0))
     payload = {
         "updated_at_epoch": int(time.time()),
         "api_base": API_BASE,
