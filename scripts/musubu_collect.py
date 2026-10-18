@@ -166,6 +166,25 @@ def fetch_section8(token: str, out_dir: Path) -> list[dict[str, Any]]:
     return records
 
 
+def append_artifact_manifest(out_dir: Path, manifest_name: str, rec: dict[str, Any]) -> None:
+    path = out_dir / manifest_name
+    entries: list[dict[str, Any]] = []
+    if path.exists():
+        entries = json.loads(path.read_text()).get("artifacts") or []
+    page = rec.get("page")
+    if page is not None:
+        entries = [e for e in entries if e.get("page") != page]
+    entries.append(rec)
+    entries.sort(key=lambda e: (e.get("page") or 0))
+    payload = {
+        "updated_at_epoch": int(time.time()),
+        "api_base": API_BASE,
+        "interval_sec": INTERVAL_SEC,
+        "artifacts": entries,
+    }
+    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2))
+
+
 def fetch_search_page(
     token: str,
     resource: str,
@@ -200,18 +219,120 @@ def fetch_search_page(
     return rec
 
 
+def fetch_search_range(
+    token: str,
+    resource: str,
+    page_start: int,
+    page_end: int,
+    out_dir: Path,
+) -> list[dict[str, Any]]:
+    manifest_name = f"manifest_{resource}_pages.json"
+    records: list[dict[str, Any]] = []
+    for page in range(page_start, page_end + 1):
+        rec = fetch_search_page(token, resource, page, out_dir)
+        append_artifact_manifest(out_dir, manifest_name, rec)
+        records.append(rec)
+    return records
+
+
+def build_checkpoint(out_dir: Path) -> dict[str, Any]:
+    artifacts: list[dict[str, Any]] = []
+    for name in ("manifest_section9.json", "manifest_section8.json"):
+        p = out_dir / name
+        if p.exists():
+            artifacts.extend(json.loads(p.read_text()).get("artifacts") or [])
+    kp = out_dir / "manifest_key_people_pages.json"
+    if kp.exists():
+        artifacts.extend(json.loads(kp.read_text()).get("artifacts") or [])
+    seen_kp_pages: set[int] = {
+        a["page"] for a in artifacts if a.get("section") == "key_people" and a.get("page")
+    }
+    for gz in sorted((out_dir / "section_key_people").glob("key_people_page_*.json")):
+        if gz.name.endswith(".b64"):
+            continue
+        page = int(gz.name.split("_")[-1].split(".")[0])
+        if page in seen_kp_pages:
+            continue
+        b64 = gz.with_suffix(gz.suffix + ".b64")
+        if not b64.exists():
+            continue
+        gz_bytes = gz.read_bytes()
+        artifacts.append(
+            {
+                "file": gz.name,
+                "drive_upload_name": gz.name + ".b64",
+                "gzip_bytes": len(gz_bytes),
+                "gzip_sha256": hashlib.sha256(gz_bytes).hexdigest(),
+                "local_gz_path": str(gz),
+                "local_b64_path": str(b64),
+                "section": "key_people",
+                "page": page,
+            }
+        )
+        seen_kp_pages.add(page)
+    kp_pages = sorted(seen_kp_pages)
+    out_path = out_dir / "musubu_cursor_checkpoint_20261018.json"
+    prior: dict[str, Any] = {}
+    if out_path.exists():
+        try:
+            prior = json.loads(out_path.read_text())
+        except Exception:
+            prior = {}
+    checkpoint = {
+        "schema": "musubu_cursor_checkpoint_v1",
+        "status": "in_progress",
+        "drive_folder_id": "1kR8pPEahMbgj4ErAzHxCqwU85tMPL8Ea",
+        "agent": "cursor",
+        "updated_at_epoch": int(time.time()),
+        "sections_completed_partial": {
+            "9": "fetched_local_section9",
+            "8": "fetched_local_section8",
+            "2_key_people_pages_saved_locally": kp_pages,
+            "2_key_people_pages_protected_on_drive": [1, 2, 3],
+            "1_companies_protected_pages": "1-1833 except missing 70",
+        },
+        "next_steps": [
+            "upload gzip.b64 artifacts and verify readback sha256",
+            "continue key_people pagination",
+            "companies page 70 then 1834+",
+            "sections 3-7 search pagination",
+        ],
+        "artifact_count": len(artifacts),
+        "artifacts": artifacts,
+        "drive_uploads_verified": prior.get("drive_uploads_verified") or [],
+        "2_key_people_pages_on_drive_b64": prior.get("2_key_people_pages_on_drive_b64") or [],
+    }
+    out_path.write_text(json.dumps(checkpoint, ensure_ascii=False, indent=2))
+    print("wrote", out_path, "artifacts=", len(artifacts), "key_people_pages=", len(kp_pages))
+    return checkpoint
+
+
 def main() -> None:
     p = argparse.ArgumentParser()
     p.add_argument("--out", type=Path, default=DEFAULT_OUT)
     p.add_argument(
         "action",
-        choices=["section9", "section8", "search_page", "checkpoint_manifest"],
+        choices=[
+            "section9",
+            "section8",
+            "search_page",
+            "search_range",
+            "build_checkpoint",
+            "checkpoint_manifest",
+        ],
     )
     p.add_argument("--resource", choices=list(SEARCH_RESOURCES))
     p.add_argument("--page", type=int)
+    p.add_argument("--page-start", type=int)
+    p.add_argument("--page-end", type=int)
     args = p.parse_args()
-    token = extract_bearer_token()
     args.out.mkdir(parents=True, exist_ok=True)
+
+    if args.action == "build_checkpoint":
+        build_checkpoint(args.out)
+        return
+
+    token = extract_bearer_token()
 
     manifest: dict[str, Any] = {
         "created_at_epoch": int(time.time()),
@@ -227,7 +348,15 @@ def main() -> None:
     elif args.action == "search_page":
         if not args.resource or not args.page:
             raise SystemExit("--resource and --page required")
-        manifest["artifacts"] = [fetch_search_page(token, args.resource, args.page, args.out)]
+        rec = fetch_search_page(token, args.resource, args.page, args.out)
+        append_artifact_manifest(args.out, f"manifest_{args.resource}_pages.json", rec)
+        manifest["artifacts"] = [rec]
+    elif args.action == "search_range":
+        if not args.resource or args.page_start is None or args.page_end is None:
+            raise SystemExit("--resource --page-start --page-end required")
+        manifest["artifacts"] = fetch_search_range(
+            token, args.resource, args.page_start, args.page_end, args.out
+        )
     else:
         manifest_path = args.out / "manifest_latest.json"
         if manifest_path.exists():
