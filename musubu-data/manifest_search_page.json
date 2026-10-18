@@ -1,0 +1,27 @@
+{
+  "created_at_epoch": 1792301494,
+  "api_base": "https://api.production.musubu.in",
+  "interval_sec": 2.2,
+  "artifacts": [
+    {
+      "file": "key_people_page_00004.json",
+      "drive_upload_name": "key_people_page_00004.json.b64",
+      "raw_bytes": 69267,
+      "gzip_bytes": 6617,
+      "raw_sha256": "8429f24ac32822ed0fa9cf90932044adcf6a97c74a98fd9439c2847f62e44542",
+      "gzip_sha256": "6d4106f7989438b7645a8672f378719560c565c680ecb59b5151570873df5e76",
+      "local_gz_path": "/workspace/musubu-data/section_key_people/key_people_page_00004.json",
+      "local_b64_path": "/workspace/musubu-data/section_key_people/key_people_page_00004.json.b64",
+      "section": "key_people",
+      "endpoint": "/api/key_people/search",
+      "http_status": 200,
+      "page": 4,
+      "meta": {
+        "total_count": 2927593,
+        "total_pages": 58552,
+        "current_page": 4
+      },
+      "item_count": 48
+    }
+  ]
+}
