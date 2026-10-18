@@ -418,6 +418,35 @@ def build_checkpoint(out_dir: Path) -> dict[str, Any]:
         "2_key_people_pages_on_drive_b64": prior.get("2_key_people_pages_on_drive_b64") or [],
     }
     out_path.write_text(json.dumps(checkpoint, ensure_ascii=False, indent=2))
+    status_path = out_dir / "musubu_cursor_status.json"
+    prior_status: dict[str, Any] = {}
+    if status_path.exists():
+        try:
+            prior_status = json.loads(status_path.read_text())
+        except Exception:
+            pass
+    kp_local = sorted(p for p in kp_pages if p >= KEY_PEOPLE_FIRST_PACK_PAGE)
+    status_path.write_text(
+        json.dumps(
+            {
+                **prior_status,
+                "schema": "musubu_cursor_status_v1",
+                "updated_at_epoch": int(time.time()),
+                "status": checkpoint["status"],
+                "drive_folder_id": checkpoint["drive_folder_id"],
+                "artifact_count": len(artifacts),
+                "key_people_pages_local": kp_pages,
+                "key_people_pages_local_max": max(kp_pages) if kp_pages else None,
+                "key_people_pages_local_count_4plus": len(kp_local),
+                "key_people_total_pages_api": 58552,
+                "packaging_policy": checkpoint.get("packaging_policy"),
+                "drive_uploads_verified": checkpoint.get("drive_uploads_verified") or [],
+                "2_key_people_pages_on_drive_b64": checkpoint.get("2_key_people_pages_on_drive_b64") or [],
+            },
+            ensure_ascii=False,
+            indent=2,
+        )
+    )
     print("wrote", out_path, "artifacts=", len(artifacts), "key_people_pages=", len(kp_pages))
     return checkpoint
 
