@@ -113,9 +113,11 @@
       "name": "key_people_pages_00604-00803.tar.gz",
       "tar_sha256": "d5f8647d1a4be766b09b78e6f54a1332cc3f73bebcce253806975132ae9653fe",
       "local_verified": true,
-      "readback_verified": false,
-      "status": "queued_mcp_binary",
-      "queued_at_epoch": 1792305433
+      "readback_verified": true,
+      "status": "verified_b64_parts",
+      "text_sha256": "54743d6dbb2ad3eadcd6de861a6f59ba218723928240b30787bc29c2941b1142",
+      "part_count": 489,
+      "note": "489 Drive text parts. Local concatenation matches tar SHA256 d5f8647d1a4be766b09b78e6f54a1332cc3f73bebcce253806975132ae9653fe (1,466,507 bytes) and text SHA256 54743d6dbb2ad3eadcd6de861a6f59ba218723928240b30787bc29c2941b1142. Each recorded part read-back matched its slice SHA256. Replacements after a stored mismatch: part 147 1Vq4cFKDdYgz86arh8sSuVvlxoeNzvLMQ, part 156 1T-iezNJtacpBgZLa5YQORDVkYMX911Ih, part 327 1NHxc6tiI26XN5zBvt6G537A08fE5ecEj, part 335 1T9rYDnqkmXko8LnCVl6G0mHk4gfZjxqu, part 360 1wxXJWo_AJmcawKWjej0QWyrm_Q9n6I8V, part 397 1gZxy85kkAcXDePoESxaudYdXGRceZnSv, part 416 145O6iWTv5YhQoMPyCkRXG7B-QLT-yrRb, part 473 1hQHoD_0mD9A7bKQem_1E4h3oHTjKTm0k, part 481 1Sf0rALTWRZHctpFjCIU6b5O655WlcsPF, part 489 1RNXxFaSpqyIucpK5cgr9R1-r2sN2LJ_u. Part 489 is 3344 characters. The gzip opens as a tar of key_people pages 00604-00803, and the first and last members parse as JSON."
     },
     {
       "name": "key_people_pages_00804-01003.tar.gz",
