@@ -1,0 +1,52 @@
+{
+  "schema": "musubu_drive_publisher_log_v1",
+  "folder_id": "1kR8pPEahMbgj4ErAzHxCqwU85tMPL8Ea",
+  "uploads": [
+    {
+      "name": "key_people_page_00004.json.b64",
+      "file_id": "1uoIW-2vZT7BILm5KRoAzhyhW1Z62LHf7",
+      "readback_verified": true
+    },
+    {
+      "name": "master_categories.json.b64",
+      "file_id": "1GVTqjI4Wr9g1P6U0kh6WWOML9xxKunaE"
+    },
+    {
+      "name": "target_search_conditions.json.b64",
+      "file_id": "1zPvric0YGtOhpLG6-Ere0uJ6cnxobNE_"
+    },
+    {
+      "name": "target_tiers_info.json.b64",
+      "file_id": "1Sv_GSj6VrP5tB8RyqfyPzAxSLWJ2dTaQ"
+    },
+    {
+      "name": "master_products.json.b64",
+      "file_id": "1vVRF9QPNyXvFcuz0CQhO37OhDtBOTrSh"
+    },
+    {
+      "name": "master_regions.json.b64",
+      "file_id": "1AD0yjQC1S4t4t-p4Rzu1Q6e9eE7Q2OR1"
+    },
+    {
+      "name": "target_lists.json.b64",
+      "file_id": "195SP0ZjGJ-nbWREyQQX6U6RNhs8BOK4r"
+    }
+  ],
+  "pending_b64_under_50kb": [
+    "master_needs.json.b64",
+    "master_prefectures.json.b64",
+    "master_recruit_keywords.json.b64",
+    "master_event_categories.json.b64",
+    "target_company_ids.json.b64",
+    "master_occupations.json.b64",
+    "master_wards.json.b64",
+    "master_publication_media.json.b64",
+    "master_second_categories.json.b64",
+    "master_banks.json.b64",
+    "target_accounts_all.json.b64"
+  ],
+  "pending_large": [
+    "master_cities.json.b64",
+    "master_brands.json.b64"
+  ]
+}
