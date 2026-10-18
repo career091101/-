@@ -8,10 +8,14 @@ ROOT=/workspace/musubu-data
 LIB=/workspace/scripts/musubu_experiment_lib.py
 RUNNER_LOG="$ROOT/experiment_runner.log"
 PHASE0_SEC=1800
+PHASE0_INTERVAL=1.0
 PHASE1_SEC=3600
-PHASE2A_SEC=1800
-PHASE2B_SEC=1800
-PHASE2C_SEC=3600
+PHASE2_MIN_SEC=1200
+PHASE2_MAX_SEC=3600
+PHASE2_POLL_SEC=60
+# Phase 2 sweep: 1.0s baseline (phases 0–1) then 0.75s → 0.5s
+PHASE2_INTERVALS=(0.75 0.5)
+PHASE2_LABELS=(a b)
 PHASE3_SEC=3600
 PHASE4_SEC=3600
 PHASE5_SEC=3600
@@ -20,6 +24,15 @@ log() { echo "[$(musubu_now)] $*" | tee -a "$RUNNER_LOG"; }
 
 export PYTHONPATH="/workspace/scripts${PYTHONPATH:+:$PYTHONPATH}"
 py() { python3 "$@"; }
+
+py - <<'PY'
+from musubu_experiment_lib import append_experiment_log
+append_experiment_log({
+  "phase": "runner_start",
+  "decision": "advance",
+  "notes": "phase2_sweep_1.0_to_0.5_v1; phase0=1.0s/30m; phase2=0.75,0.5 adaptive window",
+})
+PY
 
 max_page() {
   py - <<'PY'
@@ -112,12 +125,16 @@ abort_check() {
   fi
 }
 
-# --- Phase 0 ---
-log "Phase 0 start"
-py - <<'PY'
+# --- Phase 0 (1.0s baseline, 30 min) ---
+log "Phase 0 start interval=${PHASE0_INTERVAL}s window=${PHASE0_SEC}s (sweep 1.0->0.5)"
+py - <<PY
 from musubu_experiment_lib import set_experiment_phase, set_interval_sec
-set_interval_sec(2.2)
-set_experiment_phase("0_baseline", {"EXPERIMENT_INTERVAL_SEC": 2.2})
+set_interval_sec($PHASE0_INTERVAL)
+set_experiment_phase("0_baseline", {
+  "EXPERIMENT_INTERVAL_SEC": $PHASE0_INTERVAL,
+  "interval_sweep_plan": "1.0_baseline_then_0.75_0.5",
+  "runner_schema": "phase2_sweep_1.0_to_0.5_v1",
+})
 PY
 stop_publisher
 ensure_fetch
@@ -128,19 +145,21 @@ sleep "$PHASE0_SEC"
 abort_check
 t1=$(date +%s)
 p1=$(max_page)
-record_phase "0_baseline" "$t0" "$t1" "$p0" "$p1" "2.2" 1 0 "advance" "no publisher uploads"
+record_phase "0_baseline" "$t0" "$t1" "$p0" "$p1" "$PHASE0_INTERVAL" 1 0 "advance" "no publisher uploads; 1.0s baseline for 0.5s sweep"
 BASELINE_PPH=$(python3 - <<PY
 from musubu_experiment_lib import pages_per_hour
 print(pages_per_hour($p0, $p1, $t1 - $t0))
 PY
 )
-log "Phase 0 pages_per_hour=$BASELINE_PPH"
+BASELINE_INTERVAL=$PHASE0_INTERVAL
+log "Phase 0 pages_per_hour=$BASELINE_PPH (baseline interval=${BASELINE_INTERVAL}s)"
 
 # --- Phase 1 ---
-log "Phase 1 start (publisher ON)"
-py - <<'PY'
+log "Phase 1 start (publisher ON, interval=${PHASE0_INTERVAL}s)"
+set_interval "$PHASE0_INTERVAL"
+py - <<PY
 from musubu_experiment_lib import set_experiment_phase
-set_experiment_phase("1_publisher_parallel")
+set_experiment_phase("1_publisher_parallel", {"EXPERIMENT_INTERVAL_SEC": $PHASE0_INTERVAL})
 PY
 start_publisher
 t0=$(date +%s)
@@ -160,16 +179,16 @@ PY
 )
 decision="advance"
 notes="publisher parallel ON"
-if python3 - <<PY
-import sys
+gate_fail=$(python3 - <<PY
 print(1 if float('$pph') < float('$threshold') else 0)
 PY
-| grep -q 1; then
+)
+if [[ "$gate_fail" == "1" ]]; then
   decision="rollback"
-  notes="fetch pph below 80% baseline; stopping publisher"
+  notes="fetch pph below 80% baseline (${pph} < ${threshold}); stopping publisher"
   stop_publisher
 fi
-record_phase "1_publisher_parallel" "$t0" "$t1" "$p0" "$p1" "2.2" 1 1 "$decision" "$notes"
+record_phase "1_publisher_parallel" "$t0" "$t1" "$p0" "$p1" "$PHASE0_INTERVAL" 1 1 "$decision" "$notes"
 PUBLISHER_ON=1
 if [[ "$decision" == "rollback" ]]; then
   PUBLISHER_ON=0
@@ -180,41 +199,38 @@ if [[ "$decision" == "rollback" ]]; then
   start_publisher
 fi
 
-# --- Phase 2 interval exploration ---
-CONFIRMED=2.2
+# --- Phase 2 interval exploration (1.0 confirmed → try 0.75 → 0.5) ---
+CONFIRMED=$PHASE0_INTERVAL
 try_interval() {
-  local label="$1" sec="$2" window="$3"
-  log "Phase 2$label interval=${sec}s window=${window}s"
+  local label="$1" sec="$2"
+  log "Phase 2${label} interval=${sec}s min=${PHASE2_MIN_SEC}s max=${PHASE2_MAX_SEC}s poll=${PHASE2_POLL_SEC}s"
   set_interval "$sec"
   py - <<PY
 from musubu_experiment_lib import set_experiment_phase
-set_experiment_phase("2${label}", {"EXPERIMENT_INTERVAL_SEC": $sec})
+set_experiment_phase("2${label}", {"EXPERIMENT_INTERVAL_SEC": $sec, "interval_sweep_target": 0.5})
 PY
   [[ "$PUBLISHER_ON" == 1 ]] && start_publisher || stop_publisher
   t0=$(date +%s)
   p0=$(max_page)
-  sleep "$window"
+  WIN_FILE="$ROOT/experiment_last_window.json"
+  if ! python3 /workspace/scripts/musubu_experiment_wait_window.py \
+    --start "$t0" --page-start "$p0" \
+    --min-sec "$PHASE2_MIN_SEC" --max-sec "$PHASE2_MAX_SEC" --poll-sec "$PHASE2_POLL_SEC" \
+    --baseline-pph "$BASELINE_PPH" --baseline-interval "$BASELINE_INTERVAL" --trial-interval "$sec" \
+    >"$WIN_FILE"; then
+    abort_check
+    return 2
+  fi
   abort_check
-  t1=$(date +%s)
-  p1=$(max_page)
-  counts=$(python3 - <<PY
-import json
-from musubu_experiment_lib import count_http_in_window, gate_429_failed
-c = count_http_in_window($t0, $t1)
-c["failed"] = gate_429_failed(c)
-import json; print(json.dumps(c))
-PY
-)
-  failed=$(python3 - <<PY
-import json
-print(json.loads('''$counts''').get("failed"))
-PY
-)
+  t1=$(python3 -c "import json; print(json.load(open('$WIN_FILE'))['ended_at'])")
+  p1=$(python3 -c "import json; print(json.load(open('$WIN_FILE')).get('page_end', 0))")
+  reason=$(python3 -c "import json; print(json.load(open('$WIN_FILE')).get('reason', ''))")
+  failed=$(python3 -c "import json; from musubu_experiment_lib import gate_429_failed; c=json.load(open('$WIN_FILE')).get('counts') or {}; print(gate_429_failed(c))")
   decision="advance"
-  notes=""
+  notes="window_end=$reason"
   if [[ "$failed" == "True" ]]; then
     decision="rollback"
-    notes="429 gate failed at ${sec}s"
+    notes="429 gate failed at ${sec}s ($reason)"
   fi
   record_phase "2${label}" "$t0" "$t1" "$p0" "$p1" "$sec" 1 "$PUBLISHER_ON" "$decision" "$notes"
   if [[ "$failed" == "True" ]]; then
@@ -226,23 +242,23 @@ PY
 
 py - <<'PY'
 from musubu_experiment_lib import set_experiment_phase
-set_experiment_phase("2_interval_sweep")
+set_experiment_phase("2_interval_sweep", {"interval_sweep_plan": "0.75_then_0.5", "confirmed_start": 1.0})
 PY
-try_interval "a" 2.0 "$PHASE2A_SEC" || { set_interval "$CONFIRMED"; log "2a failed; end phase 2 at $CONFIRMED"; }
-if [[ "$CONFIRMED" == "2.2" ]]; then
-  try_interval "b" 1.8 "$PHASE2B_SEC" || { set_interval 2.0; CONFIRMED=2.0; log "2b failed; CONFIRMED=2.0"; }
-fi
-if [[ "$CONFIRMED" != "2.2" ]]; then
-  try_interval "c" 1.5 "$PHASE2C_SEC" || {
-    if [[ "$CONFIRMED" == "2.0" ]]; then set_interval 2.0; else set_interval 1.8; CONFIRMED=1.8; fi
-    log "2c failed; CONFIRMED=$CONFIRMED"
-  }
-fi
+for i in "${!PHASE2_INTERVALS[@]}"; do
+  sec="${PHASE2_INTERVALS[$i]}"
+  label="${PHASE2_LABELS[$i]}"
+  if try_interval "$label" "$sec"; then
+    continue
+  fi
+  set_interval "$CONFIRMED"
+  log "Phase 2${label} failed at ${sec}s; CONFIRMED=${CONFIRMED}s"
+  break
+done
 py - <<PY
 from musubu_experiment_lib import set_experiment_phase
-set_experiment_phase("2_done", {"EXPERIMENT_INTERVAL_SEC": $CONFIRMED})
+set_experiment_phase("2_done", {"EXPERIMENT_INTERVAL_SEC": $CONFIRMED, "interval_sweep_confirmed": $CONFIRMED})
 PY
-log "EXPERIMENT_INTERVAL_SEC=$CONFIRMED"
+log "EXPERIMENT_INTERVAL_SEC=$CONFIRMED (fastest passing interval toward 0.5s floor)"
 
 stop_worker_b() {
   tmux -f /exec-daemon/tmux.portal.conf kill-session -t musubu-fetch-light 2>/dev/null || true
@@ -297,11 +313,8 @@ c["failed"] = gate_429_failed(c)
 print(json.dumps(c))
 PY
 )
-if python3 - <<PY
-import json
-print(json.loads('''$counts''').get("failed"))
-PY
-| grep -q True; then
+failed_3a=$(python3 -c "import json; print(json.loads('''$counts''').get('failed'))")
+if [[ "$failed_3a" == "True" ]]; then
   stop_worker_b
   record_phase "3a" "$t0" "$t1" "$p0" "$p1" "$CONFIRMED" 2 "$PUBLISHER_ON" "rollback" "429 gate; worker B stopped"
   SKIP_PHASE4=1
@@ -333,11 +346,8 @@ from musubu_experiment_lib import pages_per_hour
 print(pages_per_hour($p0, $p1, $t1 - $t0))
 PY
 )
-  if python3 - <<PY
-import json
-print(json.loads('''$counts''').get("failed"))
-PY
-| grep -q True; then
+  failed_3b=$(python3 -c "import json; print(json.loads('''$counts''').get('failed'))")
+  if [[ "$failed_3b" == "True" ]]; then
     stop_worker_b
     record_phase "3b" "$t0" "$t1" "$p0" "$p1" "$CONFIRMED" 2 "$PUBLISHER_ON" "rollback" "429 gate; worker B stopped"
     SKIP_PHASE4=1
@@ -377,14 +387,9 @@ c["failed"] = gate_429_failed(c)
 print(json.dumps(c))
 PY
 )
-  if python3 - <<PY
-import json
-print(json.loads('''$counts''').get("failed"))
-PY
-| grep -q False && python3 - <<PY
-print(1 if float('$pph4') >= float('$PHASE3B_PPH') * 0.8 else 0)
-PY
-| grep -q 1; then
+  failed_4=$(python3 -c "import json; print(json.loads('''$counts''').get('failed'))")
+  pph4_ok=$(python3 -c "print(1 if float('$pph4') >= float('$PHASE3B_PPH') * 0.8 else 0)")
+  if [[ "$failed_4" == "False" && "$pph4_ok" == "1" ]]; then
     RECOMMENDED="global_queue"
   fi
   record_phase "4_global_queue" "$t0" "$t1" "$p0" "$p1" "$CONFIRMED" 1 "$PUBLISHER_ON" "advance" "recommended_mode=$RECOMMENDED"

@@ -4,5 +4,45 @@
     "started_at": 1792303007,
     "notes": "experiment runner starting; publisher OFF",
     "decision": "advance"
+  },
+  {
+    "phase": "0_baseline",
+    "started_at": 1792303027,
+    "ended_at": 1792304827,
+    "resource(s)": [
+      "key_people"
+    ],
+    "page_start": 370,
+    "page_end": 906,
+    "pages_per_hour": 1072.0,
+    "api_parallel": 1,
+    "interval_sec": 2.2,
+    "publisher_parallel": 0,
+    "http_429": 0,
+    "http_401": 0,
+    "http_5xx": 0,
+    "uploads_ok": 0,
+    "decision": "advance",
+    "notes": "no publisher uploads"
+  },
+  {
+    "phase": "0_baseline",
+    "started_at": 1792303633,
+    "ended_at": 1792305433,
+    "resource(s)": [
+      "key_people"
+    ],
+    "page_start": 558,
+    "page_end": 1088,
+    "pages_per_hour": 1060.0,
+    "api_parallel": 1,
+    "interval_sec": 2.2,
+    "publisher_parallel": 0,
+    "http_429": 0,
+    "http_401": 0,
+    "http_5xx": 0,
+    "uploads_ok": 0,
+    "decision": "advance",
+    "notes": "no publisher uploads"
   }
 ]

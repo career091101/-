@@ -45,16 +45,90 @@
       "name": "master_recruit_keywords.json.b64",
       "file_id": "1gD9RMC8o0CEqXjQTpq2hlwUybUqx7XXz",
       "gzip_sha256": "5addcf2bc1724357057738cac785cd874805110c8c5e24d5c4d3740af085e43c"
+    },
+    {
+      "name": "master_event_categories.json.b64",
+      "file_id": "1jEU5cKlR2IA2RxHtujn_GFVXHu-RtOUH",
+      "gzip_sha256": "63b2aef022cdf5d724eacc32bce0f72dfa594d27d445e0f0557198bd20e0b8bf"
+    },
+    {
+      "name": "target_company_ids.json.b64",
+      "file_id": "1vnvpCUcV5Z8cicOwWttx8_Bxj8TOr9Gb",
+      "gzip_sha256": "86ba76b12a85caaca1b588361cfebba1f5a1a20074ba812a2a7b98baa40718cf",
+      "readback_verified": true
+    },
+    {
+      "name": "key_people_pages_00004-00203.tar.gz",
+      "tar_sha256": "217b906c5427b55ef5649878addb818a043f6a04ad126c60035950ede65010f5",
+      "local_verified": true,
+      "readback_verified": false,
+      "status": "queued_mcp_binary",
+      "queued_at_epoch": 1792304827
+    },
+    {
+      "name": "key_people_pages_00204-00403.tar.gz",
+      "tar_sha256": "63a369060993d57069788a548484e01dc22e5c1724f9d84821c50f6bca57d0d2",
+      "local_verified": true,
+      "readback_verified": false,
+      "status": "queued_mcp_binary",
+      "queued_at_epoch": 1792304827
+    },
+    {
+      "name": "key_people_pages_00404-00603.tar.gz",
+      "tar_sha256": "e4688a77766738a093a918e28ef4230751899ae67d49194335e5f11a12e1c6ae",
+      "local_verified": true,
+      "readback_verified": false,
+      "status": "queued_mcp_binary",
+      "queued_at_epoch": 1792304827
+    },
+    {
+      "name": "master_occupations.json.b64",
+      "file_id": "1HmlFtMeuy1mQQeR-rb_2zgOWQXzEtKmL",
+      "gzip_sha256": "79a8db7fb71d7c3a0c284f3e07e72dd599d0166611ce3c88c771a9fee7b56f84",
+      "readback_verified": true
+    },
+    {
+      "name": "key_people_pages_00604-00803.tar.gz",
+      "tar_sha256": "d5f8647d1a4be766b09b78e6f54a1332cc3f73bebcce253806975132ae9653fe",
+      "local_verified": true,
+      "readback_verified": false,
+      "status": "queued_mcp_binary",
+      "queued_at_epoch": 1792305433
+    },
+    {
+      "name": "key_people_pages_00804-01003.tar.gz",
+      "tar_sha256": "6ec8d1580abd777b215a9b74f98356c7fbce449896c510299940a17d9b618d8a",
+      "local_verified": true,
+      "readback_verified": false,
+      "status": "queued_mcp_binary",
+      "queued_at_epoch": 1792305433
+    },
+    {
+      "name": "master_publication_media.json.b64",
+      "file_id": "1tHl9T3oKGxxP_Uvap4px0qHzxRXNBGdh",
+      "gzip_sha256": "7090cf8ff6b35451e0f71d42af9d23e6dcc3028474e333243d38e8c274b68ef2",
+      "readback_verified": true
+    },
+    {
+      "name": "master_second_categories.json.b64",
+      "file_id": "1OdfJgqosPgQjGPFy3vteCqhTJisA1kHX",
+      "gzip_sha256": "0c39983ab7b562a52cdfd638e351d97f32106c23889c37aebffdd10efb7c3667",
+      "readback_verified": true
+    },
+    {
+      "name": "master_banks.json.b64",
+      "file_id": "1kZS7TQ4yRXX2190xr6eqEoITuaYZx6QW",
+      "gzip_sha256": "3cd78a982062f6cdb75dc656fe87539a96d471a3cc00da5e2aaaa78f25cd51ed",
+      "readback_verified": true
+    },
+    {
+      "name": "master_wards.json.b64",
+      "file_id": "1X7kA5ccU7nCV2h02QOSiBTgtvqK1wtKU",
+      "gzip_sha256": "72d98c1d992f0d7f4748048674700dba55d9aa43a597d6579666b596cb9e578d",
+      "readback_verified": true
     }
   ],
   "pending_b64_under_50kb": [
-    "master_event_categories.json.b64",
-    "target_company_ids.json.b64",
-    "master_occupations.json.b64",
-    "master_wards.json.b64",
-    "master_publication_media.json.b64",
-    "master_second_categories.json.b64",
-    "master_banks.json.b64",
     "target_accounts_all.json.b64"
   ],
   "pending_large": [

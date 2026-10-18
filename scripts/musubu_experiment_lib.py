@@ -96,6 +96,7 @@ def set_interval_sec(value: float) -> None:
     state = load_json(STATE_PATH, {})
     state["EXPERIMENT_INTERVAL_SEC"] = value
     state["updated_at_epoch"] = int(time.time())
+    state["updated_at_jst"] = now_jst_iso()
     save_json(STATE_PATH, state)
 
 
