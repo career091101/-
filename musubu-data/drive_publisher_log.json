@@ -51,7 +51,9 @@
     },
     {
       "name": "master_prefectures.json.b64",
-      "file_id": "1nNPeLg_Scm9VlV1hA6zLuP_Wp8-T9o07"
+      "file_id": "1cU_oBWmfR7L1U_iIkkFefoYbB_0ZVcY9",
+      "gzip_sha256": "52bd14028caf3a167e158f26cc26ad64bb6e3e1ecb896633ce2f28c6960ea0db",
+      "readback_verified": true
     },
     {
       "name": "master_recruit_keywords.json.b64",
