@@ -17,6 +17,8 @@ from io import BytesIO
 from pathlib import Path
 from typing import Any
 
+from musubu_experiment_lib import now_jst_iso
+
 API_BASE = "https://api.production.musubu.in"
 ORIGIN = "https://app.production.musubu.in"
 CHROME_LS = Path("/home/ubuntu/.config/google-chrome/Default/Local Storage/leveldb")
@@ -445,6 +447,7 @@ def build_checkpoint(out_dir: Path) -> dict[str, Any]:
         "drive_folder_id": "1kR8pPEahMbgj4ErAzHxCqwU85tMPL8Ea",
         "agent": "cursor",
         "updated_at_epoch": int(time.time()),
+        "updated_at_jst": now_jst_iso(),
         "experiment_phase": exp_state.get("experiment_phase"),
         "EXPERIMENT_INTERVAL_SEC": exp_state.get("EXPERIMENT_INTERVAL_SEC")
         or effective_interval_sec(),
@@ -487,6 +490,7 @@ def build_checkpoint(out_dir: Path) -> dict[str, Any]:
                 **prior_status,
                 "schema": "musubu_cursor_status_v1",
                 "updated_at_epoch": int(time.time()),
+                "updated_at_jst": now_jst_iso(),
                 "status": checkpoint["status"],
                 "drive_folder_id": checkpoint["drive_folder_id"],
                 "artifact_count": len(artifacts),

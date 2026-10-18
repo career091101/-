@@ -6,8 +6,16 @@ import json
 import os
 import re
 import time
+from datetime import datetime
 from pathlib import Path
 from typing import Any
+from zoneinfo import ZoneInfo
+
+JST = ZoneInfo("Asia/Tokyo")
+
+
+def now_jst_iso() -> str:
+    return datetime.now(JST).isoformat(timespec="seconds")
 
 DATA = Path("/workspace/musubu-data")
 LOG_PATH = DATA / "experiment_log.json"
@@ -54,6 +62,7 @@ def set_experiment_phase(phase: str, extra: dict[str, Any] | None = None) -> Non
     state = load_json(STATE_PATH, {})
     state["experiment_phase"] = phase
     state["updated_at_epoch"] = int(time.time())
+    state["updated_at_jst"] = now_jst_iso()
     if extra:
         state.update(extra)
     save_json(STATE_PATH, state)

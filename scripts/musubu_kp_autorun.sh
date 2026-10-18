@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # Fetch key_people pages from checkpoint max+1 through END in batches (serial API).
 set -euo pipefail
+# shellcheck source=musubu_env.sh
+source "$(dirname "${BASH_SOURCE[0]}")/musubu_env.sh"
 END="${1:-58552}"
 BATCH="${2:-170}"
 SCRIPT=/workspace/scripts/musubu_collect.py
@@ -31,10 +33,10 @@ fi
 while [[ "$start" -le "$END" ]]; do
   batch_end=$((start + BATCH - 1))
   [[ "$batch_end" -gt "$END" ]] && batch_end="$END"
-  echo "=== key_people pages $start-$batch_end at $(date -Is) ==="
+  echo "=== key_people pages $start-$batch_end at $(musubu_now) ==="
   python3 "$SCRIPT" search_range --resource key_people --page-start "$start" --page-end "$batch_end"
   python3 "$SCRIPT" build_checkpoint
   start=$((batch_end + 1))
 done
 
-echo "done through $END at $(date -Is)"
+echo "done through $END at $(musubu_now)"

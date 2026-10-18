@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # Musubu staged parallelization experiment (phases 0–5).
 set -euo pipefail
+# shellcheck source=musubu_env.sh
+source "$(dirname "${BASH_SOURCE[0]}")/musubu_env.sh"
 
 ROOT=/workspace/musubu-data
 LIB=/workspace/scripts/musubu_experiment_lib.py
@@ -14,7 +16,7 @@ PHASE3_SEC=3600
 PHASE4_SEC=3600
 PHASE5_SEC=3600
 
-log() { echo "[$(date -Is)] $*" | tee -a "$RUNNER_LOG"; }
+log() { echo "[$(musubu_now)] $*" | tee -a "$RUNNER_LOG"; }
 
 export PYTHONPATH="/workspace/scripts${PYTHONPATH:+:$PYTHONPATH}"
 py() { python3 "$@"; }
