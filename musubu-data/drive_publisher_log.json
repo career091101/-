@@ -60,10 +60,12 @@
     {
       "name": "key_people_pages_00004-00203.tar.gz",
       "tar_sha256": "217b906c5427b55ef5649878addb818a043f6a04ad126c60035950ede65010f5",
+      "text_sha256": "0358b5688589a32b998704625ed7a31971bcdfd2bb1a76165ad75b27cedb8c4c",
       "local_verified": true,
-      "readback_verified": false,
-      "status": "queued_mcp_binary",
-      "queued_at_epoch": 1792304827
+      "readback_verified": true,
+      "status": "verified_b64_parts",
+      "part_count": 497,
+      "note": "497 Drive text parts. Local concatenation matches tar SHA256. The gzip opens as a tar of key_people pages 00004-00203, and the first and last members parse as JSON. Each part read-back matches its slice SHA256."
     },
     {
       "name": "key_people_pages_00204-00403.tar.gz",
