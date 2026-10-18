@@ -125,6 +125,48 @@ abort_check() {
   fi
 }
 
+# RESUME_FROM=phase2: prior runner died in Phase 1's 3600s sleep (last log
+# "Phase 1 start" at 15:37 JST, no ended_at, no EXPERIMENT_ABORT_401.flag).
+# Do not reuse the 2.2s Phase 0 pph. Take one explicit 1.0s window with
+# publisher left ON, then the 0.75→0.5 sweep.
+PUBLISHER_ON=1
+if [[ "${RESUME_FROM:-}" == "phase2" ]]; then
+  log "RESUME_FROM=phase2 interval=1.0s then 0.75/0.5 (publisher stays ON)"
+  py - <<'PY'
+from musubu_experiment_lib import append_experiment_log, set_experiment_phase, set_interval_sec
+append_experiment_log({
+  "phase": "1_publisher_parallel",
+  "decision": "skip",
+  "interval_sec": 2.2,
+  "publisher_parallel": 1,
+  "notes": "runner died during Phase 1 sleep after 15:37 JST start; no ended_at. Not reconstructed. Superseded by explicit 1.0s remeasure.",
+})
+set_interval_sec(1.0)
+set_experiment_phase("1_remeasure_1s", {
+  "EXPERIMENT_INTERVAL_SEC": 1.0,
+  "resume_from": "phase2",
+  "interval_sweep_plan": "1.0_baseline_then_0.75_0.5",
+})
+PY
+  ensure_fetch
+  start_publisher
+  t0=$(date +%s)
+  p0=$(max_page)
+  WIN_FILE="$ROOT/experiment_last_window.json"
+  python3 /workspace/scripts/musubu_experiment_wait_window.py \
+    --start "$t0" --page-start "$p0" \
+    --min-sec "$PHASE2_MIN_SEC" --max-sec 1800 --poll-sec "$PHASE2_POLL_SEC" \
+    --baseline-pph 1 --baseline-interval 1.0 --trial-interval 1.0 \
+    >"$WIN_FILE"
+  abort_check
+  t1=$(python3 -c "import json; print(json.load(open('$WIN_FILE'))['ended_at'])")
+  p1=$(python3 -c "import json; print(json.load(open('$WIN_FILE')).get('page_end', 0))")
+  reason=$(python3 -c "import json; print(json.load(open('$WIN_FILE')).get('reason', ''))")
+  BASELINE_PPH=$(python3 -c "import json; print(json.load(open('$WIN_FILE')).get('pages_per_hour') or 0)")
+  BASELINE_INTERVAL=1.0
+  record_phase "1_publisher_parallel" "$t0" "$t1" "$p0" "$p1" "1.0" 1 1 "advance" "explicit 1.0s remeasure after runner loss; publisher ON; window_end=$reason"
+  log "Phase 1 remeasure pages_per_hour=$BASELINE_PPH"
+else
 # --- Phase 0 (1.0s baseline, 30 min) ---
 log "Phase 0 start interval=${PHASE0_INTERVAL}s window=${PHASE0_SEC}s (sweep 1.0->0.5)"
 py - <<PY
@@ -197,6 +239,7 @@ if [[ "$decision" == "rollback" ]]; then
   sleep 600
   stop_publisher
   start_publisher
+fi
 fi
 
 # --- Phase 2 interval exploration (1.0 confirmed → try 0.75 → 0.5) ---
