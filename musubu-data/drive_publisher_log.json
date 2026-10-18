@@ -30,11 +30,19 @@
     {
       "name": "target_lists.json.b64",
       "file_id": "195SP0ZjGJ-nbWREyQQX6U6RNhs8BOK4r"
+    },
+    {
+      "name": "master_needs.json.b64",
+      "file_id": "1TDDG_SRAvhR7DPRILTeZSrBi24KZE9vQ",
+      "readback_verified": true,
+      "gzip_sha256": "d44545851040f1cfcd73b740b6efd4f4e0dc6728447ba4813ed2496bdc63b214"
+    },
+    {
+      "name": "master_prefectures.json.b64",
+      "file_id": "1nNPeLg_Scm9VlV1hA6zLuP_Wp8-T9o07"
     }
   ],
   "pending_b64_under_50kb": [
-    "master_needs.json.b64",
-    "master_prefectures.json.b64",
     "master_recruit_keywords.json.b64",
     "master_event_categories.json.b64",
     "target_company_ids.json.b64",

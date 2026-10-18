@@ -7,6 +7,7 @@ import base64
 import gzip
 import hashlib
 import json
+import os
 import re
 import tarfile
 import time
@@ -20,7 +21,27 @@ API_BASE = "https://api.production.musubu.in"
 ORIGIN = "https://app.production.musubu.in"
 CHROME_LS = Path("/home/ubuntu/.config/google-chrome/Default/Local Storage/leveldb")
 DEFAULT_OUT = Path("/workspace/musubu-data")
-INTERVAL_SEC = 2.2
+DEFAULT_INTERVAL_SEC = 2.2
+
+
+def effective_interval_sec(cli_override: float | None = None) -> float:
+    if cli_override is not None:
+        return cli_override
+    cfg_path = DEFAULT_OUT / "experiment_config.json"
+    if cfg_path.is_file():
+        try:
+            v = json.loads(cfg_path.read_text()).get("EXPERIMENT_INTERVAL_SEC")
+            if v is not None:
+                return float(v)
+        except Exception:
+            pass
+    env = os.environ.get("EXPERIMENT_INTERVAL_SEC")
+    if env:
+        return float(env)
+    return DEFAULT_INTERVAL_SEC
+
+
+INTERVAL_SEC = effective_interval_sec()
 # Align with companies archives on Drive (~200 search pages per tar.gz).
 SEARCH_TAR_PAGE_SIZE = 200
 KEY_PEOPLE_FIRST_PACK_PAGE = 4  # pages 1–3 remain separate .json.gz on Drive
@@ -95,7 +116,28 @@ def api_call(token: str, method: str, path: str, body: dict | None = None) -> tu
             parsed = json.loads(raw.decode() or "null")
         except Exception:
             parsed = {"error": raw[:500].decode("utf-8", "replace")}
+        _experiment_log_api(method, path, e.code)
         return e.code, parsed
+
+
+def _experiment_log_api(method: str, path: str, http_status: int, resource: str | None = None, page: int | None = None) -> None:
+    try:
+        import sys
+
+        scripts = Path(__file__).resolve().parent
+        if str(scripts) not in sys.path:
+            sys.path.insert(0, str(scripts))
+        from musubu_experiment_lib import log_api_call
+
+        log_api_call(
+            method=method,
+            path=path,
+            http_status=http_status,
+            resource=resource,
+            page=page,
+        )
+    except Exception:
+        pass
 
 
 def write_gzip_artifact(out_dir: Path, name: str, payload: Any) -> dict[str, Any]:
@@ -123,6 +165,7 @@ def fetch_section9(token: str, out_dir: Path) -> list[dict[str, Any]]:
     for filename, path in SECTION9_GETS:
         time.sleep(INTERVAL_SEC)
         status, parsed = api_call(token, "GET", path)
+        _experiment_log_api("GET", path, status, resource="section9")
         rec = write_gzip_artifact(out_dir / "section9", filename, parsed)
         rec.update({"section": 9, "endpoint": path, "http_status": status})
         records.append(rec)
@@ -135,6 +178,7 @@ def fetch_section8(token: str, out_dir: Path) -> list[dict[str, Any]]:
     for filename, path in SECTION8_GETS:
         time.sleep(INTERVAL_SEC)
         status, parsed = api_call(token, "GET", path)
+        _experiment_log_api("GET", path, status, resource="section8")
         rec = write_gzip_artifact(out_dir / "section8", filename, parsed)
         rec.update({"section": 8, "endpoint": path, "http_status": status})
         records.append(rec)
@@ -210,6 +254,7 @@ def fetch_search_page(
         body.update(extra_body)
     time.sleep(INTERVAL_SEC)
     status, parsed = api_call(token, "POST", path, body)
+    _experiment_log_api("POST", path, status, resource=resource, page=page)
     name = f"{resource}_page_{page:05d}.json"
     rec = write_gzip_artifact(out_dir / f"section_{resource}", name, parsed)
     meta = parsed.get("meta") if isinstance(parsed, dict) else None
@@ -387,12 +432,22 @@ def build_checkpoint(out_dir: Path) -> dict[str, Any]:
             prior = json.loads(out_path.read_text())
         except Exception:
             prior = {}
+    exp_state: dict[str, Any] = {}
+    exp_path = out_dir / "experiment_state.json"
+    if exp_path.exists():
+        try:
+            exp_state = json.loads(exp_path.read_text())
+        except Exception:
+            exp_state = {}
     checkpoint = {
         "schema": "musubu_cursor_checkpoint_v1",
         "status": "in_progress",
         "drive_folder_id": "1kR8pPEahMbgj4ErAzHxCqwU85tMPL8Ea",
         "agent": "cursor",
         "updated_at_epoch": int(time.time()),
+        "experiment_phase": exp_state.get("experiment_phase"),
+        "EXPERIMENT_INTERVAL_SEC": exp_state.get("EXPERIMENT_INTERVAL_SEC")
+        or effective_interval_sec(),
         "sections_completed_partial": {
             "9": "fetched_local_section9",
             "8": "fetched_local_section8",
@@ -475,7 +530,10 @@ def main() -> None:
     p.add_argument("--page", type=int)
     p.add_argument("--page-start", type=int)
     p.add_argument("--page-end", type=int)
+    p.add_argument("--interval-sec", type=float, default=None)
     args = p.parse_args()
+    global INTERVAL_SEC
+    INTERVAL_SEC = effective_interval_sec(args.interval_sec)
     args.out.mkdir(parents=True, exist_ok=True)
 
     if args.action == "build_checkpoint":

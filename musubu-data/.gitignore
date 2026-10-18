@@ -2,3 +2,6 @@ section_key_people/key_people_page_*.json
 section_key_people/key_people_page_*.json.b64
 archives/**/*.tar.gz
 archives/**/*.tar.gz.b64
+publisher_mcp_queue/
+experiment_api.log
+experiment_runner.log
