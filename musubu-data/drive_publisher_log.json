@@ -81,9 +81,11 @@
       "name": "key_people_pages_00404-00603.tar.gz",
       "tar_sha256": "e4688a77766738a093a918e28ef4230751899ae67d49194335e5f11a12e1c6ae",
       "local_verified": true,
-      "readback_verified": false,
-      "status": "queued_mcp_binary",
-      "queued_at_epoch": 1792304827
+      "readback_verified": true,
+      "status": "verified_b64_parts",
+      "text_sha256": "b8a63db8d9cdb7be95069768c27ba5628a3ebfe22eea7e80df9b868f5eff52ec",
+      "part_count": 481,
+      "note": "481 Drive text parts. Local concatenation matches tar SHA256 e4688a77766738a093a918e28ef4230751899ae67d49194335e5f11a12e1c6ae (1,440,225 bytes) and text SHA256 b8a63db8d9cdb7be95069768c27ba5628a3ebfe22eea7e80df9b868f5eff52ec. Each recorded part read-back matched its slice SHA256. Replacements after a stored mismatch: part 23 1KI7Ai3erfcUGs7lBwj64yS30x_jIy7iK, part 25 1vrQgcHN5S_Wv_TvXnz-gw81J0UQkXjpq, part 280 17HF59jWiLX2tD0P65F2jCb8Yb6euknl7, part 294 1_3fYEDwA-mnPnLoFFVorLn6XgGRGVRff, part 366 1tQMSOxFHoDjtt6X_qEwQdX33r2nwfYj6, part 414 1-AyRs0eJNBwK3I0qcB-gbJucYMOcjzud, part 430 1gdPCR9EGid-pnPeYm1qp0Mlg3Vwuebdm, part 452 1e8MyWntLVNnrS3jOWhmprXRHLSBOqItC, part 464 15cHW2lSvTg1rPnQtZ6tQ-uH3l6OafNHw. Part 481 is 300 characters."
     },
     {
       "name": "master_occupations.json.b64",
