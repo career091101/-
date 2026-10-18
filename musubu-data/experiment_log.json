@@ -44,5 +44,162 @@
     "uploads_ok": 0,
     "decision": "advance",
     "notes": "no publisher uploads"
+  },
+  {
+    "phase": "runner_start",
+    "decision": "advance",
+    "notes": "phase2_sweep_1.0_to_0.5_v1; phase0=1.0s/30m; phase2=0.75,0.5 adaptive window"
+  },
+  {
+    "phase": "runner_start",
+    "decision": "advance",
+    "notes": "phase2_sweep_1.0_to_0.5_v1; phase0=1.0s/30m; phase2=0.75,0.5 adaptive window"
+  },
+  {
+    "phase": "1_publisher_parallel",
+    "decision": "skip",
+    "interval_sec": 2.2,
+    "publisher_parallel": 1,
+    "notes": "runner died during Phase 1 sleep after 15:37 JST start; no ended_at. Not reconstructed. Superseded by explicit 1.0s remeasure."
+  },
+  {
+    "phase": "1_publisher_parallel",
+    "started_at": 1792310834,
+    "ended_at": 1792312035,
+    "resource(s)": [
+      "key_people"
+    ],
+    "page_start": 2629,
+    "page_end": 3139,
+    "pages_per_hour": 1528.7260616153205,
+    "api_parallel": 1,
+    "interval_sec": 1.0,
+    "publisher_parallel": 1,
+    "http_429": 0,
+    "http_401": 0,
+    "http_5xx": 0,
+    "uploads_ok": 0,
+    "decision": "advance",
+    "notes": "explicit 1.0s remeasure after runner loss; publisher ON; window_end=early_advance"
+  },
+  {
+    "phase": "2a",
+    "started_at": 1792312035,
+    "ended_at": 1792313236,
+    "resource(s)": [
+      "key_people"
+    ],
+    "page_start": 3139,
+    "page_end": 3691,
+    "pages_per_hour": 1654.6211490424646,
+    "api_parallel": 1,
+    "interval_sec": 0.75,
+    "publisher_parallel": 1,
+    "http_429": 0,
+    "http_401": 0,
+    "http_5xx": 0,
+    "uploads_ok": 0,
+    "decision": "advance",
+    "notes": "window_end=early_advance"
+  },
+  {
+    "phase": "2b",
+    "started_at": 1792313236,
+    "ended_at": 1792316836,
+    "resource(s)": [
+      "key_people"
+    ],
+    "page_start": 3691,
+    "page_end": 5528,
+    "pages_per_hour": 1837.0,
+    "api_parallel": 1,
+    "interval_sec": 0.5,
+    "publisher_parallel": 1,
+    "http_429": 0,
+    "http_401": 0,
+    "http_5xx": 0,
+    "uploads_ok": 0,
+    "decision": "advance",
+    "notes": "window_end=max_window"
+  },
+  {
+    "phase": "3a",
+    "started_at": 1792316837,
+    "ended_at": 1792320437,
+    "resource(s)": [
+      "key_people"
+    ],
+    "page_start": 5528,
+    "page_end": 7294,
+    "pages_per_hour": 1766.0,
+    "api_parallel": 2,
+    "interval_sec": 0.5,
+    "publisher_parallel": 1,
+    "http_429": 0,
+    "http_401": 0,
+    "http_5xx": 0,
+    "uploads_ok": 0,
+    "decision": "advance",
+    "notes": "light + key people"
+  },
+  {
+    "phase": "3b",
+    "started_at": 1792320438,
+    "ended_at": 1792324038,
+    "resource(s)": [
+      "key_people"
+    ],
+    "page_start": 7295,
+    "page_end": 9025,
+    "pages_per_hour": 1730.0,
+    "api_parallel": 2,
+    "interval_sec": 0.5,
+    "publisher_parallel": 1,
+    "http_429": 0,
+    "http_401": 0,
+    "http_5xx": 0,
+    "uploads_ok": 0,
+    "decision": "advance",
+    "notes": "companies 1834+ and key people"
+  },
+  {
+    "phase": "4_global_queue",
+    "started_at": 1792324038,
+    "ended_at": 1792327639,
+    "resource(s)": [
+      "key_people"
+    ],
+    "page_start": 9025,
+    "page_end": 10648,
+    "pages_per_hour": 1622.5492918633713,
+    "api_parallel": 1,
+    "interval_sec": 0.5,
+    "publisher_parallel": 1,
+    "http_429": 0,
+    "http_401": 0,
+    "http_5xx": 0,
+    "uploads_ok": 0,
+    "decision": "advance",
+    "notes": "recommended_mode=global_queue"
+  },
+  {
+    "phase": "5_recruits",
+    "started_at": 1792327641,
+    "ended_at": 1792331241,
+    "resource(s)": [
+      "key_people"
+    ],
+    "page_start": 1,
+    "page_end": 1,
+    "pages_per_hour": 0.0,
+    "api_parallel": 1,
+    "interval_sec": 0.5,
+    "publisher_parallel": 1,
+    "http_429": 0,
+    "http_401": 0,
+    "http_5xx": 0,
+    "uploads_ok": 0,
+    "decision": "advance",
+    "notes": "recruits_total_pages=207420"
   }
 ]

@@ -24,9 +24,12 @@ def load_drive_log() -> dict:
 
 
 def save_drive_log(data: dict) -> None:
+    """Exclusive write. Open append-only so flock is held before truncate."""
     DRIVE_LOG.parent.mkdir(parents=True, exist_ok=True)
-    with DRIVE_LOG.open("w") as f:
+    with DRIVE_LOG.open("a+") as f:
         fcntl.flock(f, fcntl.LOCK_EX)
+        f.seek(0)
+        f.truncate()
         f.write(json.dumps(data, ensure_ascii=False, indent=2))
         f.flush()
 

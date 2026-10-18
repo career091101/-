@@ -1,6 +1,15 @@
 {
-  "experiment_phase": "1_publisher_parallel",
-  "updated_at_epoch": 1792305433,
-  "EXPERIMENT_INTERVAL_SEC": 2.2,
-  "baseline_max_page_start": 364
+  "experiment_phase": "post_experiment_collect",
+  "updated_at_epoch": 1792331241,
+  "EXPERIMENT_INTERVAL_SEC": 0.5,
+  "baseline_max_page_start": 364,
+  "updated_at_jst": "2026-10-18T22:47:21+09:00",
+  "interval_sweep_plan": "0.75_then_0.5",
+  "runner_schema": "phase2_sweep_1.0_to_0.5_v1",
+  "resume_from": "phase2",
+  "confirmed_start": 1.0,
+  "interval_sweep_target": 0.5,
+  "interval_sweep_confirmed": 0.5,
+  "recommended_mode": "global_queue",
+  "recruits_total_pages": 207420
 }
