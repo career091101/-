@@ -126,11 +126,95 @@
       "file_id": "1X7kA5ccU7nCV2h02QOSiBTgtvqK1wtKU",
       "gzip_sha256": "72d98c1d992f0d7f4748048674700dba55d9aa43a597d6579666b596cb9e578d",
       "readback_verified": true
+    },
+    {
+      "name": "key_people_pages_01004-01203.tar.gz",
+      "tar_sha256": "635cd7001c5fd490b97495cd2c1bc348cf0bb087aeb4b37b3fec224a4acbc156",
+      "local_verified": true,
+      "readback_verified": false,
+      "status": "queued_mcp_binary",
+      "queued_at_epoch": 1792310667
+    },
+    {
+      "name": "key_people_pages_01204-01403.tar.gz",
+      "tar_sha256": "a7f97f4748f86bd07888246937694ddf0a02dc7e7fe2311a2798a69b902ac243",
+      "local_verified": true,
+      "readback_verified": false,
+      "status": "queued_mcp_binary",
+      "queued_at_epoch": 1792310667
+    },
+    {
+      "name": "key_people_pages_01404-01603.tar.gz",
+      "tar_sha256": "93f12ae2009cfcba9ac5d56f2aed92109293231641b0f220a6c7e45fe64e9abb",
+      "local_verified": true,
+      "readback_verified": false,
+      "status": "queued_mcp_binary",
+      "queued_at_epoch": 1792310667
+    },
+    {
+      "name": "key_people_pages_01604-01803.tar.gz",
+      "tar_sha256": "4ad7c8609a5ba63e0568dea3da99ebc7b4fb1fa3c272fcf8fae2c4197dd9c143",
+      "local_verified": true,
+      "readback_verified": false,
+      "status": "queued_mcp_binary",
+      "queued_at_epoch": 1792310667
+    },
+    {
+      "name": "key_people_pages_01804-02003.tar.gz",
+      "tar_sha256": "2ad3005610404f7101774b91fc1c7f9ef49bb3fe4d222cb23058dcd0a6e73c33",
+      "local_verified": true,
+      "readback_verified": false,
+      "status": "queued_mcp_binary",
+      "queued_at_epoch": 1792310667
+    },
+    {
+      "name": "key_people_pages_02004-02203.tar.gz",
+      "tar_sha256": "0b3b4e01c7f9275fb517ea461a692c0db47766e6b685b597917506609387000a",
+      "local_verified": true,
+      "readback_verified": false,
+      "status": "queued_mcp_binary",
+      "queued_at_epoch": 1792310667
+    },
+    {
+      "name": "key_people_pages_02204-02403.tar.gz",
+      "tar_sha256": "535421af120c88af7c959d52ac76d3cd726f359c8872ed34826397b4ab7f5e07",
+      "local_verified": true,
+      "readback_verified": false,
+      "status": "queued_mcp_binary",
+      "queued_at_epoch": 1792310667
+    },
+    {
+      "name": "key_people_pages_02404-02603.tar.gz",
+      "tar_sha256": "59ad2b04317eea6ced7448f6d004e787ea00d4f65c89a38bb7c35dc836d24549",
+      "local_verified": true,
+      "readback_verified": false,
+      "status": "queued_mcp_binary",
+      "queued_at_epoch": 1792310834
+    },
+    {
+      "name": "key_people_pages_02604-02803.tar.gz",
+      "tar_sha256": "e09e822fa5931a2b4f577c3140420ec1452c36993d923737e2029bd73de234df",
+      "local_verified": true,
+      "readback_verified": false,
+      "status": "queued_mcp_binary",
+      "queued_at_epoch": 1792312035
+    },
+    {
+      "name": "key_people_pages_02804-03003.tar.gz",
+      "tar_sha256": "762ce92f4213c9f453979d5cbdfdd4e3b4304cb25beb8c6f3d92fc1cdd2c7abd",
+      "local_verified": true,
+      "readback_verified": false,
+      "status": "queued_mcp_binary",
+      "queued_at_epoch": 1792312035
+    },
+    {
+      "name": "target_accounts_all.json.b64",
+      "file_id": "1vDtQXIhsDtROYrLlk2WGNzqEuyV-CROo",
+      "gzip_sha256": "691ceb4694f309d1d24c790a79f79debd3a9634a11891e7f741118932b3dc92b",
+      "readback_verified": true
     }
   ],
-  "pending_b64_under_50kb": [
-    "target_accounts_all.json.b64"
-  ],
+  "pending_b64_under_50kb": [],
   "pending_large": [
     "master_cities.json.b64",
     "master_brands.json.b64"
