@@ -8,9 +8,11 @@ import gzip
 import hashlib
 import json
 import re
+import tarfile
 import time
 import urllib.error
 import urllib.request
+from io import BytesIO
 from pathlib import Path
 from typing import Any
 
@@ -19,6 +21,9 @@ ORIGIN = "https://app.production.musubu.in"
 CHROME_LS = Path("/home/ubuntu/.config/google-chrome/Default/Local Storage/leveldb")
 DEFAULT_OUT = Path("/workspace/musubu-data")
 INTERVAL_SEC = 2.2
+# Align with companies archives on Drive (~200 search pages per tar.gz).
+SEARCH_TAR_PAGE_SIZE = 200
+KEY_PEOPLE_FIRST_PACK_PAGE = 4  # pages 1–3 remain separate .json.gz on Drive
 
 SECTION9_GETS: list[tuple[str, str]] = [
     ("master_categories.json", "/api/categories"),
@@ -172,8 +177,15 @@ def append_artifact_manifest(out_dir: Path, manifest_name: str, rec: dict[str, A
     if path.exists():
         entries = json.loads(path.read_text()).get("artifacts") or []
     page = rec.get("page")
+    page_start = rec.get("page_start")
     if page is not None:
         entries = [e for e in entries if e.get("page") != page]
+    elif page_start is not None:
+        entries = [
+            e
+            for e in entries
+            if not (e.get("page_start") == page_start and e.get("page_end") == rec.get("page_end"))
+        ]
     entries.append(rec)
     entries.sort(key=lambda e: (e.get("page") or 0))
     payload = {
@@ -219,12 +231,104 @@ def fetch_search_page(
     return rec
 
 
+def chunk_page_end(first_page: int, chunk_size: int, chunk_index: int) -> int:
+    """chunk_index 0 => first_page .. first_page+chunk_size-1."""
+    return first_page + (chunk_index + 1) * chunk_size - 1
+
+
+def pack_search_pages_tar(
+    resource: str,
+    page_start: int,
+    page_end: int,
+    out_dir: Path,
+) -> dict[str, Any]:
+    if resource != "key_people":
+        raise SystemExit("pack_tar currently implemented for key_people only")
+    section_dir = out_dir / f"section_{resource}"
+    archive_dir = out_dir / "archives" / resource
+    archive_dir.mkdir(parents=True, exist_ok=True)
+    members: list[dict[str, Any]] = []
+    buf = BytesIO()
+    with tarfile.open(fileobj=buf, mode="w:gz") as tar:
+        for page in range(page_start, page_end + 1):
+            name = f"{resource}_page_{page:05d}.json"
+            gz_path = section_dir / name
+            if not gz_path.is_file():
+                raise SystemExit(f"missing page file: {gz_path}")
+            gz_bytes = gz_path.read_bytes()
+            ti = tarfile.TarInfo(name=name)
+            ti.size = len(gz_bytes)
+            tar.addfile(ti, BytesIO(gz_bytes))
+            members.append(
+                {
+                    "page": page,
+                    "member": name,
+                    "gzip_bytes": len(gz_bytes),
+                    "gzip_sha256": hashlib.sha256(gz_bytes).hexdigest(),
+                }
+            )
+    tar_bytes = buf.getvalue()
+    tar_name = f"{resource}_pages_{page_start:05d}-{page_end:05d}.tar.gz"
+    tar_path = archive_dir / tar_name
+    tar_path.write_bytes(tar_bytes)
+    b64_path = tar_path.with_suffix(tar_path.suffix + ".b64")
+    if len(tar_bytes) <= 950_000:
+        b64_path.write_text(base64.b64encode(tar_bytes).decode("ascii"))
+    elif b64_path.exists():
+        b64_path.unlink()
+    rec = {
+        "file": tar_name,
+        "drive_upload_name": tar_name if len(tar_bytes) > 950_000 else tar_name + ".b64",
+        "format": "tar.gz_members_are_gzip_json",
+        "page_start": page_start,
+        "page_end": page_end,
+        "page_count": page_end - page_start + 1,
+        "tar_bytes": len(tar_bytes),
+        "tar_sha256": hashlib.sha256(tar_bytes).hexdigest(),
+        "local_tar_path": str(tar_path),
+        "local_b64_path": str(b64_path) if b64_path.exists() else None,
+        "members": members,
+        "section": resource,
+    }
+    append_artifact_manifest(out_dir, f"manifest_{resource}_archives.json", rec)
+    print(f"packed {tar_name} pages={rec['page_count']} tar_bytes={len(tar_bytes)}")
+    return rec
+
+
+def maybe_pack_complete_key_people_chunks(page_end: int, out_dir: Path) -> list[dict[str, Any]]:
+    packed: list[dict[str, Any]] = []
+    first = KEY_PEOPLE_FIRST_PACK_PAGE
+    size = SEARCH_TAR_PAGE_SIZE
+    if page_end < first:
+        return packed
+    last_complete_end = first + ((page_end - first + 1) // size) * size - 1
+    chunk_idx = 0
+    while True:
+        start = first + chunk_idx * size
+        end = chunk_page_end(first, size, chunk_idx)
+        if end > last_complete_end:
+            break
+        manifest_path = out_dir / "manifest_key_people_archives.json"
+        if manifest_path.exists():
+            existing = {
+                (a.get("page_start"), a.get("page_end"))
+                for a in json.loads(manifest_path.read_text()).get("artifacts") or []
+            }
+            if (start, end) in existing:
+                chunk_idx += 1
+                continue
+        packed.append(pack_search_pages_tar("key_people", start, end, out_dir))
+        chunk_idx += 1
+    return packed
+
+
 def fetch_search_range(
     token: str,
     resource: str,
     page_start: int,
     page_end: int,
     out_dir: Path,
+    auto_pack: bool = True,
 ) -> list[dict[str, Any]]:
     manifest_name = f"manifest_{resource}_pages.json"
     records: list[dict[str, Any]] = []
@@ -232,6 +336,8 @@ def fetch_search_range(
         rec = fetch_search_page(token, resource, page, out_dir)
         append_artifact_manifest(out_dir, manifest_name, rec)
         records.append(rec)
+    if auto_pack and resource == "key_people":
+        maybe_pack_complete_key_people_chunks(page_end, out_dir)
     return records
 
 
@@ -244,6 +350,9 @@ def build_checkpoint(out_dir: Path) -> dict[str, Any]:
     kp = out_dir / "manifest_key_people_pages.json"
     if kp.exists():
         artifacts.extend(json.loads(kp.read_text()).get("artifacts") or [])
+    kp_arch = out_dir / "manifest_key_people_archives.json"
+    if kp_arch.exists():
+        artifacts.extend(json.loads(kp_arch.read_text()).get("artifacts") or [])
     seen_kp_pages: set[int] = {
         a["page"] for a in artifacts if a.get("section") == "key_people" and a.get("page")
     }
@@ -291,9 +400,15 @@ def build_checkpoint(out_dir: Path) -> dict[str, Any]:
             "2_key_people_pages_protected_on_drive": [1, 2, 3],
             "1_companies_protected_pages": "1-1833 except missing 70",
         },
+        "packaging_policy": {
+            "search_tar_page_size": SEARCH_TAR_PAGE_SIZE,
+            "key_people_first_pack_page": KEY_PEOPLE_FIRST_PACK_PAGE,
+            "archive_pattern": "{resource}_pages_{start:05d}-{end:05d}.tar.gz",
+            "note": "pages 1-3 stay as legacy .json.gz on Drive; page 4+ pack every 200 pages",
+        },
         "next_steps": [
-            "upload gzip.b64 artifacts and verify readback sha256",
-            "continue key_people pagination",
+            "upload tar.gz archives (and small .b64) verify tar_sha256",
+            "continue key_people pagination through 58552",
             "companies page 70 then 1834+",
             "sections 3-7 search pagination",
         ],
@@ -317,9 +432,15 @@ def main() -> None:
             "section8",
             "search_page",
             "search_range",
+            "pack_tar",
             "build_checkpoint",
             "checkpoint_manifest",
         ],
+    )
+    p.add_argument(
+        "--no-auto-pack",
+        action="store_true",
+        help="search_range: do not create 200-page tar.gz archives",
     )
     p.add_argument("--resource", choices=list(SEARCH_RESOURCES))
     p.add_argument("--page", type=int)
@@ -329,6 +450,12 @@ def main() -> None:
     args.out.mkdir(parents=True, exist_ok=True)
 
     if args.action == "build_checkpoint":
+        build_checkpoint(args.out)
+        return
+    if args.action == "pack_tar":
+        if not args.resource or args.page_start is None or args.page_end is None:
+            raise SystemExit("--resource --page-start --page-end required")
+        pack_search_pages_tar(args.resource, args.page_start, args.page_end, args.out)
         build_checkpoint(args.out)
         return
 
@@ -355,7 +482,12 @@ def main() -> None:
         if not args.resource or args.page_start is None or args.page_end is None:
             raise SystemExit("--resource --page-start --page-end required")
         manifest["artifacts"] = fetch_search_range(
-            token, args.resource, args.page_start, args.page_end, args.out
+            token,
+            args.resource,
+            args.page_start,
+            args.page_end,
+            args.out,
+            auto_pack=not args.no_auto_pack,
         )
     else:
         manifest_path = args.out / "manifest_latest.json"
