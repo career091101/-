@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Upload complete key_people tar.gz archives; only drive_publisher_log.json writer."""
+"""Queue complete search tar.gz archives for upload; only drive_publisher_log.json writer."""
 from __future__ import annotations
 
 import fcntl
@@ -9,12 +9,21 @@ import sys
 import time
 from pathlib import Path
 
-ARCHIVES = Path("/workspace/musubu-data/archives/key_people")
-MANIFEST = Path("/workspace/musubu-data/manifest_key_people_archives.json")
-DRIVE_LOG = Path("/workspace/musubu-data/drive_publisher_log.json")
+DATA = Path("/workspace/musubu-data")
+ARCHIVES_ROOT = DATA / "archives"
+DRIVE_LOG = DATA / "drive_publisher_log.json"
 FOLDER = "1kR8pPEahMbgj4ErAzHxCqwU85tMPL8Ea"
-QUEUE = Path("/workspace/musubu-data/publisher_mcp_queue")
+QUEUE = DATA / "publisher_mcp_queue"
 STABLE_SEC = 15
+SEARCH_RESOURCES = (
+    "key_people",
+    "companies",
+    "recruits",
+    "departments",
+    "offices",
+    "stores",
+    "facilities",
+)
 
 
 def load_drive_log() -> dict:
@@ -35,27 +44,41 @@ def save_drive_log(data: dict) -> None:
 
 
 def manifest_by_name() -> dict[str, dict]:
-    if not MANIFEST.is_file():
-        return {}
-    arts = json.loads(MANIFEST.read_text()).get("artifacts") or []
-    return {a["file"]: a for a in arts if a.get("file")}
+    by_name: dict[str, dict] = {}
+    for resource in SEARCH_RESOURCES:
+        manifest = DATA / f"manifest_{resource}_archives.json"
+        if not manifest.is_file():
+            continue
+        try:
+            arts = json.loads(manifest.read_text()).get("artifacts") or []
+        except Exception:
+            continue
+        for a in arts:
+            if a.get("file"):
+                by_name[a["file"]] = a
+    return by_name
 
 
 def already_handled(name: str, log: dict) -> bool:
     for u in log.get("uploads") or []:
         if u.get("name") != name:
             continue
-        if u.get("readback_verified") or u.get("status") == "queued_mcp_binary":
+        if u.get("readback_verified") or u.get("status") in (
+            "queued_mcp_binary",
+            "queued_rclone",
+            "verified",
+        ):
             return True
     return False
 
 
 def queue_mcp_upload(tar_path: Path, rec: dict) -> None:
-    """Queue upload for agent MCP worker (binary tar exceeds MCP 1MB text limit)."""
+    """Queue upload for agent MCP worker or rclone helper (binary tar)."""
     QUEUE.mkdir(parents=True, exist_ok=True)
     tar_bytes = tar_path.read_bytes()
     sha = hashlib.sha256(tar_bytes).hexdigest()
-    if sha != rec.get("tar_sha256"):
+    expected = rec.get("tar_sha256") or sha
+    if sha != expected:
         raise ValueError(f"tar sha mismatch {tar_path.name}")
     job = {
         "title": tar_path.name,
@@ -73,9 +96,14 @@ def process_one(tar_path: Path, log: dict, by_name: dict[str, dict]) -> bool:
     name = tar_path.name
     if already_handled(name, log):
         return False
-    if name not in by_name:
-        return False
-    rec = by_name[name]
+    rec = by_name.get(name)
+    if not rec:
+        tar_bytes = tar_path.read_bytes()
+        rec = {
+            "file": name,
+            "tar_sha256": hashlib.sha256(tar_bytes).hexdigest(),
+            "tar_bytes": len(tar_bytes),
+        }
     age = time.time() - tar_path.stat().st_mtime
     if age < STABLE_SEC:
         return False
@@ -95,19 +123,23 @@ def process_one(tar_path: Path, log: dict, by_name: dict[str, dict]) -> bool:
 
 def main() -> None:
     interval = float(sys.argv[1]) if len(sys.argv) > 1 else 45.0
-    by_name = manifest_by_name()
     while True:
+        by_name = manifest_by_name()
         log = load_drive_log()
         changed = False
-        for tar in sorted(ARCHIVES.glob("key_people_pages_*.tar.gz")):
-            try:
-                if process_one(tar, log, by_name):
+        for resource in SEARCH_RESOURCES:
+            archive_dir = ARCHIVES_ROOT / resource
+            if not archive_dir.is_dir():
+                continue
+            for tar in sorted(archive_dir.glob(f"{resource}_pages_*.tar.gz")):
+                try:
+                    if process_one(tar, log, by_name):
+                        changed = True
+                except Exception as exc:
+                    log.setdefault("publisher_errors", []).append(
+                        {"file": tar.name, "error": str(exc), "ts": int(time.time())}
+                    )
                     changed = True
-            except Exception as exc:
-                log.setdefault("publisher_errors", []).append(
-                    {"file": tar.name, "error": str(exc), "ts": int(time.time())}
-                )
-                changed = True
         if changed:
             save_drive_log(log)
         time.sleep(interval)

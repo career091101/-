@@ -142,15 +142,19 @@ def _experiment_log_api(method: str, path: str, http_status: int, resource: str 
         pass
 
 
-def write_gzip_artifact(out_dir: Path, name: str, payload: Any) -> dict[str, Any]:
+def write_gzip_artifact(
+    out_dir: Path,
+    name: str,
+    payload: Any,
+    *,
+    write_b64: bool = True,
+) -> dict[str, Any]:
     out_dir.mkdir(parents=True, exist_ok=True)
     raw = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
     gz = gzip.compress(raw, compresslevel=6)
     gz_path = out_dir / name
-    b64_path = out_dir / (name + ".b64")
     gz_path.write_bytes(gz)
-    b64_path.write_text(base64.b64encode(gz).decode("ascii"))
-    return {
+    rec: dict[str, Any] = {
         "file": name,
         "drive_upload_name": name + ".b64",
         "raw_bytes": len(raw),
@@ -158,8 +162,12 @@ def write_gzip_artifact(out_dir: Path, name: str, payload: Any) -> dict[str, Any
         "raw_sha256": hashlib.sha256(raw).hexdigest(),
         "gzip_sha256": hashlib.sha256(gz).hexdigest(),
         "local_gz_path": str(gz_path),
-        "local_b64_path": str(b64_path),
     }
+    if write_b64:
+        b64_path = out_dir / (name + ".b64")
+        b64_path.write_text(base64.b64encode(gz).decode("ascii"))
+        rec["local_b64_path"] = str(b64_path)
+    return rec
 
 
 def fetch_section9(token: str, out_dir: Path) -> list[dict[str, Any]]:
@@ -243,6 +251,53 @@ def append_artifact_manifest(out_dir: Path, manifest_name: str, rec: dict[str, A
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2))
 
 
+def fetch_search_page_resident(
+    client: Any,
+    resource: str,
+    page: int,
+    out_dir: Path,
+    extra_body: dict | None = None,
+    *,
+    write_b64: bool = False,
+    log_progress: bool = True,
+) -> dict[str, Any]:
+    """In-process fetch: reused HTTP client, optional jsonl progress (no page manifest)."""
+    list_key, path = SEARCH_RESOURCES[resource]
+    body: dict[str, Any] = {"page": page}
+    if extra_body:
+        body.update(extra_body)
+    time.sleep(INTERVAL_SEC)
+    status, parsed = client.request("POST", path, body, resource=resource, page=page)
+    name = f"{resource}_page_{page:05d}.json"
+    rec = write_gzip_artifact(
+        out_dir / f"section_{resource}", name, parsed, write_b64=write_b64
+    )
+    meta = parsed.get("meta") if isinstance(parsed, dict) else None
+    items = parsed.get(list_key) if isinstance(parsed, dict) else None
+    rec.update(
+        {
+            "section": resource,
+            "endpoint": path,
+            "http_status": status,
+            "page": page,
+            "meta": meta,
+            "item_count": len(items) if isinstance(items, list) else None,
+        }
+    )
+    if log_progress and status == 200:
+        try:
+            from musubu_progress import append_page_progress
+
+            append_page_progress(resource, rec)
+        except Exception:
+            pass
+    print(
+        f"POST {status} {path} page={page} items={rec.get('item_count')} "
+        f"meta={meta}"
+    )
+    return rec
+
+
 def fetch_search_page(
     token: str,
     resource: str,
@@ -283,14 +338,25 @@ def chunk_page_end(first_page: int, chunk_size: int, chunk_index: int) -> int:
     return first_page + (chunk_index + 1) * chunk_size - 1
 
 
+COMPANIES_PROTECTED_PACK_UNTIL = 1833  # existing Drive tars; do not repack 1–1833
+
+
+def first_pack_page_for_resource(resource: str) -> int:
+    if resource == "key_people":
+        return KEY_PEOPLE_FIRST_PACK_PAGE
+    if resource == "companies":
+        return COMPANIES_PROTECTED_PACK_UNTIL + 1
+    return 1
+
+
 def pack_search_pages_tar(
     resource: str,
     page_start: int,
     page_end: int,
     out_dir: Path,
+    *,
+    write_tar_b64: bool = False,
 ) -> dict[str, Any]:
-    if resource != "key_people":
-        raise SystemExit("pack_tar currently implemented for key_people only")
     section_dir = out_dir / f"section_{resource}"
     archive_dir = out_dir / "archives" / resource
     archive_dir.mkdir(parents=True, exist_ok=True)
@@ -319,13 +385,13 @@ def pack_search_pages_tar(
     tar_path = archive_dir / tar_name
     tar_path.write_bytes(tar_bytes)
     b64_path = tar_path.with_suffix(tar_path.suffix + ".b64")
-    if len(tar_bytes) <= 950_000:
+    if write_tar_b64 and len(tar_bytes) <= 950_000:
         b64_path.write_text(base64.b64encode(tar_bytes).decode("ascii"))
     elif b64_path.exists():
         b64_path.unlink()
     rec = {
         "file": tar_name,
-        "drive_upload_name": tar_name if len(tar_bytes) > 950_000 else tar_name + ".b64",
+        "drive_upload_name": tar_name,
         "format": "tar.gz_members_are_gzip_json",
         "page_start": page_start,
         "page_end": page_end,
@@ -337,36 +403,68 @@ def pack_search_pages_tar(
         "members": members,
         "section": resource,
     }
+    try:
+        from musubu_progress import append_archive_progress
+
+        append_archive_progress(resource, rec)
+    except Exception:
+        pass
     append_artifact_manifest(out_dir, f"manifest_{resource}_archives.json", rec)
     print(f"packed {tar_name} pages={rec['page_count']} tar_bytes={len(tar_bytes)}")
     return rec
 
 
-def maybe_pack_complete_key_people_chunks(page_end: int, out_dir: Path) -> list[dict[str, Any]]:
+def _existing_archive_ranges(resource: str, out_dir: Path) -> set[tuple[int, int]]:
+    existing: set[tuple[int, int]] = set()
+    manifest_path = out_dir / f"manifest_{resource}_archives.json"
+    if manifest_path.exists():
+        for a in json.loads(manifest_path.read_text()).get("artifacts") or []:
+            ps, pe = a.get("page_start"), a.get("page_end")
+            if ps is not None and pe is not None:
+                existing.add((int(ps), int(pe)))
+    archive_dir = out_dir / "archives" / resource
+    if archive_dir.is_dir():
+        for tar in archive_dir.glob(f"{resource}_pages_*.tar.gz"):
+            m = re.match(
+                rf"{resource}_pages_(\d+)-(\d+)\.tar\.gz$",
+                tar.name,
+            )
+            if m:
+                existing.add((int(m.group(1)), int(m.group(2))))
+    return existing
+
+
+def maybe_pack_complete_search_chunks(
+    resource: str,
+    page_end: int,
+    out_dir: Path,
+) -> list[dict[str, Any]]:
     packed: list[dict[str, Any]] = []
-    first = KEY_PEOPLE_FIRST_PACK_PAGE
+    first = first_pack_page_for_resource(resource)
     size = SEARCH_TAR_PAGE_SIZE
     if page_end < first:
         return packed
     last_complete_end = first + ((page_end - first + 1) // size) * size - 1
+    existing = _existing_archive_ranges(resource, out_dir)
     chunk_idx = 0
     while True:
         start = first + chunk_idx * size
         end = chunk_page_end(first, size, chunk_idx)
         if end > last_complete_end:
             break
-        manifest_path = out_dir / "manifest_key_people_archives.json"
-        if manifest_path.exists():
-            existing = {
-                (a.get("page_start"), a.get("page_end"))
-                for a in json.loads(manifest_path.read_text()).get("artifacts") or []
-            }
-            if (start, end) in existing:
-                chunk_idx += 1
-                continue
-        packed.append(pack_search_pages_tar("key_people", start, end, out_dir))
+        if (start, end) in existing:
+            chunk_idx += 1
+            continue
+        packed.append(
+            pack_search_pages_tar(resource, start, end, out_dir, write_tar_b64=False)
+        )
+        existing.add((start, end))
         chunk_idx += 1
     return packed
+
+
+def maybe_pack_complete_key_people_chunks(page_end: int, out_dir: Path) -> list[dict[str, Any]]:
+    return maybe_pack_complete_search_chunks("key_people", page_end, out_dir)
 
 
 def fetch_search_range(
@@ -383,8 +481,8 @@ def fetch_search_range(
         rec = fetch_search_page(token, resource, page, out_dir)
         append_artifact_manifest(out_dir, manifest_name, rec)
         records.append(rec)
-    if auto_pack and resource == "key_people":
-        maybe_pack_complete_key_people_chunks(page_end, out_dir)
+    if auto_pack:
+        maybe_pack_complete_search_chunks(resource, page_end, out_dir)
     return records
 
 
