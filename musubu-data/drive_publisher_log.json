@@ -40,10 +40,14 @@
     {
       "name": "master_prefectures.json.b64",
       "file_id": "1nNPeLg_Scm9VlV1hA6zLuP_Wp8-T9o07"
+    },
+    {
+      "name": "master_recruit_keywords.json.b64",
+      "file_id": "1gD9RMC8o0CEqXjQTpq2hlwUybUqx7XXz",
+      "gzip_sha256": "5addcf2bc1724357057738cac785cd874805110c8c5e24d5c4d3740af085e43c"
     }
   ],
   "pending_b64_under_50kb": [
-    "master_recruit_keywords.json.b64",
     "master_event_categories.json.b64",
     "target_company_ids.json.b64",
     "master_occupations.json.b64",

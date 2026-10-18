@@ -3,7 +3,7 @@
   "status": "in_progress",
   "drive_folder_id": "1kR8pPEahMbgj4ErAzHxCqwU85tMPL8Ea",
   "agent": "cursor",
-  "updated_at_epoch": 1792303633,
+  "updated_at_epoch": 1792303676,
   "experiment_phase": "0_baseline",
   "EXPERIMENT_INTERVAL_SEC": 2.2,
   "sections_completed_partial": {
@@ -565,7 +565,20 @@
       555,
       556,
       557,
-      558
+      558,
+      559,
+      560,
+      561,
+      562,
+      563,
+      564,
+      565,
+      566,
+      567,
+      568,
+      569,
+      570,
+      571
     ],
     "2_key_people_pages_protected_on_drive": [
       1,
@@ -586,7 +599,7 @@
     "companies page 70 then 1834+",
     "sections 3-7 search pagination"
   ],
-  "artifact_count": 577,
+  "artifact_count": 590,
   "artifacts": [
     {
       "file": "master_categories.json",
@@ -11793,6 +11806,266 @@
         "total_count": 2927596,
         "total_pages": 58552,
         "current_page": 558
+      },
+      "item_count": 50
+    },
+    {
+      "file": "key_people_page_00559.json",
+      "drive_upload_name": "key_people_page_00559.json.b64",
+      "raw_bytes": 67029,
+      "gzip_bytes": 5264,
+      "raw_sha256": "e0ffdbcb6437b4a0203114bce4100d7566597ccf2c0550e9661a7fa35d4c663d",
+      "gzip_sha256": "beadb6322f69c2edd5ec8899766b1b670856619cb43bb44a9f3374c6b33ddc96",
+      "local_gz_path": "/workspace/musubu-data/section_key_people/key_people_page_00559.json",
+      "local_b64_path": "/workspace/musubu-data/section_key_people/key_people_page_00559.json.b64",
+      "section": "key_people",
+      "endpoint": "/api/key_people/search",
+      "http_status": 200,
+      "page": 559,
+      "meta": {
+        "total_count": 2927596,
+        "total_pages": 58552,
+        "current_page": 559
+      },
+      "item_count": 50
+    },
+    {
+      "file": "key_people_page_00560.json",
+      "drive_upload_name": "key_people_page_00560.json.b64",
+      "raw_bytes": 66011,
+      "gzip_bytes": 4940,
+      "raw_sha256": "52b28971fd48bd1839fbb1905d3999556e1e8acab66e371e7c6fbf2c1e7660f7",
+      "gzip_sha256": "7e286c05e0607782e48e4b45c4ec56bfa0c5e2bdc119a029fc02901c7e29ccb3",
+      "local_gz_path": "/workspace/musubu-data/section_key_people/key_people_page_00560.json",
+      "local_b64_path": "/workspace/musubu-data/section_key_people/key_people_page_00560.json.b64",
+      "section": "key_people",
+      "endpoint": "/api/key_people/search",
+      "http_status": 200,
+      "page": 560,
+      "meta": {
+        "total_count": 2927596,
+        "total_pages": 58552,
+        "current_page": 560
+      },
+      "item_count": 50
+    },
+    {
+      "file": "key_people_page_00561.json",
+      "drive_upload_name": "key_people_page_00561.json.b64",
+      "raw_bytes": 69032,
+      "gzip_bytes": 5472,
+      "raw_sha256": "daa861b52ff8d3827c218da32b2c538f3439c839f6013c0b1310430fb7291ceb",
+      "gzip_sha256": "f5a8c4856899b30f746e7b533958238afa1481e266a18f7816650ae851a1d1da",
+      "local_gz_path": "/workspace/musubu-data/section_key_people/key_people_page_00561.json",
+      "local_b64_path": "/workspace/musubu-data/section_key_people/key_people_page_00561.json.b64",
+      "section": "key_people",
+      "endpoint": "/api/key_people/search",
+      "http_status": 200,
+      "page": 561,
+      "meta": {
+        "total_count": 2927596,
+        "total_pages": 58552,
+        "current_page": 561
+      },
+      "item_count": 50
+    },
+    {
+      "file": "key_people_page_00562.json",
+      "drive_upload_name": "key_people_page_00562.json.b64",
+      "raw_bytes": 67144,
+      "gzip_bytes": 5101,
+      "raw_sha256": "2fe06ea8a3f99d84e98ca74e9e01b74ff8f19c91c3c9a1b6be25ec641dfbb8fa",
+      "gzip_sha256": "f0faf0181adb7463281c17f7763d888f04bb1cc5f2701ad6b207a6b1967d21fe",
+      "local_gz_path": "/workspace/musubu-data/section_key_people/key_people_page_00562.json",
+      "local_b64_path": "/workspace/musubu-data/section_key_people/key_people_page_00562.json.b64",
+      "section": "key_people",
+      "endpoint": "/api/key_people/search",
+      "http_status": 200,
+      "page": 562,
+      "meta": {
+        "total_count": 2927596,
+        "total_pages": 58552,
+        "current_page": 562
+      },
+      "item_count": 50
+    },
+    {
+      "file": "key_people_page_00563.json",
+      "drive_upload_name": "key_people_page_00563.json.b64",
+      "raw_bytes": 76042,
+      "gzip_bytes": 7378,
+      "raw_sha256": "fa443c08494d7186c480859247159cb56e4f523bef9fe62faf632bd60f20cba1",
+      "gzip_sha256": "5a7a8e54948e89546f4cf5a1059a1c74a8ebababe8ef9a63623a679198c8d3b1",
+      "local_gz_path": "/workspace/musubu-data/section_key_people/key_people_page_00563.json",
+      "local_b64_path": "/workspace/musubu-data/section_key_people/key_people_page_00563.json.b64",
+      "section": "key_people",
+      "endpoint": "/api/key_people/search",
+      "http_status": 200,
+      "page": 563,
+      "meta": {
+        "total_count": 2927596,
+        "total_pages": 58552,
+        "current_page": 563
+      },
+      "item_count": 50
+    },
+    {
+      "file": "key_people_page_00564.json",
+      "drive_upload_name": "key_people_page_00564.json.b64",
+      "raw_bytes": 78080,
+      "gzip_bytes": 7472,
+      "raw_sha256": "45bc3a0c0d13cc12b254d3a3434907cd3ed3e45352c051e0dda781ae8f905a60",
+      "gzip_sha256": "0152ec547295b3a5880e9ad996ef3ae261f79e4c046b7925ce3602da0f57b36a",
+      "local_gz_path": "/workspace/musubu-data/section_key_people/key_people_page_00564.json",
+      "local_b64_path": "/workspace/musubu-data/section_key_people/key_people_page_00564.json.b64",
+      "section": "key_people",
+      "endpoint": "/api/key_people/search",
+      "http_status": 200,
+      "page": 564,
+      "meta": {
+        "total_count": 2927596,
+        "total_pages": 58552,
+        "current_page": 564
+      },
+      "item_count": 50
+    },
+    {
+      "file": "key_people_page_00565.json",
+      "drive_upload_name": "key_people_page_00565.json.b64",
+      "raw_bytes": 88468,
+      "gzip_bytes": 8094,
+      "raw_sha256": "10417fc74b0d294e02bcec1cf10bb536ec6aef607a98e0a2b6cfb6bbe40ca5ba",
+      "gzip_sha256": "f860bb4cce3153715ebb0dc8a283ee00604087221994a0c727693fd4e50aaef8",
+      "local_gz_path": "/workspace/musubu-data/section_key_people/key_people_page_00565.json",
+      "local_b64_path": "/workspace/musubu-data/section_key_people/key_people_page_00565.json.b64",
+      "section": "key_people",
+      "endpoint": "/api/key_people/search",
+      "http_status": 200,
+      "page": 565,
+      "meta": {
+        "total_count": 2927596,
+        "total_pages": 58552,
+        "current_page": 565
+      },
+      "item_count": 50
+    },
+    {
+      "file": "key_people_page_00566.json",
+      "drive_upload_name": "key_people_page_00566.json.b64",
+      "raw_bytes": 86723,
+      "gzip_bytes": 7437,
+      "raw_sha256": "c46e7bddabba28d81576c932476d2a0fdd7dde989baa58ce6c6646f5a1c5eb50",
+      "gzip_sha256": "476105c9d67f1180aae280ceb6aa4f5cd11a03854e0d27b953a7072784446bbe",
+      "local_gz_path": "/workspace/musubu-data/section_key_people/key_people_page_00566.json",
+      "local_b64_path": "/workspace/musubu-data/section_key_people/key_people_page_00566.json.b64",
+      "section": "key_people",
+      "endpoint": "/api/key_people/search",
+      "http_status": 200,
+      "page": 566,
+      "meta": {
+        "total_count": 2927596,
+        "total_pages": 58552,
+        "current_page": 566
+      },
+      "item_count": 50
+    },
+    {
+      "file": "key_people_page_00567.json",
+      "drive_upload_name": "key_people_page_00567.json.b64",
+      "raw_bytes": 71857,
+      "gzip_bytes": 6581,
+      "raw_sha256": "e5cfc50c888f43c48e7686dd202cd08ffca5ae826b56accdc7a258d40764a684",
+      "gzip_sha256": "779939d07cc1120daa474c376ff711f321b3098ea9d70f7b204d82f7870bde4d",
+      "local_gz_path": "/workspace/musubu-data/section_key_people/key_people_page_00567.json",
+      "local_b64_path": "/workspace/musubu-data/section_key_people/key_people_page_00567.json.b64",
+      "section": "key_people",
+      "endpoint": "/api/key_people/search",
+      "http_status": 200,
+      "page": 567,
+      "meta": {
+        "total_count": 2927596,
+        "total_pages": 58552,
+        "current_page": 567
+      },
+      "item_count": 50
+    },
+    {
+      "file": "key_people_page_00568.json",
+      "drive_upload_name": "key_people_page_00568.json.b64",
+      "raw_bytes": 74971,
+      "gzip_bytes": 6853,
+      "raw_sha256": "fa2926a472a5ba7a36702ab1f3d0231c679faf6d037ed597c2dddaae00b8fab2",
+      "gzip_sha256": "a019c846f2bfe5bd9f118484b4bc9416178aefc8d362ed43f850c19609dc64f5",
+      "local_gz_path": "/workspace/musubu-data/section_key_people/key_people_page_00568.json",
+      "local_b64_path": "/workspace/musubu-data/section_key_people/key_people_page_00568.json.b64",
+      "section": "key_people",
+      "endpoint": "/api/key_people/search",
+      "http_status": 200,
+      "page": 568,
+      "meta": {
+        "total_count": 2927596,
+        "total_pages": 58552,
+        "current_page": 568
+      },
+      "item_count": 50
+    },
+    {
+      "file": "key_people_page_00569.json",
+      "drive_upload_name": "key_people_page_00569.json.b64",
+      "raw_bytes": 76788,
+      "gzip_bytes": 7266,
+      "raw_sha256": "5d247c94c702d7ce1e59527893720a0218b58f9e36d2eea167988aef3123ca4c",
+      "gzip_sha256": "6f4ccc6a352098f1a3035ddd868519c0d4560ba9f13e8bf06ceb6bec34c6b734",
+      "local_gz_path": "/workspace/musubu-data/section_key_people/key_people_page_00569.json",
+      "local_b64_path": "/workspace/musubu-data/section_key_people/key_people_page_00569.json.b64",
+      "section": "key_people",
+      "endpoint": "/api/key_people/search",
+      "http_status": 200,
+      "page": 569,
+      "meta": {
+        "total_count": 2927596,
+        "total_pages": 58552,
+        "current_page": 569
+      },
+      "item_count": 50
+    },
+    {
+      "file": "key_people_page_00570.json",
+      "drive_upload_name": "key_people_page_00570.json.b64",
+      "raw_bytes": 80414,
+      "gzip_bytes": 7703,
+      "raw_sha256": "e29841f23123470b5c9b0ef59b85b392f2fd8ae86def62ac5ba193cb2e26cdfc",
+      "gzip_sha256": "c44927059e644e1f712308cf3826a5712128da177412c4be6d1a7a95f7fed89f",
+      "local_gz_path": "/workspace/musubu-data/section_key_people/key_people_page_00570.json",
+      "local_b64_path": "/workspace/musubu-data/section_key_people/key_people_page_00570.json.b64",
+      "section": "key_people",
+      "endpoint": "/api/key_people/search",
+      "http_status": 200,
+      "page": 570,
+      "meta": {
+        "total_count": 2927596,
+        "total_pages": 58552,
+        "current_page": 570
+      },
+      "item_count": 50
+    },
+    {
+      "file": "key_people_page_00571.json",
+      "drive_upload_name": "key_people_page_00571.json.b64",
+      "raw_bytes": 84741,
+      "gzip_bytes": 8459,
+      "raw_sha256": "3ba1a5a5c2c3612cb00188c236495063a90b0d093d6d60b546212cd35c74c474",
+      "gzip_sha256": "2aea1ab0e3d71a96e23eba449aa8affacdf2bb79eedc2be49e53ca5ebbcfb4e7",
+      "local_gz_path": "/workspace/musubu-data/section_key_people/key_people_page_00571.json",
+      "local_b64_path": "/workspace/musubu-data/section_key_people/key_people_page_00571.json.b64",
+      "section": "key_people",
+      "endpoint": "/api/key_people/search",
+      "http_status": 200,
+      "page": 571,
+      "meta": {
+        "total_count": 2927596,
+        "total_pages": 58552,
+        "current_page": 571
       },
       "item_count": 50
     },
