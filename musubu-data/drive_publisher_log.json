@@ -555,10 +555,17 @@
       "readback_verified": false,
       "status": "queued_mcp_binary",
       "queued_at_epoch": 1792331242
+    },
+    {
+      "name": "master_brands.json.b64",
+      "gzip_sha256": "8429dc0add04b7b86eefa0f161e0eba7ada84e667fdcd8e51c41645370437e7d",
+      "text_sha256": "d6b6db5a5e465d1f6198d082405ad7feefb6a4ce2b4a21666e1d5a88e40da2d4",
+      "readback_verified": true,
+      "status": "verified_b64_parts",
+      "part_count": 110,
+      "note": "110 Drive text parts. Local concatenation matches gzip SHA256 and the gzip parses as JSON. Each part read-back matches its slice SHA256."
     }
   ],
   "pending_b64_under_50kb": [],
-  "pending_large": [
-    "master_brands.json.b64"
-  ]
+  "pending_large": []
 }
