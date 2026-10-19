@@ -20,7 +20,6 @@ import musubu_collect as mc  # noqa: E402
 from musubu_collect import (  # noqa: E402
     effective_interval_sec,
     fetch_search_page_resident,
-    maybe_pack_complete_search_chunks,
 )
 from musubu_experiment_lib import abort_if_401  # noqa: E402
 
@@ -121,14 +120,6 @@ def main() -> None:
                 if resource == "companies" and page == 70 and rec.get("http_status") == 200:
                     COMPANIES_PAGE70_PENDING.parent.mkdir(parents=True, exist_ok=True)
                     COMPANIES_PAGE70_PENDING.write_text(str(int(time.time())))
-                if rec.get("http_status") == 200:
-                    packed = maybe_pack_complete_search_chunks(resource, page, DATA)
-                    if packed:
-                        print(
-                            "packed",
-                            ", ".join(item["file"] for item in packed),
-                            flush=True,
-                        )
                 progressed = True
             if not progressed:
                 print(
