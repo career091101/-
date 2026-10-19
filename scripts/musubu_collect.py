@@ -455,6 +455,13 @@ def maybe_pack_complete_search_chunks(
         if (start, end) in existing:
             chunk_idx += 1
             continue
+        section_dir = out_dir / f"section_{resource}"
+        if any(
+            not (section_dir / f"{resource}_page_{page:05d}.json").is_file()
+            for page in range(start, end + 1)
+        ):
+            chunk_idx += 1
+            continue
         packed.append(
             pack_search_pages_tar(resource, start, end, out_dir, write_tar_b64=False)
         )
