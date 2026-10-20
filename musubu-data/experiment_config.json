@@ -1,3 +1,7 @@
 {
-  "EXPERIMENT_INTERVAL_SEC": 0.5
+  "EXPERIMENT_INTERVAL_SEC": 0.5,
+  "API_PARALLEL": 7,
+  "PRIORITY_RESOURCE": "companies",
+  "PRIORITY_WORKER_SLOTS": 5,
+  "FETCH_MODE": "parallel_resource"
 }

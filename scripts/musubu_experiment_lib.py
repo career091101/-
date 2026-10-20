@@ -85,7 +85,17 @@ def get_interval_sec() -> float:
     env = os.environ.get("EXPERIMENT_INTERVAL_SEC")
     if env:
         return float(env)
-    return 2.2
+    return 0.5
+
+
+def get_api_parallel() -> int:
+    cfg = load_json(CONFIG_PATH, {})
+    if "API_PARALLEL" in cfg:
+        return max(1, int(cfg["API_PARALLEL"]))
+    env = os.environ.get("API_PARALLEL")
+    if env:
+        return max(1, int(env))
+    return 7
 
 
 def set_interval_sec(value: float) -> None:

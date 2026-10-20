@@ -10,6 +10,12 @@
   "confirmed_start": 1.0,
   "interval_sweep_target": 0.5,
   "interval_sweep_confirmed": 0.5,
-  "recommended_mode": "global_queue",
-  "recruits_total_pages": 207420
+  "recommended_mode": "parallel_resource",
+  "API_PARALLEL": 7,
+  "PRIORITY_RESOURCE": "companies",
+  "PRIORITY_WORKER_SLOTS": 5,
+  "recruits_total_pages": 207420,
+  "benchmark_resident_fetch_start_epoch": 1792365839,
+  "benchmark_resident_fetch_note": "0.5s interval single resident loop",
+  "benchmark_resident_fetch_start_jst": "2026-10-19T08:23:59+09:00"
 }

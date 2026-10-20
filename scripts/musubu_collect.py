@@ -23,7 +23,8 @@ API_BASE = "https://api.production.musubu.in"
 ORIGIN = "https://app.production.musubu.in"
 CHROME_LS = Path("/home/ubuntu/.config/google-chrome/Default/Local Storage/leveldb")
 DEFAULT_OUT = Path("/workspace/musubu-data")
-DEFAULT_INTERVAL_SEC = 2.2
+DEFAULT_INTERVAL_SEC = 0.5
+DEFAULT_API_PARALLEL = 7
 
 
 def effective_interval_sec(cli_override: float | None = None) -> float:
@@ -41,6 +42,67 @@ def effective_interval_sec(cli_override: float | None = None) -> float:
     if env:
         return float(env)
     return DEFAULT_INTERVAL_SEC
+
+
+def effective_api_parallel(cli_override: int | None = None) -> int:
+    if cli_override is not None:
+        return max(1, int(cli_override))
+    cfg_path = DEFAULT_OUT / "experiment_config.json"
+    if cfg_path.is_file():
+        try:
+            v = json.loads(cfg_path.read_text()).get("API_PARALLEL")
+            if v is not None:
+                return max(1, int(v))
+        except Exception:
+            pass
+    env = os.environ.get("API_PARALLEL")
+    if env:
+        return max(1, int(env))
+    return DEFAULT_API_PARALLEL
+
+
+SEARCH_RESOURCE_NAMES = [
+    "companies",
+    "key_people",
+    "recruits",
+    "departments",
+    "offices",
+    "stores",
+    "facilities",
+]
+
+
+def effective_worker_plan(cli_parallel: int | None = None) -> list[str]:
+    """Worker slot assignment (length = API_PARALLEL). Companies-priority by default."""
+    parallel = effective_api_parallel(cli_parallel)
+    cfg_path = DEFAULT_OUT / "experiment_config.json"
+    cfg: dict[str, Any] = {}
+    if cfg_path.is_file():
+        try:
+            cfg = json.loads(cfg_path.read_text())
+        except Exception:
+            cfg = {}
+    plan = cfg.get("FETCH_WORKER_PLAN")
+    if isinstance(plan, list) and plan:
+        names = [str(x) for x in plan]
+        if len(names) >= parallel:
+            return names[:parallel]
+        priority = str(cfg.get("PRIORITY_RESOURCE") or "companies")
+        while len(names) < parallel:
+            names.append(priority)
+        return names[:parallel]
+    priority = str(cfg.get("PRIORITY_RESOURCE") or "companies")
+    slots = int(cfg.get("PRIORITY_WORKER_SLOTS") or 5)
+    slots = max(1, min(slots, parallel))
+    rest = [r for r in SEARCH_RESOURCE_NAMES if r != priority]
+    out = [priority] * slots
+    for name in rest:
+        if len(out) >= parallel:
+            break
+        out.append(name)
+    while len(out) < parallel:
+        out.append(priority)
+    return out[:parallel]
 
 
 INTERVAL_SEC = effective_interval_sec()
