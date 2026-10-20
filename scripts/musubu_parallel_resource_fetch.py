@@ -5,6 +5,7 @@ Each worker uses claim_next_page() so multiple companies workers do not collide.
 """
 from __future__ import annotations
 
+import json
 import multiprocessing as mp
 import sys
 import time
@@ -38,7 +39,22 @@ RESOURCE_RULES_BY_NAME = {
 IDLE_SLEEP_SEC = 30.0
 
 
+def _paused_resources() -> set[str]:
+    cfg_path = DATA / "experiment_config.json"
+    if not cfg_path.is_file():
+        return set()
+    try:
+        cfg = json.loads(cfg_path.read_text())
+        paused = cfg.get("FETCH_PAUSED_RESOURCES") or []
+        return {str(x) for x in paused}
+    except Exception:
+        return set()
+
+
 def _worker(resource: str, worker_id: int) -> None:
+    if resource in _paused_resources():
+        print(f"[{resource}#{worker_id}] paused — exiting", flush=True)
+        return
     rules = RESOURCE_RULES_BY_NAME
     if resource not in rules:
         print(f"[worker-{worker_id}] unknown resource {resource}", flush=True)
