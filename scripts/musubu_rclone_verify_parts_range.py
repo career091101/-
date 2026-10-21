@@ -42,8 +42,12 @@ def part_entry(manifest: dict, index: int) -> dict:
     raise SystemExit(f"part {index} not in manifest")
 
 
-def rclone(*args: str) -> bytes:
-    return subprocess.check_output([*RCLONE_BASE, *args], stderr=subprocess.STDOUT)
+def rclone(*args: str, timeout: int = 180) -> bytes:
+    return subprocess.check_output(
+        [*RCLONE_BASE, *args],
+        stderr=subprocess.STDOUT,
+        timeout=timeout,
+    )
 
 
 def upload_and_id(local: Path, title: str, parent: str) -> str:
@@ -73,11 +77,19 @@ def upload_and_id(local: Path, title: str, parent: str) -> str:
 
 def readback_text(title: str, parent: str) -> str:
     time.sleep(2)
-    return rclone(
-        "cat",
-        f"{REMOTE}:{title}",
-        f"--drive-root-folder-id={parent}",
-    ).decode()
+    last: Exception | None = None
+    for attempt in range(5):
+        try:
+            return rclone(
+                "cat",
+                f"{REMOTE}:{title}",
+                f"--drive-root-folder-id={parent}",
+                timeout=120,
+            ).decode()
+        except (subprocess.TimeoutExpired, subprocess.CalledProcessError) as exc:
+            last = exc
+            time.sleep(5 + attempt * 3)
+    raise SystemExit(f"readback failed for {title}: {last}")
 
 
 def load_verified_indices(queue_dir: Path) -> set[int]:
