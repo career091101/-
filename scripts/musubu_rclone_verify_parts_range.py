@@ -24,7 +24,7 @@ RCLONE_BASE = [
     "--log-level",
     "ERROR",
     "--drive-pacer-min-sleep",
-    "3s",
+    "1s",
     "--drive-pacer-burst",
     "1",
     "--retries",
