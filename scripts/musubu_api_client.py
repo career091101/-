@@ -7,7 +7,7 @@ import json
 import re
 import time
 import urllib.error
-from http.client import HTTPSConnection
+from musubu_request_gate import GatedHTTPSConnection as HTTPSConnection
 from pathlib import Path
 from typing import Any
 
@@ -30,13 +30,19 @@ def _jwt_exp_epoch(token: str) -> int | None:
 
 def extract_bearer_token() -> str:
     data = b"".join(p.read_bytes() for p in CHROME_LS.iterdir() if p.is_file())
-    m = re.search(
+    candidates = re.findall(
         rb'\{"body":\{"access_token":"(eyJ[A-Za-z0-9_\-]+\.[A-Za-z0-9_\-]+\.[A-Za-z0-9_\-]+)"',
         data,
     )
-    if not m:
-        raise SystemExit("Auth0 access_token not found in Chrome local storage")
-    return m.group(1).decode()
+    now = int(time.time())
+    eligible: list[tuple[int, bytes]] = []
+    for token in candidates:
+        exp = _jwt_exp_epoch(token.decode())
+        if exp is not None and exp > now + 120:
+            eligible.append((exp, token))
+    if not eligible:
+        raise RuntimeError("No unexpired Auth0 access_token found in Chrome local storage")
+    return max(eligible, key=lambda item: item[0])[1].decode()
 
 
 class MusubuApiClient:
