@@ -77,22 +77,29 @@ def rclone(*args: str, timeout: int = 180) -> bytes:
 
 
 def drive_file_id(title: str, parent: str) -> str | None:
-    cp = _run_rclone(
-        [
-            *RCLONE_BASE,
-            "lsf",
-            f"--drive-root-folder-id={parent}",
-            "--files-only",
-            "--format",
-            "i",
-            f"{REMOTE}:{title}",
-        ],
-        timeout=120,
-    )
-    if cp.returncode != 0:
-        return None
-    out = cp.stdout.strip()
-    return out or None
+    last: Exception | None = None
+    for attempt in range(5):
+        try:
+            cp = _run_rclone(
+                [
+                    *RCLONE_BASE,
+                    "lsf",
+                    f"--drive-root-folder-id={parent}",
+                    "--files-only",
+                    "--format",
+                    "i",
+                    f"{REMOTE}:{title}",
+                ],
+                timeout=180,
+            )
+            if cp.returncode != 0:
+                return None
+            out = cp.stdout.strip()
+            return out or None
+        except subprocess.TimeoutExpired as exc:
+            last = exc
+            time.sleep(5 + attempt * 3)
+    raise SystemExit(f"lsf timed out for {title}: {last}")
 
 
 def upload_and_id(local: Path, title: str, parent: str) -> str:
