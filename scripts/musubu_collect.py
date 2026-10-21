@@ -18,12 +18,13 @@ from pathlib import Path
 from typing import Any
 
 from musubu_experiment_lib import now_jst_iso
+from musubu_request_gate import gated_urlopen
 
 API_BASE = "https://api.production.musubu.in"
 ORIGIN = "https://app.production.musubu.in"
 CHROME_LS = Path("/home/ubuntu/.config/google-chrome/Default/Local Storage/leveldb")
 DEFAULT_OUT = Path("/workspace/musubu-data")
-DEFAULT_INTERVAL_SEC = 0.5
+DEFAULT_INTERVAL_SEC = 2.2
 DEFAULT_API_PARALLEL = 7
 
 
@@ -171,7 +172,7 @@ def api_call(token: str, method: str, path: str, body: dict | None = None) -> tu
         },
     )
     try:
-        with urllib.request.urlopen(req, timeout=120) as resp:
+        with gated_urlopen(req, timeout=120) as resp:
             raw = resp.read()
             return resp.status, json.loads(raw.decode() or "null")
     except urllib.error.HTTPError as e:
@@ -543,11 +544,13 @@ def fetch_search_range(
     page_end: int,
     out_dir: Path,
     auto_pack: bool = True,
+    extra_body: dict | None = None,
 ) -> list[dict[str, Any]]:
     manifest_name = f"manifest_{resource}_pages.json"
     records: list[dict[str, Any]] = []
     for page in range(page_start, page_end + 1):
-        rec = fetch_search_page(token, resource, page, out_dir)
+        body = None if extra_body is None else {**extra_body, "page": page}
+        rec = fetch_search_page(token, resource, page, out_dir, extra_body=body)
         append_artifact_manifest(out_dir, manifest_name, rec)
         records.append(rec)
     if auto_pack:
@@ -677,6 +680,29 @@ def build_checkpoint(out_dir: Path) -> dict[str, Any]:
     return checkpoint
 
 
+def prepare_search_profile(
+    body_file: Path | None, resource: str | None, action: str, out_dir: Path,
+) -> tuple[dict | None, str | None]:
+    """Validate and preserve the exact template bytes before authentication."""
+    if body_file is None:
+        return None, None
+    if resource != "companies" or action not in ("search_page", "search_range"):
+        raise SystemExit("--search-body-file requires companies search_page/search_range")
+    raw = body_file.read_bytes()
+    body = json.loads(raw)
+    if not isinstance(body, dict):
+        raise SystemExit("--search-body-file must contain a JSON object")
+    out_dir.mkdir(parents=True, exist_ok=True)
+    profile = out_dir / "search_profile.json"
+    try:
+        with profile.open("xb") as stream:
+            stream.write(raw)
+    except FileExistsError:
+        if profile.read_bytes() != raw:
+            raise SystemExit("search_profile.json differs from --search-body-file")
+    return body, hashlib.sha256(raw).hexdigest()
+
+
 def main() -> None:
     p = argparse.ArgumentParser()
     p.add_argument("--out", type=Path, default=DEFAULT_OUT)
@@ -698,11 +724,15 @@ def main() -> None:
         help="search_range: do not create 200-page tar.gz archives",
     )
     p.add_argument("--resource", choices=list(SEARCH_RESOURCES))
+    p.add_argument("--search-body-file", type=Path)
     p.add_argument("--page", type=int)
     p.add_argument("--page-start", type=int)
     p.add_argument("--page-end", type=int)
     p.add_argument("--interval-sec", type=float, default=None)
     args = p.parse_args()
+    search_body, profile_sha256 = prepare_search_profile(
+        args.search_body_file, args.resource, args.action, args.out
+    )
     global INTERVAL_SEC
     INTERVAL_SEC = effective_interval_sec(args.interval_sec)
     args.out.mkdir(parents=True, exist_ok=True)
@@ -726,6 +756,9 @@ def main() -> None:
         "artifacts": [],
     }
 
+    if profile_sha256 is not None:
+        manifest["search_profile_sha256"] = profile_sha256
+
     if args.action == "section9":
         manifest["artifacts"] = fetch_section9(token, args.out)
     elif args.action == "section8":
@@ -733,7 +766,8 @@ def main() -> None:
     elif args.action == "search_page":
         if not args.resource or not args.page:
             raise SystemExit("--resource and --page required")
-        rec = fetch_search_page(token, args.resource, args.page, args.out)
+        body = None if search_body is None else {**search_body, "page": args.page}
+        rec = fetch_search_page(token, args.resource, args.page, args.out, extra_body=body)
         append_artifact_manifest(args.out, f"manifest_{args.resource}_pages.json", rec)
         manifest["artifacts"] = [rec]
     elif args.action == "search_range":
@@ -746,6 +780,7 @@ def main() -> None:
             args.page_end,
             args.out,
             auto_pack=not args.no_auto_pack,
+            extra_body=search_body,
         )
     else:
         manifest_path = args.out / "manifest_latest.json"
