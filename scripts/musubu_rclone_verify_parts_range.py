@@ -9,7 +9,9 @@ import argparse
 import fcntl
 import hashlib
 import json
+import os
 import subprocess
+import tempfile
 import time
 from pathlib import Path
 
@@ -80,24 +82,55 @@ def readback_text(title: str, parent: str) -> str:
     last: Exception | None = None
     for attempt in range(5):
         try:
-            return rclone(
-                "cat",
-                f"{REMOTE}:{title}",
-                f"--drive-root-folder-id={parent}",
-                timeout=120,
-            ).decode()
-        except (subprocess.TimeoutExpired, subprocess.CalledProcessError) as exc:
+            fd, name = tempfile.mkstemp(prefix="musubu_rb_")
+            os.close(fd)
+            tmp_path = Path(name)
+            try:
+                rclone(
+                    "copyto",
+                    f"{REMOTE}:{title}",
+                    str(tmp_path),
+                    f"--drive-root-folder-id={parent}",
+                    timeout=180,
+                )
+                return tmp_path.read_text()
+            finally:
+                tmp_path.unlink(missing_ok=True)
+        except (subprocess.TimeoutExpired, subprocess.CalledProcessError, OSError) as exc:
             last = exc
             time.sleep(5 + attempt * 3)
     raise SystemExit(f"readback failed for {title}: {last}")
 
 
-def load_verified_indices(queue_dir: Path) -> set[int]:
-    done: set[int] = set()
+def incremental_path(queue_dir: Path) -> Path:
+    return queue_dir / ".verified_incremental.jsonl"
+
+
+def append_incremental(queue_dir: Path, row: dict) -> None:
+    path = incremental_path(queue_dir)
+    with path.open("a") as f:
+        f.write(json.dumps(row, ensure_ascii=False) + "\n")
+        f.flush()
+        os.fsync(f.fileno())
+
+
+def load_verified_rows(queue_dir: Path) -> dict[int, dict]:
+    by_idx: dict[int, dict] = {}
+    inc = incremental_path(queue_dir)
+    if inc.is_file():
+        for line in inc.read_text().splitlines():
+            if not line.strip():
+                continue
+            row = json.loads(line)
+            by_idx[int(row["index"])] = row
     for vb in queue_dir.glob("verified_batch_*.json"):
         for row in json.loads(vb.read_text()):
-            done.add(int(row["index"]))
-    return done
+            by_idx[int(row["index"])] = row
+    return by_idx
+
+
+def load_verified_indices(queue_dir: Path) -> set[int]:
+    return set(load_verified_rows(queue_dir))
 
 
 def main() -> None:
@@ -130,15 +163,15 @@ def main() -> None:
             rb = readback_text(p["title"], args.parent_id)
             if sha256_text(rb) != expected:
                 raise SystemExit(f"readback sha mismatch {index}")
-            rows.append(
-                {
-                    "index": index,
-                    "title": p["title"],
-                    "file_id": file_id,
-                    "sha256": expected,
-                    "readback_verified": True,
-                }
-            )
+            row = {
+                "index": index,
+                "title": p["title"],
+                "file_id": file_id,
+                "sha256": expected,
+                "readback_verified": True,
+            }
+            append_incremental(args.queue_dir, row)
+            rows.append(row)
             print(f"ok {index} {file_id}", flush=True)
             time.sleep(1)
 

@@ -14,6 +14,12 @@ DRIVE_LOG = Path("/workspace/musubu-data/drive_publisher_log.json")
 
 def load_all_rows(queue_dir: Path) -> dict[int, dict]:
     by_idx: dict[int, dict] = {}
+    inc = queue_dir / ".verified_incremental.jsonl"
+    if inc.is_file():
+        for line in inc.read_text().splitlines():
+            if line.strip():
+                row = json.loads(line)
+                by_idx[int(row["index"])] = row
     for vb in sorted(queue_dir.glob("verified_batch_*.json")):
         for row in json.loads(vb.read_text()):
             by_idx[int(row["index"])] = row
