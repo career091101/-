@@ -10,6 +10,7 @@ import fcntl
 import hashlib
 import json
 import os
+import signal
 import subprocess
 import tempfile
 import time
@@ -44,16 +45,39 @@ def part_entry(manifest: dict, index: int) -> dict:
     raise SystemExit(f"part {index} not in manifest")
 
 
-def rclone(*args: str, timeout: int = 180) -> bytes:
-    return subprocess.check_output(
-        [*RCLONE_BASE, *args],
-        stderr=subprocess.STDOUT,
-        timeout=timeout,
+def _run_rclone(argv: list[str], timeout: int) -> subprocess.CompletedProcess[str]:
+    proc = subprocess.Popen(
+        argv,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        start_new_session=True,
+        text=False,
     )
+    try:
+        stdout, stderr = proc.communicate(timeout=timeout)
+    except subprocess.TimeoutExpired:
+        try:
+            os.killpg(proc.pid, signal.SIGKILL)
+        except ProcessLookupError:
+            proc.kill()
+        proc.wait()
+        raise
+    err = (stderr or b"").decode(errors="replace")
+    out = (stdout or b"").decode(errors="replace")
+    return subprocess.CompletedProcess(argv, proc.returncode, out, err)
+
+
+def rclone(*args: str, timeout: int = 180) -> bytes:
+    cp = _run_rclone([*RCLONE_BASE, *args], timeout=timeout)
+    if cp.returncode != 0:
+        raise subprocess.CalledProcessError(
+            cp.returncode, cp.args, output=cp.stdout.encode(), stderr=cp.stderr.encode()
+        )
+    return cp.stdout.encode()
 
 
 def drive_file_id(title: str, parent: str) -> str | None:
-    proc = subprocess.run(
+    cp = _run_rclone(
         [
             *RCLONE_BASE,
             "lsf",
@@ -63,12 +87,11 @@ def drive_file_id(title: str, parent: str) -> str | None:
             "i",
             f"{REMOTE}:{title}",
         ],
-        capture_output=True,
         timeout=120,
     )
-    if proc.returncode != 0:
+    if cp.returncode != 0:
         return None
-    out = proc.stdout.decode().strip()
+    out = cp.stdout.strip()
     return out or None
 
 
@@ -100,13 +123,20 @@ def readback_text(title: str, parent: str) -> str:
             os.close(fd)
             tmp_path = Path(name)
             try:
-                rclone(
-                    "copyto",
-                    f"{REMOTE}:{title}",
-                    str(tmp_path),
-                    f"--drive-root-folder-id={parent}",
+                cp = _run_rclone(
+                    [
+                        *RCLONE_BASE,
+                        "copyto",
+                        f"{REMOTE}:{title}",
+                        str(tmp_path),
+                        f"--drive-root-folder-id={parent}",
+                    ],
                     timeout=300,
                 )
+                if cp.returncode != 0:
+                    raise subprocess.CalledProcessError(
+                        cp.returncode, cp.args, cp.stdout, cp.stderr
+                    )
                 return tmp_path.read_text()
             finally:
                 tmp_path.unlink(missing_ok=True)
