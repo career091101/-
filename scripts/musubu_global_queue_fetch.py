@@ -43,6 +43,18 @@ COMPANIES_PAGE70_PENDING = DATA / "progress" / "companies_page70_done.flag"
 API_LOG = DATA / "experiment_api.log"
 
 
+def _paused_resources() -> set[str]:
+    cfg_path = DATA / "experiment_config.json"
+    if not cfg_path.is_file():
+        return set()
+    try:
+        cfg = json.loads(cfg_path.read_text())
+        paused = cfg.get("FETCH_PAUSED_RESOURCES") or []
+        return {str(x) for x in paused}
+    except Exception:
+        return set()
+
+
 def latest_page_statuses(path: Path) -> dict[tuple[str, int], int]:
     """Read only resource/page/status fields; never expose log records."""
     latest: dict[tuple[str, int], int] = {}
@@ -234,7 +246,10 @@ def main() -> None:
     try:
         attempted: set[tuple[str, int]] = set()
         candidates = retry_candidates(DATA)
+        paused = _paused_resources()
         for resource, page, path in candidates:
+            if resource in paused:
+                continue
             key = (resource, page)
             if key in attempted:
                 continue
@@ -250,6 +265,8 @@ def main() -> None:
             abort_if_401()
             progressed = False
             for resource, first, extras, skip in RESOURCE_RULES:
+                if resource in paused:
+                    continue
                 page = next_page(
                     resource, first, extras, skip,
                     excluded={p for r, p in attempted if r == resource},
