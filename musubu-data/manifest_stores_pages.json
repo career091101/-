@@ -1,0 +1,607 @@
+{
+  "updated_at_epoch": 1792316962,
+  "api_base": "https://api.production.musubu.in",
+  "interval_sec": 0.5,
+  "artifacts": [
+    {
+      "file": "stores_page_00001.json",
+      "drive_upload_name": "stores_page_00001.json.b64",
+      "raw_bytes": 127585,
+      "gzip_bytes": 18283,
+      "raw_sha256": "1367ddcf7c330075295eff3ec5de06d50fedf501de3971beaf33ffb6a2b7110d",
+      "gzip_sha256": "49584006d87f3d96a6fd2de148770dfcd1a1527e5790c41a194e3ba91bf134e2",
+      "local_gz_path": "/workspace/musubu-data/section_stores/stores_page_00001.json",
+      "local_b64_path": "/workspace/musubu-data/section_stores/stores_page_00001.json.b64",
+      "section": "stores",
+      "endpoint": "/api/stores/search",
+      "http_status": 200,
+      "page": 1,
+      "meta": {
+        "total_count": 1894869,
+        "total_pages": 37898,
+        "current_page": 1
+      },
+      "item_count": 50
+    },
+    {
+      "file": "stores_page_00002.json",
+      "drive_upload_name": "stores_page_00002.json.b64",
+      "raw_bytes": 127232,
+      "gzip_bytes": 16763,
+      "raw_sha256": "69073bfe00e26f3bfb5c2f2af00e8f1943d6490f312169a5d1725b460149582f",
+      "gzip_sha256": "a78c643aae6c51904ee8de65e5f5afa872d01430e2998c31b83445f87d9c051b",
+      "local_gz_path": "/workspace/musubu-data/section_stores/stores_page_00002.json",
+      "local_b64_path": "/workspace/musubu-data/section_stores/stores_page_00002.json.b64",
+      "section": "stores",
+      "endpoint": "/api/stores/search",
+      "http_status": 200,
+      "page": 2,
+      "meta": {
+        "total_count": 1894869,
+        "total_pages": 37898,
+        "current_page": 2
+      },
+      "item_count": 50
+    },
+    {
+      "file": "stores_page_00003.json",
+      "drive_upload_name": "stores_page_00003.json.b64",
+      "raw_bytes": 128494,
+      "gzip_bytes": 17075,
+      "raw_sha256": "a15cfed79ce0e69309584f560a9637eda9634eb88e6ca5f1c3422daf27f53455",
+      "gzip_sha256": "88d2e95347ee756665a07c87dd9562bf3a02d3ae5b137b963e5ce2597bda2bf5",
+      "local_gz_path": "/workspace/musubu-data/section_stores/stores_page_00003.json",
+      "local_b64_path": "/workspace/musubu-data/section_stores/stores_page_00003.json.b64",
+      "section": "stores",
+      "endpoint": "/api/stores/search",
+      "http_status": 200,
+      "page": 3,
+      "meta": {
+        "total_count": 1894869,
+        "total_pages": 37898,
+        "current_page": 3
+      },
+      "item_count": 50
+    },
+    {
+      "file": "stores_page_00004.json",
+      "drive_upload_name": "stores_page_00004.json.b64",
+      "raw_bytes": 127663,
+      "gzip_bytes": 17520,
+      "raw_sha256": "77b873e8aa69f6fc8cb5d79cae4e90259ee2b15b6856d0259e87b2ab1eff950b",
+      "gzip_sha256": "2073e2f9366db7c569463a58259d14fee3613835b53d49e16848cfe51385b68a",
+      "local_gz_path": "/workspace/musubu-data/section_stores/stores_page_00004.json",
+      "local_b64_path": "/workspace/musubu-data/section_stores/stores_page_00004.json.b64",
+      "section": "stores",
+      "endpoint": "/api/stores/search",
+      "http_status": 200,
+      "page": 4,
+      "meta": {
+        "total_count": 1894869,
+        "total_pages": 37898,
+        "current_page": 4
+      },
+      "item_count": 50
+    },
+    {
+      "file": "stores_page_00005.json",
+      "drive_upload_name": "stores_page_00005.json.b64",
+      "raw_bytes": 126386,
+      "gzip_bytes": 18652,
+      "raw_sha256": "6d4dde215b6b4b909bca7b354e073eb6bffecbc5fa5161dc82ae4c9191234365",
+      "gzip_sha256": "314e82900f62cc4a8aa49c020375692fdc804317e7a19badf27c7b0f14aacdaa",
+      "local_gz_path": "/workspace/musubu-data/section_stores/stores_page_00005.json",
+      "local_b64_path": "/workspace/musubu-data/section_stores/stores_page_00005.json.b64",
+      "section": "stores",
+      "endpoint": "/api/stores/search",
+      "http_status": 200,
+      "page": 5,
+      "meta": {
+        "total_count": 1894869,
+        "total_pages": 37898,
+        "current_page": 5
+      },
+      "item_count": 50
+    },
+    {
+      "file": "stores_page_00006.json",
+      "drive_upload_name": "stores_page_00006.json.b64",
+      "raw_bytes": 128963,
+      "gzip_bytes": 17800,
+      "raw_sha256": "46a3b630ba81ce11d4e0e99469865a5bc4bd70e6b3569edf8083adfb4b3a2576",
+      "gzip_sha256": "66593a0b04ec0da520585955de0c578ee3782bc98d7686f672e03f6f73ce4c1f",
+      "local_gz_path": "/workspace/musubu-data/section_stores/stores_page_00006.json",
+      "local_b64_path": "/workspace/musubu-data/section_stores/stores_page_00006.json.b64",
+      "section": "stores",
+      "endpoint": "/api/stores/search",
+      "http_status": 200,
+      "page": 6,
+      "meta": {
+        "total_count": 1894869,
+        "total_pages": 37898,
+        "current_page": 6
+      },
+      "item_count": 50
+    },
+    {
+      "file": "stores_page_00007.json",
+      "drive_upload_name": "stores_page_00007.json.b64",
+      "raw_bytes": 125680,
+      "gzip_bytes": 17368,
+      "raw_sha256": "5138d9f5258b995b993c6bf84497e2f37f80f7d231a1247fa8361d83ace920dd",
+      "gzip_sha256": "05b3c2bf792714b4e41444e3ac04f1f9d3d045036874701151954c9fe3104e1b",
+      "local_gz_path": "/workspace/musubu-data/section_stores/stores_page_00007.json",
+      "local_b64_path": "/workspace/musubu-data/section_stores/stores_page_00007.json.b64",
+      "section": "stores",
+      "endpoint": "/api/stores/search",
+      "http_status": 200,
+      "page": 7,
+      "meta": {
+        "total_count": 1894869,
+        "total_pages": 37898,
+        "current_page": 7
+      },
+      "item_count": 50
+    },
+    {
+      "file": "stores_page_00008.json",
+      "drive_upload_name": "stores_page_00008.json.b64",
+      "raw_bytes": 126726,
+      "gzip_bytes": 17629,
+      "raw_sha256": "5e9610a7df66918a0f8b4a73d1b3f462af1fe31b5a27f9dedc7c0b4999f6d093",
+      "gzip_sha256": "31242e3782fafe59fc21d159c423e06a6a46a78b0c2f18a2ba1c600a1c8f204c",
+      "local_gz_path": "/workspace/musubu-data/section_stores/stores_page_00008.json",
+      "local_b64_path": "/workspace/musubu-data/section_stores/stores_page_00008.json.b64",
+      "section": "stores",
+      "endpoint": "/api/stores/search",
+      "http_status": 200,
+      "page": 8,
+      "meta": {
+        "total_count": 1894869,
+        "total_pages": 37898,
+        "current_page": 8
+      },
+      "item_count": 50
+    },
+    {
+      "file": "stores_page_00009.json",
+      "drive_upload_name": "stores_page_00009.json.b64",
+      "raw_bytes": 127589,
+      "gzip_bytes": 18807,
+      "raw_sha256": "61c83a0354204a44ff7ff7c33467fdc9d44e04be31aa617c5ff25dd274494ca9",
+      "gzip_sha256": "069f773942ef6609190ca39791e1566ad496940388c7b360626084fbc57e7861",
+      "local_gz_path": "/workspace/musubu-data/section_stores/stores_page_00009.json",
+      "local_b64_path": "/workspace/musubu-data/section_stores/stores_page_00009.json.b64",
+      "section": "stores",
+      "endpoint": "/api/stores/search",
+      "http_status": 200,
+      "page": 9,
+      "meta": {
+        "total_count": 1894869,
+        "total_pages": 37898,
+        "current_page": 9
+      },
+      "item_count": 50
+    },
+    {
+      "file": "stores_page_00010.json",
+      "drive_upload_name": "stores_page_00010.json.b64",
+      "raw_bytes": 125387,
+      "gzip_bytes": 18270,
+      "raw_sha256": "1664d831ce64b4ded1e29f0003e3a7037475c7f9aac07105ae0c61c53e06ad8a",
+      "gzip_sha256": "aff3b2bd3fc2162fe6dc542e4b44f370da984a0ae582b7b8a00e1f0454202e3a",
+      "local_gz_path": "/workspace/musubu-data/section_stores/stores_page_00010.json",
+      "local_b64_path": "/workspace/musubu-data/section_stores/stores_page_00010.json.b64",
+      "section": "stores",
+      "endpoint": "/api/stores/search",
+      "http_status": 200,
+      "page": 10,
+      "meta": {
+        "total_count": 1894869,
+        "total_pages": 37898,
+        "current_page": 10
+      },
+      "item_count": 50
+    },
+    {
+      "file": "stores_page_00011.json",
+      "drive_upload_name": "stores_page_00011.json.b64",
+      "raw_bytes": 129507,
+      "gzip_bytes": 17506,
+      "raw_sha256": "482a3fd806919032e86bd240ce9349d9ab08915ab2e3800cab0b2859439bf7b8",
+      "gzip_sha256": "5c44fd7fc4562a40f63b92505da73030d0974d948ff68e1cd0adac76b5d88540",
+      "local_gz_path": "/workspace/musubu-data/section_stores/stores_page_00011.json",
+      "local_b64_path": "/workspace/musubu-data/section_stores/stores_page_00011.json.b64",
+      "section": "stores",
+      "endpoint": "/api/stores/search",
+      "http_status": 200,
+      "page": 11,
+      "meta": {
+        "total_count": 1894869,
+        "total_pages": 37898,
+        "current_page": 11
+      },
+      "item_count": 50
+    },
+    {
+      "file": "stores_page_00012.json",
+      "drive_upload_name": "stores_page_00012.json.b64",
+      "raw_bytes": 126740,
+      "gzip_bytes": 17682,
+      "raw_sha256": "1225afd3247fb3edffcec010967b05a832a47ba5a9e024b836bacf5d2e62b61d",
+      "gzip_sha256": "4cc3381c49c281b2d288adff96f9ad853c39bb4ad6fec8bc0dd4b610ee5aa9e8",
+      "local_gz_path": "/workspace/musubu-data/section_stores/stores_page_00012.json",
+      "local_b64_path": "/workspace/musubu-data/section_stores/stores_page_00012.json.b64",
+      "section": "stores",
+      "endpoint": "/api/stores/search",
+      "http_status": 200,
+      "page": 12,
+      "meta": {
+        "total_count": 1894869,
+        "total_pages": 37898,
+        "current_page": 12
+      },
+      "item_count": 50
+    },
+    {
+      "file": "stores_page_00013.json",
+      "drive_upload_name": "stores_page_00013.json.b64",
+      "raw_bytes": 127759,
+      "gzip_bytes": 18162,
+      "raw_sha256": "f0c1175a7a0c71a6ab941d3359f49b96250f4f4b6efb523569f271a10107e759",
+      "gzip_sha256": "e29e4cf672880f5ef22ea5a606872db730eeb428f9fbbf837231e74c519d5ae1",
+      "local_gz_path": "/workspace/musubu-data/section_stores/stores_page_00013.json",
+      "local_b64_path": "/workspace/musubu-data/section_stores/stores_page_00013.json.b64",
+      "section": "stores",
+      "endpoint": "/api/stores/search",
+      "http_status": 200,
+      "page": 13,
+      "meta": {
+        "total_count": 1894869,
+        "total_pages": 37898,
+        "current_page": 13
+      },
+      "item_count": 50
+    },
+    {
+      "file": "stores_page_00014.json",
+      "drive_upload_name": "stores_page_00014.json.b64",
+      "raw_bytes": 128535,
+      "gzip_bytes": 18270,
+      "raw_sha256": "327559fbe48144323ccf90238429f7d05a0afde092066ba94afac74c6f056ae8",
+      "gzip_sha256": "4d0a6890c152ef2c0eaa276d48108068287a8e0f85a7c55094080f9874ce43ce",
+      "local_gz_path": "/workspace/musubu-data/section_stores/stores_page_00014.json",
+      "local_b64_path": "/workspace/musubu-data/section_stores/stores_page_00014.json.b64",
+      "section": "stores",
+      "endpoint": "/api/stores/search",
+      "http_status": 200,
+      "page": 14,
+      "meta": {
+        "total_count": 1894869,
+        "total_pages": 37898,
+        "current_page": 14
+      },
+      "item_count": 50
+    },
+    {
+      "file": "stores_page_00015.json",
+      "drive_upload_name": "stores_page_00015.json.b64",
+      "raw_bytes": 126827,
+      "gzip_bytes": 17415,
+      "raw_sha256": "3330b2800685d6d780e23e6634b1d802616ff97950d227a2d45bbde136342acf",
+      "gzip_sha256": "e3b89acead0f623accd2594c533dedcf6d747b65673b3c12b15d7b73c5d7a123",
+      "local_gz_path": "/workspace/musubu-data/section_stores/stores_page_00015.json",
+      "local_b64_path": "/workspace/musubu-data/section_stores/stores_page_00015.json.b64",
+      "section": "stores",
+      "endpoint": "/api/stores/search",
+      "http_status": 200,
+      "page": 15,
+      "meta": {
+        "total_count": 1894869,
+        "total_pages": 37898,
+        "current_page": 15
+      },
+      "item_count": 50
+    },
+    {
+      "file": "stores_page_00016.json",
+      "drive_upload_name": "stores_page_00016.json.b64",
+      "raw_bytes": 127298,
+      "gzip_bytes": 18190,
+      "raw_sha256": "edcca4f452ec3187af2dcdbb33b33afb5cc97bb2d2e0d813bc0da94787392ca8",
+      "gzip_sha256": "98503db8c59592376a512bad8dad56478e940d0f42abaa575c085608b22eb2f2",
+      "local_gz_path": "/workspace/musubu-data/section_stores/stores_page_00016.json",
+      "local_b64_path": "/workspace/musubu-data/section_stores/stores_page_00016.json.b64",
+      "section": "stores",
+      "endpoint": "/api/stores/search",
+      "http_status": 200,
+      "page": 16,
+      "meta": {
+        "total_count": 1894869,
+        "total_pages": 37898,
+        "current_page": 16
+      },
+      "item_count": 50
+    },
+    {
+      "file": "stores_page_00017.json",
+      "drive_upload_name": "stores_page_00017.json.b64",
+      "raw_bytes": 126494,
+      "gzip_bytes": 16981,
+      "raw_sha256": "b218ae40afef83750cef40fbf933151b13afa2ec50a33d522a4983416590bd12",
+      "gzip_sha256": "30c47c7dab3bcfeea2dde3f8ca2231b7d4a37c32c8249d3b7d1d2d7746afb195",
+      "local_gz_path": "/workspace/musubu-data/section_stores/stores_page_00017.json",
+      "local_b64_path": "/workspace/musubu-data/section_stores/stores_page_00017.json.b64",
+      "section": "stores",
+      "endpoint": "/api/stores/search",
+      "http_status": 200,
+      "page": 17,
+      "meta": {
+        "total_count": 1894869,
+        "total_pages": 37898,
+        "current_page": 17
+      },
+      "item_count": 50
+    },
+    {
+      "file": "stores_page_00018.json",
+      "drive_upload_name": "stores_page_00018.json.b64",
+      "raw_bytes": 127713,
+      "gzip_bytes": 17000,
+      "raw_sha256": "3dc11d5eddc1b66a50b11b6dd9dbc451e5356860c582fa3342ffc9f2461a917c",
+      "gzip_sha256": "41283cb6fc7ec48d94b8e6d9a1d3a5675f75ae270d38558c8dad38691e523046",
+      "local_gz_path": "/workspace/musubu-data/section_stores/stores_page_00018.json",
+      "local_b64_path": "/workspace/musubu-data/section_stores/stores_page_00018.json.b64",
+      "section": "stores",
+      "endpoint": "/api/stores/search",
+      "http_status": 200,
+      "page": 18,
+      "meta": {
+        "total_count": 1894869,
+        "total_pages": 37898,
+        "current_page": 18
+      },
+      "item_count": 50
+    },
+    {
+      "file": "stores_page_00019.json",
+      "drive_upload_name": "stores_page_00019.json.b64",
+      "raw_bytes": 126270,
+      "gzip_bytes": 17568,
+      "raw_sha256": "5ae983cc59ad9ce5028a0c08f9572a7a18de97044123f80400087004ee7a9ba0",
+      "gzip_sha256": "853379b406f27f423c5ecc5e7a664f2755f56cfb387ae80bf542674fa7107087",
+      "local_gz_path": "/workspace/musubu-data/section_stores/stores_page_00019.json",
+      "local_b64_path": "/workspace/musubu-data/section_stores/stores_page_00019.json.b64",
+      "section": "stores",
+      "endpoint": "/api/stores/search",
+      "http_status": 200,
+      "page": 19,
+      "meta": {
+        "total_count": 1894869,
+        "total_pages": 37898,
+        "current_page": 19
+      },
+      "item_count": 50
+    },
+    {
+      "file": "stores_page_00020.json",
+      "drive_upload_name": "stores_page_00020.json.b64",
+      "raw_bytes": 125964,
+      "gzip_bytes": 17940,
+      "raw_sha256": "5fa5e40fca9a652ddb1115107d376fd79752117c7f6cb3119ac501fb7a00550c",
+      "gzip_sha256": "ce46c5266d8d91f5cb41381fc90a536cb941624334c8768f4ae0118850f18793",
+      "local_gz_path": "/workspace/musubu-data/section_stores/stores_page_00020.json",
+      "local_b64_path": "/workspace/musubu-data/section_stores/stores_page_00020.json.b64",
+      "section": "stores",
+      "endpoint": "/api/stores/search",
+      "http_status": 200,
+      "page": 20,
+      "meta": {
+        "total_count": 1894869,
+        "total_pages": 37898,
+        "current_page": 20
+      },
+      "item_count": 50
+    },
+    {
+      "file": "stores_page_00021.json",
+      "drive_upload_name": "stores_page_00021.json.b64",
+      "raw_bytes": 126428,
+      "gzip_bytes": 17920,
+      "raw_sha256": "76da145973aa773f22acf60af4b2677e2f1e4ba7765f4fe09cc82841d8fffd4c",
+      "gzip_sha256": "1af4f29f89ecc6ce10b490bc2c719f890f4c407f3c8266c5b730d62c33b4cf6e",
+      "local_gz_path": "/workspace/musubu-data/section_stores/stores_page_00021.json",
+      "local_b64_path": "/workspace/musubu-data/section_stores/stores_page_00021.json.b64",
+      "section": "stores",
+      "endpoint": "/api/stores/search",
+      "http_status": 200,
+      "page": 21,
+      "meta": {
+        "total_count": 1894869,
+        "total_pages": 37898,
+        "current_page": 21
+      },
+      "item_count": 50
+    },
+    {
+      "file": "stores_page_00022.json",
+      "drive_upload_name": "stores_page_00022.json.b64",
+      "raw_bytes": 127671,
+      "gzip_bytes": 17718,
+      "raw_sha256": "19d64affd02b06ba461fd44f88e05a6c6b868ab09faa3e9c24bca5f13604e76f",
+      "gzip_sha256": "d01ba64fac5234e50c12029b8b0686a8658503d4029b63db2ccef022ad79c6d4",
+      "local_gz_path": "/workspace/musubu-data/section_stores/stores_page_00022.json",
+      "local_b64_path": "/workspace/musubu-data/section_stores/stores_page_00022.json.b64",
+      "section": "stores",
+      "endpoint": "/api/stores/search",
+      "http_status": 200,
+      "page": 22,
+      "meta": {
+        "total_count": 1894868,
+        "total_pages": 37898,
+        "current_page": 22
+      },
+      "item_count": 50
+    },
+    {
+      "file": "stores_page_00023.json",
+      "drive_upload_name": "stores_page_00023.json.b64",
+      "raw_bytes": 129698,
+      "gzip_bytes": 18035,
+      "raw_sha256": "56ea2642a757a2472e54cfeda3f5c94edc4de8780aa7332452524d3bcfbbd146",
+      "gzip_sha256": "7d9cfa03f51954e5361332cacb4687e1bcfa9d0f76d79a527fc31a6a05cf045f",
+      "local_gz_path": "/workspace/musubu-data/section_stores/stores_page_00023.json",
+      "local_b64_path": "/workspace/musubu-data/section_stores/stores_page_00023.json.b64",
+      "section": "stores",
+      "endpoint": "/api/stores/search",
+      "http_status": 200,
+      "page": 23,
+      "meta": {
+        "total_count": 1894868,
+        "total_pages": 37898,
+        "current_page": 23
+      },
+      "item_count": 50
+    },
+    {
+      "file": "stores_page_00024.json",
+      "drive_upload_name": "stores_page_00024.json.b64",
+      "raw_bytes": 129751,
+      "gzip_bytes": 17897,
+      "raw_sha256": "966bccf5bb8f04bc51df98202d4aee63c444941c493b701ed0c8956e6197ba33",
+      "gzip_sha256": "d7e77c0c803ecae907afb7dcb9b89e4bd0de62f4eca43cffc7be37ff30abccc6",
+      "local_gz_path": "/workspace/musubu-data/section_stores/stores_page_00024.json",
+      "local_b64_path": "/workspace/musubu-data/section_stores/stores_page_00024.json.b64",
+      "section": "stores",
+      "endpoint": "/api/stores/search",
+      "http_status": 200,
+      "page": 24,
+      "meta": {
+        "total_count": 1894869,
+        "total_pages": 37898,
+        "current_page": 24
+      },
+      "item_count": 50
+    },
+    {
+      "file": "stores_page_00025.json",
+      "drive_upload_name": "stores_page_00025.json.b64",
+      "raw_bytes": 126927,
+      "gzip_bytes": 17284,
+      "raw_sha256": "2e899ed63683eb972e41842bba5f9c488b990eaa6acd591accd7277ae8f41250",
+      "gzip_sha256": "35ffdeeb22b58321da4c13e7cb12f49bdd8ec9ba393588d15ae76e40ab476266",
+      "local_gz_path": "/workspace/musubu-data/section_stores/stores_page_00025.json",
+      "local_b64_path": "/workspace/musubu-data/section_stores/stores_page_00025.json.b64",
+      "section": "stores",
+      "endpoint": "/api/stores/search",
+      "http_status": 200,
+      "page": 25,
+      "meta": {
+        "total_count": 1894868,
+        "total_pages": 37898,
+        "current_page": 25
+      },
+      "item_count": 50
+    },
+    {
+      "file": "stores_page_00026.json",
+      "drive_upload_name": "stores_page_00026.json.b64",
+      "raw_bytes": 127568,
+      "gzip_bytes": 16986,
+      "raw_sha256": "d7fdf0735215aed7fe278f688a7279229abbefcd16171a93f801c209c28d09ad",
+      "gzip_sha256": "a57140182bedc82eccf64ef521269c52c9197cbef5cbea37280438e15228b3ed",
+      "local_gz_path": "/workspace/musubu-data/section_stores/stores_page_00026.json",
+      "local_b64_path": "/workspace/musubu-data/section_stores/stores_page_00026.json.b64",
+      "section": "stores",
+      "endpoint": "/api/stores/search",
+      "http_status": 200,
+      "page": 26,
+      "meta": {
+        "total_count": 1894869,
+        "total_pages": 37898,
+        "current_page": 26
+      },
+      "item_count": 50
+    },
+    {
+      "file": "stores_page_00027.json",
+      "drive_upload_name": "stores_page_00027.json.b64",
+      "raw_bytes": 129401,
+      "gzip_bytes": 17640,
+      "raw_sha256": "af3dd45f4915d9d1439beb760a38ba3039a8f91536b2cfee15ea9bef9f5fc367",
+      "gzip_sha256": "2f791fc87663a83d5931a4f7235a1b06c720a842237fa3928cccf98f13fd8134",
+      "local_gz_path": "/workspace/musubu-data/section_stores/stores_page_00027.json",
+      "local_b64_path": "/workspace/musubu-data/section_stores/stores_page_00027.json.b64",
+      "section": "stores",
+      "endpoint": "/api/stores/search",
+      "http_status": 200,
+      "page": 27,
+      "meta": {
+        "total_count": 1894868,
+        "total_pages": 37898,
+        "current_page": 27
+      },
+      "item_count": 50
+    },
+    {
+      "file": "stores_page_00028.json",
+      "drive_upload_name": "stores_page_00028.json.b64",
+      "raw_bytes": 116970,
+      "gzip_bytes": 17705,
+      "raw_sha256": "407bda700b4f186b93a5ecce04ef4a120a60441f3eee53a0f39e544fa0ceb1ee",
+      "gzip_sha256": "017a06a1f72c246532220ddf9540d8d397d689734c419437fd72d3a1c18838ab",
+      "local_gz_path": "/workspace/musubu-data/section_stores/stores_page_00028.json",
+      "local_b64_path": "/workspace/musubu-data/section_stores/stores_page_00028.json.b64",
+      "section": "stores",
+      "endpoint": "/api/stores/search",
+      "http_status": 200,
+      "page": 28,
+      "meta": {
+        "total_count": 1894868,
+        "total_pages": 37898,
+        "current_page": 28
+      },
+      "item_count": 50
+    },
+    {
+      "file": "stores_page_00029.json",
+      "drive_upload_name": "stores_page_00029.json.b64",
+      "raw_bytes": 98888,
+      "gzip_bytes": 13934,
+      "raw_sha256": "097e77a00d4b7d42fd438435fc09200d640f88753f08f8e9426995c6c18b66a7",
+      "gzip_sha256": "df3c77db9f10edb1fb3fae4a51b262dbffc40581e7689f7c1b47c305c2161e89",
+      "local_gz_path": "/workspace/musubu-data/section_stores/stores_page_00029.json",
+      "local_b64_path": "/workspace/musubu-data/section_stores/stores_page_00029.json.b64",
+      "section": "stores",
+      "endpoint": "/api/stores/search",
+      "http_status": 200,
+      "page": 29,
+      "meta": {
+        "total_count": 1894867,
+        "total_pages": 37898,
+        "current_page": 29
+      },
+      "item_count": 50
+    },
+    {
+      "file": "stores_page_00030.json",
+      "drive_upload_name": "stores_page_00030.json.b64",
+      "raw_bytes": 126704,
+      "gzip_bytes": 17064,
+      "raw_sha256": "4fc1af80b418a6bf17b90898cfcffa87672dd41b7557e1279514597e78df1184",
+      "gzip_sha256": "53f6218dbb225074f821ca7b7e50c9d9ff76edd2ec4b9d4706514255f3db2628",
+      "local_gz_path": "/workspace/musubu-data/section_stores/stores_page_00030.json",
+      "local_b64_path": "/workspace/musubu-data/section_stores/stores_page_00030.json.b64",
+      "section": "stores",
+      "endpoint": "/api/stores/search",
+      "http_status": 200,
+      "page": 30,
+      "meta": {
+        "total_count": 1894867,
+        "total_pages": 37898,
+        "current_page": 30
+      },
+      "item_count": 50
+    }
+  ]
+}

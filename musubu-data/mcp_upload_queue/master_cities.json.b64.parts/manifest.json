@@ -1,0 +1,129 @@
+{
+  "final_name": "master_cities.json.b64",
+  "gzip_sha256": "468db3a007ad454d285118887115caedc102f31d18b282a553a9642795fe3b98",
+  "text_sha256": "2c058e87ca363cbb647876aa86b582906f053cd1f1d80dc583ae6f8dd3dfccd9",
+  "text_chars": 77584,
+  "part_size": 4000,
+  "parts": [
+    {
+      "index": 1,
+      "chars": 4000,
+      "sha256": "0e2b876f81aab2f2b4f29302d29c2b20d1d3f8d6d6bdbf41d53d1ce52601f1a2",
+      "file": "part001.txt"
+    },
+    {
+      "index": 2,
+      "chars": 4000,
+      "sha256": "519afdd9c08c7a03e8a855bc2c2121e6d1a9bb5c4855ccf36c4c7f84b0a1c95c",
+      "file": "part002.txt"
+    },
+    {
+      "index": 3,
+      "chars": 4000,
+      "sha256": "591217d85768792954939fd1d65d3c2f86efd7dd8e857b430660517f13c69e41",
+      "file": "part003.txt"
+    },
+    {
+      "index": 4,
+      "chars": 4000,
+      "sha256": "f7ee2ef71045c202b5a946b39718b633a601581c0944c9ca8f015a2a8974360c",
+      "file": "part004.txt"
+    },
+    {
+      "index": 5,
+      "chars": 4000,
+      "sha256": "b696afef330587a58e3bb84c887e2c60c64e33c050142fbab6c4403cc32c0e58",
+      "file": "part005.txt"
+    },
+    {
+      "index": 6,
+      "chars": 4000,
+      "sha256": "652ed53bf2af1c1dcf5089307e3ef9032d7bf15114354763a4be9b5a37a12a62",
+      "file": "part006.txt"
+    },
+    {
+      "index": 7,
+      "chars": 4000,
+      "sha256": "9b177990af3bfb15f64df264faae190c749cadf98161e20caf1c7ddfee4f5e97",
+      "file": "part007.txt"
+    },
+    {
+      "index": 8,
+      "chars": 4000,
+      "sha256": "601eee0537613ec0c79c050ca97ceb21daf6346176e712a75fbe9190b60ca5a1",
+      "file": "part008.txt"
+    },
+    {
+      "index": 9,
+      "chars": 4000,
+      "sha256": "b65450fb1500f3f09398b895ca41f2c6d0585d1ebbc50fc91334f0c2d0a36b2b",
+      "file": "part009.txt"
+    },
+    {
+      "index": 10,
+      "chars": 4000,
+      "sha256": "f26c90b172401419a7a9b5b4d32c21401b767f6dc9e417484d0d6db90ea7c38c",
+      "file": "part010.txt"
+    },
+    {
+      "index": 11,
+      "chars": 4000,
+      "sha256": "ea98df31b35f911bc971cd839096d8c0e1cf9b24b108fbf13bceddb60717de51",
+      "file": "part011.txt"
+    },
+    {
+      "index": 12,
+      "chars": 4000,
+      "sha256": "65f8783c501ddddd15eda1ca7ce13391f15d22e8e9584103479cab4f27fafbaf",
+      "file": "part012.txt"
+    },
+    {
+      "index": 13,
+      "chars": 4000,
+      "sha256": "1971e1cff63b897cc78d0b4a590733951df2e766f8afa9f695154c7349e977e7",
+      "file": "part013.txt"
+    },
+    {
+      "index": 14,
+      "chars": 4000,
+      "sha256": "ad758c9fc0ffca0c357360c2a6613cc66eb153ce82b43d82dee23f9e92445dcf",
+      "file": "part014.txt"
+    },
+    {
+      "index": 15,
+      "chars": 4000,
+      "sha256": "b8abb64ad0cb0d735a72fe3a8fa084fecafeb152b0eb6eed4b60d76aade78658",
+      "file": "part015.txt"
+    },
+    {
+      "index": 16,
+      "chars": 4000,
+      "sha256": "5b45517752fe19bdd679c07d74fe35c3dc8f7aa90d5a8d66ab543cfa78f2e931",
+      "file": "part016.txt"
+    },
+    {
+      "index": 17,
+      "chars": 4000,
+      "sha256": "05854725b52fa5a4d77ef67758d9006993cfc0cbcb87668f218c41c53376e277",
+      "file": "part017.txt"
+    },
+    {
+      "index": 18,
+      "chars": 4000,
+      "sha256": "dbe40f280308ed1f71916ad285d985887114fa5c9ac693a5bf2f7e37e054d8de",
+      "file": "part018.txt"
+    },
+    {
+      "index": 19,
+      "chars": 4000,
+      "sha256": "d1899e7b28b3ffc28e32713ef17daed9eeaf62649c91787b0d40b5bccd225158",
+      "file": "part019.txt"
+    },
+    {
+      "index": 20,
+      "chars": 1584,
+      "sha256": "7952e606c198a84f07b21edc513a0272b03005e88bac47a8ec70ada8610788bc",
+      "file": "part020.txt"
+    }
+  ]
+}

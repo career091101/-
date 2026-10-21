@@ -1,0 +1,22 @@
+{
+  "experiment_phase": "post_experiment_collect",
+  "updated_at_epoch": 1792331241,
+  "EXPERIMENT_INTERVAL_SEC": 0.5,
+  "baseline_max_page_start": 364,
+  "updated_at_jst": "2026-10-18T22:47:21+09:00",
+  "interval_sweep_plan": "0.75_then_0.5",
+  "runner_schema": "phase2_sweep_1.0_to_0.5_v1",
+  "resume_from": "phase2",
+  "confirmed_start": 1.0,
+  "interval_sweep_target": 0.5,
+  "interval_sweep_confirmed": 0.5,
+  "recommended_mode": "parallel_resource",
+  "API_PARALLEL": 7,
+  "PRIORITY_RESOURCE": "companies",
+  "PRIORITY_WORKER_SLOTS": 7,
+  "FETCH_PAUSED_RESOURCES": ["key_people"],
+  "recruits_total_pages": 207420,
+  "benchmark_resident_fetch_start_epoch": 1792365839,
+  "benchmark_resident_fetch_note": "0.5s interval single resident loop",
+  "benchmark_resident_fetch_start_jst": "2026-10-19T08:23:59+09:00"
+}

@@ -1,0 +1,73 @@
+{
+  "created_at_epoch": 1792301468,
+  "api_base": "https://api.production.musubu.in",
+  "interval_sec": 2.2,
+  "artifacts": [
+    {
+      "file": "target_tiers_info.json",
+      "drive_upload_name": "target_tiers_info.json.b64",
+      "raw_bytes": 507,
+      "gzip_bytes": 150,
+      "raw_sha256": "3c65d9509db59f0be669cb5b66fa6212eae236382985903b629b3d37cf920964",
+      "gzip_sha256": "f6ce6a5787c5a64ce9053c2bab745b79cd96c179915023dc8dd98bdb3e8b72eb",
+      "local_gz_path": "/workspace/musubu-data/section8/target_tiers_info.json",
+      "local_b64_path": "/workspace/musubu-data/section8/target_tiers_info.json.b64",
+      "section": 8,
+      "endpoint": "/api/target_accounts/tiers_info",
+      "http_status": 200
+    },
+    {
+      "file": "target_lists.json",
+      "drive_upload_name": "target_lists.json.b64",
+      "raw_bytes": 238,
+      "gzip_bytes": 194,
+      "raw_sha256": "2806c29ee318164e422e61d9f6c0e7b9a5781ca61cfa92551b4164c7f477d8c3",
+      "gzip_sha256": "2aea6dfd07425edfd66d35b0715dc04fda53ab3296a2f5aa78c52ef0d7123dc0",
+      "local_gz_path": "/workspace/musubu-data/section8/target_lists.json",
+      "local_b64_path": "/workspace/musubu-data/section8/target_lists.json.b64",
+      "section": 8,
+      "endpoint": "/api/target_account_lists",
+      "http_status": 200
+    },
+    {
+      "file": "target_search_conditions.json",
+      "drive_upload_name": "target_search_conditions.json.b64",
+      "raw_bytes": 24,
+      "gzip_bytes": 44,
+      "raw_sha256": "3f02954b88c012445b0544e3f6b2ddae6e7b5ec8a03a65a3d9670dd7ff81c48b",
+      "gzip_sha256": "da6830b7498832c311ca77ac0211e5bcc9902f5c025d69f2bf5f37681e850d15",
+      "local_gz_path": "/workspace/musubu-data/section8/target_search_conditions.json",
+      "local_b64_path": "/workspace/musubu-data/section8/target_search_conditions.json.b64",
+      "section": 8,
+      "endpoint": "/api/search_conditions",
+      "http_status": 200
+    },
+    {
+      "file": "target_company_ids.json",
+      "drive_upload_name": "target_company_ids.json.b64",
+      "raw_bytes": 7817,
+      "gzip_bytes": 4420,
+      "raw_sha256": "9f566c5992d9e6eedf453b7226b16eada2449829db461522a753d5ed968f9e8b",
+      "gzip_sha256": "86ba76b12a85caaca1b588361cfebba1f5a1a20074ba812a2a7b98baa40718cf",
+      "local_gz_path": "/workspace/musubu-data/section8/target_company_ids.json",
+      "local_b64_path": "/workspace/musubu-data/section8/target_company_ids.json.b64",
+      "section": 8,
+      "endpoint": "/api/target_accounts/company_ids",
+      "http_status": 200
+    },
+    {
+      "file": "target_accounts_all.json",
+      "drive_upload_name": "target_accounts_all.json.b64",
+      "raw_bytes": 293038,
+      "gzip_bytes": 30180,
+      "raw_sha256": "1b510d2b51a64e5a41e50cec513fe4827b70df9fc4f5d55c74870223fabe8f84",
+      "gzip_sha256": "691ceb4694f309d1d24c790a79f79debd3a9634a11891e7f741118932b3dc92b",
+      "local_gz_path": "/workspace/musubu-data/section8/target_accounts_all.json",
+      "local_b64_path": "/workspace/musubu-data/section8/target_accounts_all.json.b64",
+      "section": 8,
+      "endpoint": "/api/target_accounts",
+      "http_status": 200,
+      "pages": 4
+    }
+  ]
+}

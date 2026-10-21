@@ -1,0 +1,607 @@
+{
+  "updated_at_epoch": 1792317002,
+  "api_base": "https://api.production.musubu.in",
+  "interval_sec": 0.5,
+  "artifacts": [
+    {
+      "file": "facilities_page_00001.json",
+      "drive_upload_name": "facilities_page_00001.json.b64",
+      "raw_bytes": 65997,
+      "gzip_bytes": 10472,
+      "raw_sha256": "7c2fd97cfc38cae5cdb593bffd039556d0c892b40aa6cc08b42d048bc589da6e",
+      "gzip_sha256": "65bc0ff014aa4f6b1e2c4dbc6dd54eebfe61a68934fd7c9095e17b098969c5ad",
+      "local_gz_path": "/workspace/musubu-data/section_facilities/facilities_page_00001.json",
+      "local_b64_path": "/workspace/musubu-data/section_facilities/facilities_page_00001.json.b64",
+      "section": "facilities",
+      "endpoint": "/api/facilities/search",
+      "http_status": 200,
+      "page": 1,
+      "meta": {
+        "total_count": 590302,
+        "total_pages": 11807,
+        "current_page": 1
+      },
+      "item_count": 50
+    },
+    {
+      "file": "facilities_page_00002.json",
+      "drive_upload_name": "facilities_page_00002.json.b64",
+      "raw_bytes": 62190,
+      "gzip_bytes": 10403,
+      "raw_sha256": "846da4add0edd92795b4a2f182d42d8f839473d3fdf41ce233d694d2d4e8521f",
+      "gzip_sha256": "6095b2c91771952a7956217ae19bca9441bbb8c09ff29d2a306601929a45cade",
+      "local_gz_path": "/workspace/musubu-data/section_facilities/facilities_page_00002.json",
+      "local_b64_path": "/workspace/musubu-data/section_facilities/facilities_page_00002.json.b64",
+      "section": "facilities",
+      "endpoint": "/api/facilities/search",
+      "http_status": 200,
+      "page": 2,
+      "meta": {
+        "total_count": 590302,
+        "total_pages": 11807,
+        "current_page": 2
+      },
+      "item_count": 50
+    },
+    {
+      "file": "facilities_page_00003.json",
+      "drive_upload_name": "facilities_page_00003.json.b64",
+      "raw_bytes": 63127,
+      "gzip_bytes": 10543,
+      "raw_sha256": "a0780fdc8059643934219dc13ae7e94a95bd7ddaf37b9e9b1383744b9130e65c",
+      "gzip_sha256": "0d4e59e2db8a59c0c0d8f87b892dc99166d4d0583caf1fbf7c8aa164595d1e79",
+      "local_gz_path": "/workspace/musubu-data/section_facilities/facilities_page_00003.json",
+      "local_b64_path": "/workspace/musubu-data/section_facilities/facilities_page_00003.json.b64",
+      "section": "facilities",
+      "endpoint": "/api/facilities/search",
+      "http_status": 200,
+      "page": 3,
+      "meta": {
+        "total_count": 590302,
+        "total_pages": 11807,
+        "current_page": 3
+      },
+      "item_count": 50
+    },
+    {
+      "file": "facilities_page_00004.json",
+      "drive_upload_name": "facilities_page_00004.json.b64",
+      "raw_bytes": 62930,
+      "gzip_bytes": 10457,
+      "raw_sha256": "5c08b99e370d7cb11b4faadbaa49dba3413c666f46b65e03b16e9773efdea8c4",
+      "gzip_sha256": "309010b282f2ac31fc5d67ac823ce640cc800f09c6726e05a5e64ce5f3377dd0",
+      "local_gz_path": "/workspace/musubu-data/section_facilities/facilities_page_00004.json",
+      "local_b64_path": "/workspace/musubu-data/section_facilities/facilities_page_00004.json.b64",
+      "section": "facilities",
+      "endpoint": "/api/facilities/search",
+      "http_status": 200,
+      "page": 4,
+      "meta": {
+        "total_count": 590302,
+        "total_pages": 11807,
+        "current_page": 4
+      },
+      "item_count": 50
+    },
+    {
+      "file": "facilities_page_00005.json",
+      "drive_upload_name": "facilities_page_00005.json.b64",
+      "raw_bytes": 63589,
+      "gzip_bytes": 9951,
+      "raw_sha256": "64ce36908df6d2a11a6aec81e10650faddd656f256d2db8b4c22d0c872a99885",
+      "gzip_sha256": "bc35e4fc575f7bf1dd97e0f8bf2c18a1caeda097db4e8b02b87c37f07844be03",
+      "local_gz_path": "/workspace/musubu-data/section_facilities/facilities_page_00005.json",
+      "local_b64_path": "/workspace/musubu-data/section_facilities/facilities_page_00005.json.b64",
+      "section": "facilities",
+      "endpoint": "/api/facilities/search",
+      "http_status": 200,
+      "page": 5,
+      "meta": {
+        "total_count": 590302,
+        "total_pages": 11807,
+        "current_page": 5
+      },
+      "item_count": 50
+    },
+    {
+      "file": "facilities_page_00006.json",
+      "drive_upload_name": "facilities_page_00006.json.b64",
+      "raw_bytes": 63480,
+      "gzip_bytes": 10360,
+      "raw_sha256": "1d7080c523ecaa506785737695e32138a6f8e425b61e9f014b7525e3ff269898",
+      "gzip_sha256": "822253fe2ca80496d7a70313d3ad4eb636e273710bba4ca549a406371783e1a8",
+      "local_gz_path": "/workspace/musubu-data/section_facilities/facilities_page_00006.json",
+      "local_b64_path": "/workspace/musubu-data/section_facilities/facilities_page_00006.json.b64",
+      "section": "facilities",
+      "endpoint": "/api/facilities/search",
+      "http_status": 200,
+      "page": 6,
+      "meta": {
+        "total_count": 590302,
+        "total_pages": 11807,
+        "current_page": 6
+      },
+      "item_count": 50
+    },
+    {
+      "file": "facilities_page_00007.json",
+      "drive_upload_name": "facilities_page_00007.json.b64",
+      "raw_bytes": 63527,
+      "gzip_bytes": 10322,
+      "raw_sha256": "a92402fa7d91f5f6824f5f55314ac5c4dd842cd219192e89959c485522ecbce1",
+      "gzip_sha256": "d8bd555b47c3e8782b1b3991fd5d3230ee48ff292e45707f82242fb0e55a9ce9",
+      "local_gz_path": "/workspace/musubu-data/section_facilities/facilities_page_00007.json",
+      "local_b64_path": "/workspace/musubu-data/section_facilities/facilities_page_00007.json.b64",
+      "section": "facilities",
+      "endpoint": "/api/facilities/search",
+      "http_status": 200,
+      "page": 7,
+      "meta": {
+        "total_count": 590302,
+        "total_pages": 11807,
+        "current_page": 7
+      },
+      "item_count": 50
+    },
+    {
+      "file": "facilities_page_00008.json",
+      "drive_upload_name": "facilities_page_00008.json.b64",
+      "raw_bytes": 62992,
+      "gzip_bytes": 10488,
+      "raw_sha256": "1a1e2be803eea307482cd141ae9f1ed22d81ee5d03bf2c94127dc2e917770248",
+      "gzip_sha256": "f765129a25faa0a2e06ab6be36ed974b758e9cd2ab6bfdc11a837b299267ffa3",
+      "local_gz_path": "/workspace/musubu-data/section_facilities/facilities_page_00008.json",
+      "local_b64_path": "/workspace/musubu-data/section_facilities/facilities_page_00008.json.b64",
+      "section": "facilities",
+      "endpoint": "/api/facilities/search",
+      "http_status": 200,
+      "page": 8,
+      "meta": {
+        "total_count": 590302,
+        "total_pages": 11807,
+        "current_page": 8
+      },
+      "item_count": 50
+    },
+    {
+      "file": "facilities_page_00009.json",
+      "drive_upload_name": "facilities_page_00009.json.b64",
+      "raw_bytes": 63393,
+      "gzip_bytes": 10575,
+      "raw_sha256": "df30f832debab69fe61f1ec712317162a89114ef92bb0a768d5ecdcb0f80da60",
+      "gzip_sha256": "720507d436ff4dc5185ce22c526dc95f1dd0fb63e3fc491074cd1966bd9ba6b9",
+      "local_gz_path": "/workspace/musubu-data/section_facilities/facilities_page_00009.json",
+      "local_b64_path": "/workspace/musubu-data/section_facilities/facilities_page_00009.json.b64",
+      "section": "facilities",
+      "endpoint": "/api/facilities/search",
+      "http_status": 200,
+      "page": 9,
+      "meta": {
+        "total_count": 590302,
+        "total_pages": 11807,
+        "current_page": 9
+      },
+      "item_count": 50
+    },
+    {
+      "file": "facilities_page_00010.json",
+      "drive_upload_name": "facilities_page_00010.json.b64",
+      "raw_bytes": 62717,
+      "gzip_bytes": 10394,
+      "raw_sha256": "d0d8217446a15060642e2e88e489e5e9fd41a96e2d5b4e2263bc50a855daadd5",
+      "gzip_sha256": "0e431ea90deac384fa8d36c18e7cce4bf736ac5b0a2eb960d8f518836f565b0a",
+      "local_gz_path": "/workspace/musubu-data/section_facilities/facilities_page_00010.json",
+      "local_b64_path": "/workspace/musubu-data/section_facilities/facilities_page_00010.json.b64",
+      "section": "facilities",
+      "endpoint": "/api/facilities/search",
+      "http_status": 200,
+      "page": 10,
+      "meta": {
+        "total_count": 590302,
+        "total_pages": 11807,
+        "current_page": 10
+      },
+      "item_count": 50
+    },
+    {
+      "file": "facilities_page_00011.json",
+      "drive_upload_name": "facilities_page_00011.json.b64",
+      "raw_bytes": 63340,
+      "gzip_bytes": 10457,
+      "raw_sha256": "ef671104492a6f3550963b748bd5badec7207da1559e6744d654039b06446e5a",
+      "gzip_sha256": "408c9d937397d4f7951c42782cace008c5c9434135153f1adf371ce52cabc372",
+      "local_gz_path": "/workspace/musubu-data/section_facilities/facilities_page_00011.json",
+      "local_b64_path": "/workspace/musubu-data/section_facilities/facilities_page_00011.json.b64",
+      "section": "facilities",
+      "endpoint": "/api/facilities/search",
+      "http_status": 200,
+      "page": 11,
+      "meta": {
+        "total_count": 590302,
+        "total_pages": 11807,
+        "current_page": 11
+      },
+      "item_count": 50
+    },
+    {
+      "file": "facilities_page_00012.json",
+      "drive_upload_name": "facilities_page_00012.json.b64",
+      "raw_bytes": 62979,
+      "gzip_bytes": 10381,
+      "raw_sha256": "cc10ee9e43923be81c13ac35f88b256f24eb8e0a8fd3a15b6313abfa5261603f",
+      "gzip_sha256": "5c8426d70245939b9dccb32ca92f74a8fc4c5e7c81b181c9ad3b768147a0e835",
+      "local_gz_path": "/workspace/musubu-data/section_facilities/facilities_page_00012.json",
+      "local_b64_path": "/workspace/musubu-data/section_facilities/facilities_page_00012.json.b64",
+      "section": "facilities",
+      "endpoint": "/api/facilities/search",
+      "http_status": 200,
+      "page": 12,
+      "meta": {
+        "total_count": 590302,
+        "total_pages": 11807,
+        "current_page": 12
+      },
+      "item_count": 50
+    },
+    {
+      "file": "facilities_page_00013.json",
+      "drive_upload_name": "facilities_page_00013.json.b64",
+      "raw_bytes": 62983,
+      "gzip_bytes": 10696,
+      "raw_sha256": "e750bd3a8f7801560bca7fa5618b40657289a4e09af5023c75514ba71eff248b",
+      "gzip_sha256": "ee6c8b8ce265962f471f8d9150e227eee6fdeef0cd0b4b6e33ed87b64316bbd5",
+      "local_gz_path": "/workspace/musubu-data/section_facilities/facilities_page_00013.json",
+      "local_b64_path": "/workspace/musubu-data/section_facilities/facilities_page_00013.json.b64",
+      "section": "facilities",
+      "endpoint": "/api/facilities/search",
+      "http_status": 200,
+      "page": 13,
+      "meta": {
+        "total_count": 590302,
+        "total_pages": 11807,
+        "current_page": 13
+      },
+      "item_count": 50
+    },
+    {
+      "file": "facilities_page_00014.json",
+      "drive_upload_name": "facilities_page_00014.json.b64",
+      "raw_bytes": 63147,
+      "gzip_bytes": 10506,
+      "raw_sha256": "ef1688c63fdb92a45c3c26445ab6786a81d756ab7e28990182c40028a76ac0d6",
+      "gzip_sha256": "75e2b46671773a54b8e667f137dd4583ed7242a790fe52434496ac1bf24e6f39",
+      "local_gz_path": "/workspace/musubu-data/section_facilities/facilities_page_00014.json",
+      "local_b64_path": "/workspace/musubu-data/section_facilities/facilities_page_00014.json.b64",
+      "section": "facilities",
+      "endpoint": "/api/facilities/search",
+      "http_status": 200,
+      "page": 14,
+      "meta": {
+        "total_count": 590302,
+        "total_pages": 11807,
+        "current_page": 14
+      },
+      "item_count": 50
+    },
+    {
+      "file": "facilities_page_00015.json",
+      "drive_upload_name": "facilities_page_00015.json.b64",
+      "raw_bytes": 62817,
+      "gzip_bytes": 10342,
+      "raw_sha256": "f32c8716883464ba2d77acc3ce4bc01da220e4d31c3ec00e6a57bb8cb2d586f3",
+      "gzip_sha256": "67879be081e5d45cb7be5a213f7342e51a62cd6d359cd3c2eb8ae7721df982ce",
+      "local_gz_path": "/workspace/musubu-data/section_facilities/facilities_page_00015.json",
+      "local_b64_path": "/workspace/musubu-data/section_facilities/facilities_page_00015.json.b64",
+      "section": "facilities",
+      "endpoint": "/api/facilities/search",
+      "http_status": 200,
+      "page": 15,
+      "meta": {
+        "total_count": 590302,
+        "total_pages": 11807,
+        "current_page": 15
+      },
+      "item_count": 50
+    },
+    {
+      "file": "facilities_page_00016.json",
+      "drive_upload_name": "facilities_page_00016.json.b64",
+      "raw_bytes": 63301,
+      "gzip_bytes": 10026,
+      "raw_sha256": "b5d501cbf5e5c021551a8b69ed317f0abd7e87ae6c2945135d210c143454d550",
+      "gzip_sha256": "ce10cfcb03322e0ddc576b82909f416ea241dbd8344c9e697e748ce550b3de24",
+      "local_gz_path": "/workspace/musubu-data/section_facilities/facilities_page_00016.json",
+      "local_b64_path": "/workspace/musubu-data/section_facilities/facilities_page_00016.json.b64",
+      "section": "facilities",
+      "endpoint": "/api/facilities/search",
+      "http_status": 200,
+      "page": 16,
+      "meta": {
+        "total_count": 590302,
+        "total_pages": 11807,
+        "current_page": 16
+      },
+      "item_count": 50
+    },
+    {
+      "file": "facilities_page_00017.json",
+      "drive_upload_name": "facilities_page_00017.json.b64",
+      "raw_bytes": 63786,
+      "gzip_bytes": 11433,
+      "raw_sha256": "6bc15c32e656a9eb27a98a8981e3041d19936adc02762ad1c168ad3546528334",
+      "gzip_sha256": "551a8bcb38cafbcd2887194ed36bb3437a7f57930ba38b8f91ed217d54aac5b2",
+      "local_gz_path": "/workspace/musubu-data/section_facilities/facilities_page_00017.json",
+      "local_b64_path": "/workspace/musubu-data/section_facilities/facilities_page_00017.json.b64",
+      "section": "facilities",
+      "endpoint": "/api/facilities/search",
+      "http_status": 200,
+      "page": 17,
+      "meta": {
+        "total_count": 590302,
+        "total_pages": 11807,
+        "current_page": 17
+      },
+      "item_count": 50
+    },
+    {
+      "file": "facilities_page_00018.json",
+      "drive_upload_name": "facilities_page_00018.json.b64",
+      "raw_bytes": 67921,
+      "gzip_bytes": 11826,
+      "raw_sha256": "662b2e4245f2f5f1ed752d6cd56a54f548280e440b90b256d41bf770246ec148",
+      "gzip_sha256": "4282a6556824a9679ae6cb6dc750180bf083802b4fb255ae7b9ad69eb17b58c2",
+      "local_gz_path": "/workspace/musubu-data/section_facilities/facilities_page_00018.json",
+      "local_b64_path": "/workspace/musubu-data/section_facilities/facilities_page_00018.json.b64",
+      "section": "facilities",
+      "endpoint": "/api/facilities/search",
+      "http_status": 200,
+      "page": 18,
+      "meta": {
+        "total_count": 590302,
+        "total_pages": 11807,
+        "current_page": 18
+      },
+      "item_count": 50
+    },
+    {
+      "file": "facilities_page_00019.json",
+      "drive_upload_name": "facilities_page_00019.json.b64",
+      "raw_bytes": 59926,
+      "gzip_bytes": 11654,
+      "raw_sha256": "21d87b61a7eb1efa89a5afa2078c5d00e1ea400ff0297b9fe93425822a8c2526",
+      "gzip_sha256": "1166e38a6309fe544f2b8b03310c42ed2fd3219357891c1e6b1cfb248dc489cd",
+      "local_gz_path": "/workspace/musubu-data/section_facilities/facilities_page_00019.json",
+      "local_b64_path": "/workspace/musubu-data/section_facilities/facilities_page_00019.json.b64",
+      "section": "facilities",
+      "endpoint": "/api/facilities/search",
+      "http_status": 200,
+      "page": 19,
+      "meta": {
+        "total_count": 590302,
+        "total_pages": 11807,
+        "current_page": 19
+      },
+      "item_count": 50
+    },
+    {
+      "file": "facilities_page_00020.json",
+      "drive_upload_name": "facilities_page_00020.json.b64",
+      "raw_bytes": 54895,
+      "gzip_bytes": 8835,
+      "raw_sha256": "6cca6efe88b7ee138b7e6ec7a20bbf2cc3b25c93f34fb64ee8420150194d4b0a",
+      "gzip_sha256": "7e4ad2b43289a76505c3180a9d313253d72e7ba47217437b3ccc2d1834b022d6",
+      "local_gz_path": "/workspace/musubu-data/section_facilities/facilities_page_00020.json",
+      "local_b64_path": "/workspace/musubu-data/section_facilities/facilities_page_00020.json.b64",
+      "section": "facilities",
+      "endpoint": "/api/facilities/search",
+      "http_status": 200,
+      "page": 20,
+      "meta": {
+        "total_count": 590302,
+        "total_pages": 11807,
+        "current_page": 20
+      },
+      "item_count": 50
+    },
+    {
+      "file": "facilities_page_00021.json",
+      "drive_upload_name": "facilities_page_00021.json.b64",
+      "raw_bytes": 54814,
+      "gzip_bytes": 8816,
+      "raw_sha256": "6770292a30c53214dc92fdc4315ec74e527731c51daf47ad5d7acee57b92ef4d",
+      "gzip_sha256": "68bf5bc0774260ac6b83a97160c774b2cc70a573ad2117862707d9c4efcf2c4a",
+      "local_gz_path": "/workspace/musubu-data/section_facilities/facilities_page_00021.json",
+      "local_b64_path": "/workspace/musubu-data/section_facilities/facilities_page_00021.json.b64",
+      "section": "facilities",
+      "endpoint": "/api/facilities/search",
+      "http_status": 200,
+      "page": 21,
+      "meta": {
+        "total_count": 590302,
+        "total_pages": 11807,
+        "current_page": 21
+      },
+      "item_count": 50
+    },
+    {
+      "file": "facilities_page_00022.json",
+      "drive_upload_name": "facilities_page_00022.json.b64",
+      "raw_bytes": 55294,
+      "gzip_bytes": 8618,
+      "raw_sha256": "5c2627cfd8a9439c8dd1c4057a3a83464cc30c9af5d9e3d77abd4deaf5eb5640",
+      "gzip_sha256": "5d3088bd83a09549baf4c534ab078e8feb8e9967e568feb19e8603cde13063e6",
+      "local_gz_path": "/workspace/musubu-data/section_facilities/facilities_page_00022.json",
+      "local_b64_path": "/workspace/musubu-data/section_facilities/facilities_page_00022.json.b64",
+      "section": "facilities",
+      "endpoint": "/api/facilities/search",
+      "http_status": 200,
+      "page": 22,
+      "meta": {
+        "total_count": 590302,
+        "total_pages": 11807,
+        "current_page": 22
+      },
+      "item_count": 50
+    },
+    {
+      "file": "facilities_page_00023.json",
+      "drive_upload_name": "facilities_page_00023.json.b64",
+      "raw_bytes": 54949,
+      "gzip_bytes": 8538,
+      "raw_sha256": "5401fe4282587906bac7e61844c45aa060275eca921a5adf5d2d7e764d4fc4ad",
+      "gzip_sha256": "89932fef4101628efb72c87c150bc466c5be8902ad50841f526c48da6c45e2ab",
+      "local_gz_path": "/workspace/musubu-data/section_facilities/facilities_page_00023.json",
+      "local_b64_path": "/workspace/musubu-data/section_facilities/facilities_page_00023.json.b64",
+      "section": "facilities",
+      "endpoint": "/api/facilities/search",
+      "http_status": 200,
+      "page": 23,
+      "meta": {
+        "total_count": 590302,
+        "total_pages": 11807,
+        "current_page": 23
+      },
+      "item_count": 50
+    },
+    {
+      "file": "facilities_page_00024.json",
+      "drive_upload_name": "facilities_page_00024.json.b64",
+      "raw_bytes": 54895,
+      "gzip_bytes": 8870,
+      "raw_sha256": "8e7ec48aba490eba0fb6b602af82ce3374660d5a7a81bc36b278aec88a9d39bb",
+      "gzip_sha256": "43f9ffcd58c399f4b53022540c444b52ca991ce28c57854cd591d06ce80fb046",
+      "local_gz_path": "/workspace/musubu-data/section_facilities/facilities_page_00024.json",
+      "local_b64_path": "/workspace/musubu-data/section_facilities/facilities_page_00024.json.b64",
+      "section": "facilities",
+      "endpoint": "/api/facilities/search",
+      "http_status": 200,
+      "page": 24,
+      "meta": {
+        "total_count": 590302,
+        "total_pages": 11807,
+        "current_page": 24
+      },
+      "item_count": 50
+    },
+    {
+      "file": "facilities_page_00025.json",
+      "drive_upload_name": "facilities_page_00025.json.b64",
+      "raw_bytes": 55426,
+      "gzip_bytes": 8964,
+      "raw_sha256": "0f51e7a4f29cca98f42058d488866d3f00217dbe2cb418484c511f8990aa26c9",
+      "gzip_sha256": "9468e44ad2e1f8319151c9abb60adafa42f57a87a973d33a68484fd610cbfe24",
+      "local_gz_path": "/workspace/musubu-data/section_facilities/facilities_page_00025.json",
+      "local_b64_path": "/workspace/musubu-data/section_facilities/facilities_page_00025.json.b64",
+      "section": "facilities",
+      "endpoint": "/api/facilities/search",
+      "http_status": 200,
+      "page": 25,
+      "meta": {
+        "total_count": 590302,
+        "total_pages": 11807,
+        "current_page": 25
+      },
+      "item_count": 50
+    },
+    {
+      "file": "facilities_page_00026.json",
+      "drive_upload_name": "facilities_page_00026.json.b64",
+      "raw_bytes": 55109,
+      "gzip_bytes": 9001,
+      "raw_sha256": "2d48fd5bb47accb749e0cacfd7a9ee7d05e9db2416aee882d05f0c26b750c12c",
+      "gzip_sha256": "3c10d8fad5c8b1ac8be7f9afff990eaacbd5f87eb55fc584e7c42c81b93986b5",
+      "local_gz_path": "/workspace/musubu-data/section_facilities/facilities_page_00026.json",
+      "local_b64_path": "/workspace/musubu-data/section_facilities/facilities_page_00026.json.b64",
+      "section": "facilities",
+      "endpoint": "/api/facilities/search",
+      "http_status": 200,
+      "page": 26,
+      "meta": {
+        "total_count": 590302,
+        "total_pages": 11807,
+        "current_page": 26
+      },
+      "item_count": 50
+    },
+    {
+      "file": "facilities_page_00027.json",
+      "drive_upload_name": "facilities_page_00027.json.b64",
+      "raw_bytes": 54999,
+      "gzip_bytes": 8865,
+      "raw_sha256": "d2d3ca7616c6d61ef56d370a72bdfb60e79c4eb7c400aff13af6919d49135ef4",
+      "gzip_sha256": "dd87321c80bf1e46781449029a08a93d37686378d331b406f683dc1fb1046f6d",
+      "local_gz_path": "/workspace/musubu-data/section_facilities/facilities_page_00027.json",
+      "local_b64_path": "/workspace/musubu-data/section_facilities/facilities_page_00027.json.b64",
+      "section": "facilities",
+      "endpoint": "/api/facilities/search",
+      "http_status": 200,
+      "page": 27,
+      "meta": {
+        "total_count": 590302,
+        "total_pages": 11807,
+        "current_page": 27
+      },
+      "item_count": 50
+    },
+    {
+      "file": "facilities_page_00028.json",
+      "drive_upload_name": "facilities_page_00028.json.b64",
+      "raw_bytes": 54964,
+      "gzip_bytes": 8925,
+      "raw_sha256": "cc3c590620e70a7e17f2254847331e8f67098af2ff8822d693a4e3f99c440c81",
+      "gzip_sha256": "6a623a201abfb65bfb2a2c99c5131dc01a37311626e201b0944e1ee9d40bd188",
+      "local_gz_path": "/workspace/musubu-data/section_facilities/facilities_page_00028.json",
+      "local_b64_path": "/workspace/musubu-data/section_facilities/facilities_page_00028.json.b64",
+      "section": "facilities",
+      "endpoint": "/api/facilities/search",
+      "http_status": 200,
+      "page": 28,
+      "meta": {
+        "total_count": 590302,
+        "total_pages": 11807,
+        "current_page": 28
+      },
+      "item_count": 50
+    },
+    {
+      "file": "facilities_page_00029.json",
+      "drive_upload_name": "facilities_page_00029.json.b64",
+      "raw_bytes": 55197,
+      "gzip_bytes": 9107,
+      "raw_sha256": "67dfb999e73951e4ca304467653c645b2655d5eb53ba57bbb1e62a1e46493c58",
+      "gzip_sha256": "8377e5a3ac4c41e667b5b1a73e84880ba17036777c4a869e72a95769c80dc320",
+      "local_gz_path": "/workspace/musubu-data/section_facilities/facilities_page_00029.json",
+      "local_b64_path": "/workspace/musubu-data/section_facilities/facilities_page_00029.json.b64",
+      "section": "facilities",
+      "endpoint": "/api/facilities/search",
+      "http_status": 200,
+      "page": 29,
+      "meta": {
+        "total_count": 590302,
+        "total_pages": 11807,
+        "current_page": 29
+      },
+      "item_count": 50
+    },
+    {
+      "file": "facilities_page_00030.json",
+      "drive_upload_name": "facilities_page_00030.json.b64",
+      "raw_bytes": 55273,
+      "gzip_bytes": 8975,
+      "raw_sha256": "f748d548fb590d87746a6cb6c5ef00e9a36610a0313c3709b074c11aff900368",
+      "gzip_sha256": "a9082b460557ba7f94fa76a359b9ffc0d86ef295a49fb99579158f963949063a",
+      "local_gz_path": "/workspace/musubu-data/section_facilities/facilities_page_00030.json",
+      "local_b64_path": "/workspace/musubu-data/section_facilities/facilities_page_00030.json.b64",
+      "section": "facilities",
+      "endpoint": "/api/facilities/search",
+      "http_status": 200,
+      "page": 30,
+      "meta": {
+        "total_count": 590302,
+        "total_pages": 11807,
+        "current_page": 30
+      },
+      "item_count": 50
+    }
+  ]
+}

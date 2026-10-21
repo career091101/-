@@ -1,0 +1,607 @@
+{
+  "updated_at_epoch": 1792316877,
+  "api_base": "https://api.production.musubu.in",
+  "interval_sec": 0.5,
+  "artifacts": [
+    {
+      "file": "departments_page_00001.json",
+      "drive_upload_name": "departments_page_00001.json.b64",
+      "raw_bytes": 54712,
+      "gzip_bytes": 4003,
+      "raw_sha256": "ff0d5db7dadc756ecc943df6e22aaafe006b735608f8408547c6ea013a0230f2",
+      "gzip_sha256": "8d925f114aca4247a4c8d675c2a3296189ca3ac1fe2c10be658479d00ab74d50",
+      "local_gz_path": "/workspace/musubu-data/section_departments/departments_page_00001.json",
+      "local_b64_path": "/workspace/musubu-data/section_departments/departments_page_00001.json.b64",
+      "section": "departments",
+      "endpoint": "/api/departments/search",
+      "http_status": 200,
+      "page": 1,
+      "meta": {
+        "total_count": 1448745,
+        "total_pages": 28975,
+        "current_page": 1
+      },
+      "item_count": 50
+    },
+    {
+      "file": "departments_page_00002.json",
+      "drive_upload_name": "departments_page_00002.json.b64",
+      "raw_bytes": 54055,
+      "gzip_bytes": 3388,
+      "raw_sha256": "a107d1c4b79b1d2f826e3eb8370d70a125533df6b20e58e0da6d7e50cf0111aa",
+      "gzip_sha256": "6c290af0cc05a8f73d2b62057eb2c1af4e8ac04b4956334d10532496ff2fea9f",
+      "local_gz_path": "/workspace/musubu-data/section_departments/departments_page_00002.json",
+      "local_b64_path": "/workspace/musubu-data/section_departments/departments_page_00002.json.b64",
+      "section": "departments",
+      "endpoint": "/api/departments/search",
+      "http_status": 200,
+      "page": 2,
+      "meta": {
+        "total_count": 1448745,
+        "total_pages": 28975,
+        "current_page": 2
+      },
+      "item_count": 50
+    },
+    {
+      "file": "departments_page_00003.json",
+      "drive_upload_name": "departments_page_00003.json.b64",
+      "raw_bytes": 54084,
+      "gzip_bytes": 4193,
+      "raw_sha256": "88a4289cef7321e92184e08747fbfaed316f8f4c822a5f85f789599643030ff3",
+      "gzip_sha256": "d5baf5ea196a2eb68f0d8ec2871a7363ee6651989078176f083a3da325b838c5",
+      "local_gz_path": "/workspace/musubu-data/section_departments/departments_page_00003.json",
+      "local_b64_path": "/workspace/musubu-data/section_departments/departments_page_00003.json.b64",
+      "section": "departments",
+      "endpoint": "/api/departments/search",
+      "http_status": 200,
+      "page": 3,
+      "meta": {
+        "total_count": 1448745,
+        "total_pages": 28975,
+        "current_page": 3
+      },
+      "item_count": 50
+    },
+    {
+      "file": "departments_page_00004.json",
+      "drive_upload_name": "departments_page_00004.json.b64",
+      "raw_bytes": 41266,
+      "gzip_bytes": 3125,
+      "raw_sha256": "4be1807f2796d56481f516cfeccaeaaf7ef4a2148c43899b919dc2a9614d4dc6",
+      "gzip_sha256": "32d60f447347796c5e1997b64649b69bc8422f58b8d8909fe82f830132e7d384",
+      "local_gz_path": "/workspace/musubu-data/section_departments/departments_page_00004.json",
+      "local_b64_path": "/workspace/musubu-data/section_departments/departments_page_00004.json.b64",
+      "section": "departments",
+      "endpoint": "/api/departments/search",
+      "http_status": 200,
+      "page": 4,
+      "meta": {
+        "total_count": 1448745,
+        "total_pages": 28975,
+        "current_page": 4
+      },
+      "item_count": 50
+    },
+    {
+      "file": "departments_page_00005.json",
+      "drive_upload_name": "departments_page_00005.json.b64",
+      "raw_bytes": 41410,
+      "gzip_bytes": 3787,
+      "raw_sha256": "b18c61863258f1eb8ffc6b3f6a8036389b4a45c72236f9501f3d8f69b0af6fcc",
+      "gzip_sha256": "fe2a470f3ca57e9da68b9349b426b61fb2be38327662f13529a5843d335dd639",
+      "local_gz_path": "/workspace/musubu-data/section_departments/departments_page_00005.json",
+      "local_b64_path": "/workspace/musubu-data/section_departments/departments_page_00005.json.b64",
+      "section": "departments",
+      "endpoint": "/api/departments/search",
+      "http_status": 200,
+      "page": 5,
+      "meta": {
+        "total_count": 1448745,
+        "total_pages": 28975,
+        "current_page": 5
+      },
+      "item_count": 50
+    },
+    {
+      "file": "departments_page_00006.json",
+      "drive_upload_name": "departments_page_00006.json.b64",
+      "raw_bytes": 41199,
+      "gzip_bytes": 3633,
+      "raw_sha256": "4645dc04146e6481fa4a6ebeb5a0384f9edfc15a0bae1d505354c5ae722f9922",
+      "gzip_sha256": "4249a56565eb18b145b47b8e15a08609b0ad95002829f17889f0f26820fe4a78",
+      "local_gz_path": "/workspace/musubu-data/section_departments/departments_page_00006.json",
+      "local_b64_path": "/workspace/musubu-data/section_departments/departments_page_00006.json.b64",
+      "section": "departments",
+      "endpoint": "/api/departments/search",
+      "http_status": 200,
+      "page": 6,
+      "meta": {
+        "total_count": 1448745,
+        "total_pages": 28975,
+        "current_page": 6
+      },
+      "item_count": 50
+    },
+    {
+      "file": "departments_page_00007.json",
+      "drive_upload_name": "departments_page_00007.json.b64",
+      "raw_bytes": 41266,
+      "gzip_bytes": 3615,
+      "raw_sha256": "ec58ebbdf436eb5a3dccefd491bfc4f643ce9192c435ca046ad411aeedf0be1f",
+      "gzip_sha256": "f0a6147c0d220b0313f8ed55c1afa3d364ed899b9b933bbb8dfb9836be971f1b",
+      "local_gz_path": "/workspace/musubu-data/section_departments/departments_page_00007.json",
+      "local_b64_path": "/workspace/musubu-data/section_departments/departments_page_00007.json.b64",
+      "section": "departments",
+      "endpoint": "/api/departments/search",
+      "http_status": 200,
+      "page": 7,
+      "meta": {
+        "total_count": 1448745,
+        "total_pages": 28975,
+        "current_page": 7
+      },
+      "item_count": 50
+    },
+    {
+      "file": "departments_page_00008.json",
+      "drive_upload_name": "departments_page_00008.json.b64",
+      "raw_bytes": 41420,
+      "gzip_bytes": 3678,
+      "raw_sha256": "37324936c5870fe8f227c36cf1648529ce02871c9e625c36d94d1c434537dd03",
+      "gzip_sha256": "8749bb9851a4fde12010b021e075213a32281f540b35e152a5410b2e5b3e71c2",
+      "local_gz_path": "/workspace/musubu-data/section_departments/departments_page_00008.json",
+      "local_b64_path": "/workspace/musubu-data/section_departments/departments_page_00008.json.b64",
+      "section": "departments",
+      "endpoint": "/api/departments/search",
+      "http_status": 200,
+      "page": 8,
+      "meta": {
+        "total_count": 1448745,
+        "total_pages": 28975,
+        "current_page": 8
+      },
+      "item_count": 50
+    },
+    {
+      "file": "departments_page_00009.json",
+      "drive_upload_name": "departments_page_00009.json.b64",
+      "raw_bytes": 44907,
+      "gzip_bytes": 4352,
+      "raw_sha256": "ef474426c266bc77ec87646dada88c5f776c902f2b156883ec33bc79b701ad4b",
+      "gzip_sha256": "98b49fb9c2182c7de0edcec376ce762725bf234cd041cc40c753a47d39e9026a",
+      "local_gz_path": "/workspace/musubu-data/section_departments/departments_page_00009.json",
+      "local_b64_path": "/workspace/musubu-data/section_departments/departments_page_00009.json.b64",
+      "section": "departments",
+      "endpoint": "/api/departments/search",
+      "http_status": 200,
+      "page": 9,
+      "meta": {
+        "total_count": 1448745,
+        "total_pages": 28975,
+        "current_page": 9
+      },
+      "item_count": 50
+    },
+    {
+      "file": "departments_page_00010.json",
+      "drive_upload_name": "departments_page_00010.json.b64",
+      "raw_bytes": 44554,
+      "gzip_bytes": 3383,
+      "raw_sha256": "4a84d9508f4b49dca83579da18e40db8e2bd0bd1f2e8e8ad73e959b3690ee815",
+      "gzip_sha256": "a5ca233062f0b187a102f62cafcca6502260bf8c44feada749128fa2555759f0",
+      "local_gz_path": "/workspace/musubu-data/section_departments/departments_page_00010.json",
+      "local_b64_path": "/workspace/musubu-data/section_departments/departments_page_00010.json.b64",
+      "section": "departments",
+      "endpoint": "/api/departments/search",
+      "http_status": 200,
+      "page": 10,
+      "meta": {
+        "total_count": 1448745,
+        "total_pages": 28975,
+        "current_page": 10
+      },
+      "item_count": 50
+    },
+    {
+      "file": "departments_page_00011.json",
+      "drive_upload_name": "departments_page_00011.json.b64",
+      "raw_bytes": 44721,
+      "gzip_bytes": 3346,
+      "raw_sha256": "aeb0705457e3aa2f629d4997c73b7afbc3c674cbce8fe2d3d6a18de8fffc616f",
+      "gzip_sha256": "3d60ac1f131e5b8c2ad1e646b963f9a8ff96dc21d5fe5e41c5d89014598f2a78",
+      "local_gz_path": "/workspace/musubu-data/section_departments/departments_page_00011.json",
+      "local_b64_path": "/workspace/musubu-data/section_departments/departments_page_00011.json.b64",
+      "section": "departments",
+      "endpoint": "/api/departments/search",
+      "http_status": 200,
+      "page": 11,
+      "meta": {
+        "total_count": 1448745,
+        "total_pages": 28975,
+        "current_page": 11
+      },
+      "item_count": 50
+    },
+    {
+      "file": "departments_page_00012.json",
+      "drive_upload_name": "departments_page_00012.json.b64",
+      "raw_bytes": 44232,
+      "gzip_bytes": 3274,
+      "raw_sha256": "af87272e12296ff3e15ec63abb85b35660934106697ed040d8595efffbf9887e",
+      "gzip_sha256": "fdbf9a01d7f99604dddccd4d2c9af43c8623e44767d154ddfc76bf9786b408b7",
+      "local_gz_path": "/workspace/musubu-data/section_departments/departments_page_00012.json",
+      "local_b64_path": "/workspace/musubu-data/section_departments/departments_page_00012.json.b64",
+      "section": "departments",
+      "endpoint": "/api/departments/search",
+      "http_status": 200,
+      "page": 12,
+      "meta": {
+        "total_count": 1448745,
+        "total_pages": 28975,
+        "current_page": 12
+      },
+      "item_count": 50
+    },
+    {
+      "file": "departments_page_00013.json",
+      "drive_upload_name": "departments_page_00013.json.b64",
+      "raw_bytes": 44521,
+      "gzip_bytes": 3295,
+      "raw_sha256": "cd31e4531662ce3b7182ee04fb7e1b36532837ad92ba22d26b9eb85d0cf52e6b",
+      "gzip_sha256": "f26268bf500c8e063b5f60b411791ea2c48bdbe4e4223fb5446f341bf4b1871b",
+      "local_gz_path": "/workspace/musubu-data/section_departments/departments_page_00013.json",
+      "local_b64_path": "/workspace/musubu-data/section_departments/departments_page_00013.json.b64",
+      "section": "departments",
+      "endpoint": "/api/departments/search",
+      "http_status": 200,
+      "page": 13,
+      "meta": {
+        "total_count": 1448745,
+        "total_pages": 28975,
+        "current_page": 13
+      },
+      "item_count": 50
+    },
+    {
+      "file": "departments_page_00014.json",
+      "drive_upload_name": "departments_page_00014.json.b64",
+      "raw_bytes": 44409,
+      "gzip_bytes": 3348,
+      "raw_sha256": "c469ec432bc9a30b1d8134e8a18f4ab21b14df582b6acd8813cf239df0cf31dc",
+      "gzip_sha256": "6b7842b32e8a410a25482344b53419506ff0f93bb7be0385d2cdcedb6b3d0c14",
+      "local_gz_path": "/workspace/musubu-data/section_departments/departments_page_00014.json",
+      "local_b64_path": "/workspace/musubu-data/section_departments/departments_page_00014.json.b64",
+      "section": "departments",
+      "endpoint": "/api/departments/search",
+      "http_status": 200,
+      "page": 14,
+      "meta": {
+        "total_count": 1448745,
+        "total_pages": 28975,
+        "current_page": 14
+      },
+      "item_count": 50
+    },
+    {
+      "file": "departments_page_00015.json",
+      "drive_upload_name": "departments_page_00015.json.b64",
+      "raw_bytes": 44697,
+      "gzip_bytes": 3269,
+      "raw_sha256": "fc35f020f926b5d987f7e9df96f1f0c0e5e381215880695776e09668f7b6de1c",
+      "gzip_sha256": "f961d44752003a29d68ec3fc6a721e912e3b5f2855cf71ced0c49a21254e7082",
+      "local_gz_path": "/workspace/musubu-data/section_departments/departments_page_00015.json",
+      "local_b64_path": "/workspace/musubu-data/section_departments/departments_page_00015.json.b64",
+      "section": "departments",
+      "endpoint": "/api/departments/search",
+      "http_status": 200,
+      "page": 15,
+      "meta": {
+        "total_count": 1448745,
+        "total_pages": 28975,
+        "current_page": 15
+      },
+      "item_count": 50
+    },
+    {
+      "file": "departments_page_00016.json",
+      "drive_upload_name": "departments_page_00016.json.b64",
+      "raw_bytes": 44415,
+      "gzip_bytes": 3244,
+      "raw_sha256": "0aca03ec2420adde9502ca5d4ce76704496d9f529534b277487579c6b72c9884",
+      "gzip_sha256": "a932c14ead021f997eff33c96060ea253fcb85d37f86fe5791cf034ca4d41d9c",
+      "local_gz_path": "/workspace/musubu-data/section_departments/departments_page_00016.json",
+      "local_b64_path": "/workspace/musubu-data/section_departments/departments_page_00016.json.b64",
+      "section": "departments",
+      "endpoint": "/api/departments/search",
+      "http_status": 200,
+      "page": 16,
+      "meta": {
+        "total_count": 1448745,
+        "total_pages": 28975,
+        "current_page": 16
+      },
+      "item_count": 50
+    },
+    {
+      "file": "departments_page_00017.json",
+      "drive_upload_name": "departments_page_00017.json.b64",
+      "raw_bytes": 44187,
+      "gzip_bytes": 3266,
+      "raw_sha256": "143980b46b6f6d8dae2a2da607db0ae81d29527f2abeff5655403617e77622d5",
+      "gzip_sha256": "be0b21fea56ec27a856f8bc5e88ad3830ae36c71ad48e33332792c72d9d6a21a",
+      "local_gz_path": "/workspace/musubu-data/section_departments/departments_page_00017.json",
+      "local_b64_path": "/workspace/musubu-data/section_departments/departments_page_00017.json.b64",
+      "section": "departments",
+      "endpoint": "/api/departments/search",
+      "http_status": 200,
+      "page": 17,
+      "meta": {
+        "total_count": 1448745,
+        "total_pages": 28975,
+        "current_page": 17
+      },
+      "item_count": 50
+    },
+    {
+      "file": "departments_page_00018.json",
+      "drive_upload_name": "departments_page_00018.json.b64",
+      "raw_bytes": 44455,
+      "gzip_bytes": 3364,
+      "raw_sha256": "a33e2a7a003219ba1dec7e296084101b09ae29ef54d4ce081f37dd8ee14dc4f0",
+      "gzip_sha256": "32ac154ee8ceea7253dd057ad7620d54022ebd9398098eca97bd37d771428b8c",
+      "local_gz_path": "/workspace/musubu-data/section_departments/departments_page_00018.json",
+      "local_b64_path": "/workspace/musubu-data/section_departments/departments_page_00018.json.b64",
+      "section": "departments",
+      "endpoint": "/api/departments/search",
+      "http_status": 200,
+      "page": 18,
+      "meta": {
+        "total_count": 1448745,
+        "total_pages": 28975,
+        "current_page": 18
+      },
+      "item_count": 50
+    },
+    {
+      "file": "departments_page_00019.json",
+      "drive_upload_name": "departments_page_00019.json.b64",
+      "raw_bytes": 44279,
+      "gzip_bytes": 3201,
+      "raw_sha256": "375f5b1a03b02c8fdbf36c144f02bdd18d0687bcfb8050c86047bb46a7676db0",
+      "gzip_sha256": "7f03ccf65fec33150f1e4d75a54404a348be9640439335a38b71dada5778175b",
+      "local_gz_path": "/workspace/musubu-data/section_departments/departments_page_00019.json",
+      "local_b64_path": "/workspace/musubu-data/section_departments/departments_page_00019.json.b64",
+      "section": "departments",
+      "endpoint": "/api/departments/search",
+      "http_status": 200,
+      "page": 19,
+      "meta": {
+        "total_count": 1448745,
+        "total_pages": 28975,
+        "current_page": 19
+      },
+      "item_count": 50
+    },
+    {
+      "file": "departments_page_00020.json",
+      "drive_upload_name": "departments_page_00020.json.b64",
+      "raw_bytes": 44458,
+      "gzip_bytes": 3349,
+      "raw_sha256": "8af43f21403256b9839fc7caee1b6d4d6df59ac4383d4721ee464f104cac1b6d",
+      "gzip_sha256": "05cab27c76e8f67e5b581c84e3da5e5e31325b3ad1fc02b83e6215668a89d2b2",
+      "local_gz_path": "/workspace/musubu-data/section_departments/departments_page_00020.json",
+      "local_b64_path": "/workspace/musubu-data/section_departments/departments_page_00020.json.b64",
+      "section": "departments",
+      "endpoint": "/api/departments/search",
+      "http_status": 200,
+      "page": 20,
+      "meta": {
+        "total_count": 1448745,
+        "total_pages": 28975,
+        "current_page": 20
+      },
+      "item_count": 50
+    },
+    {
+      "file": "departments_page_00021.json",
+      "drive_upload_name": "departments_page_00021.json.b64",
+      "raw_bytes": 44111,
+      "gzip_bytes": 3174,
+      "raw_sha256": "d160f64682224d9e753295a7e0a225841d26a8340199248e9c7714f34b6646c7",
+      "gzip_sha256": "bf9308118046c739dc6d68cae675858c3d5c2fdfdb91415d7ff013f25aa7d753",
+      "local_gz_path": "/workspace/musubu-data/section_departments/departments_page_00021.json",
+      "local_b64_path": "/workspace/musubu-data/section_departments/departments_page_00021.json.b64",
+      "section": "departments",
+      "endpoint": "/api/departments/search",
+      "http_status": 200,
+      "page": 21,
+      "meta": {
+        "total_count": 1448745,
+        "total_pages": 28975,
+        "current_page": 21
+      },
+      "item_count": 50
+    },
+    {
+      "file": "departments_page_00022.json",
+      "drive_upload_name": "departments_page_00022.json.b64",
+      "raw_bytes": 43614,
+      "gzip_bytes": 3936,
+      "raw_sha256": "ba6f70829fdf62a454beb7a274918db8458ae73927e6860d95edf66f5f0ab1f6",
+      "gzip_sha256": "cf413d667332631c08e51618c369fc6b6dc8f453ce294f13815260193925d650",
+      "local_gz_path": "/workspace/musubu-data/section_departments/departments_page_00022.json",
+      "local_b64_path": "/workspace/musubu-data/section_departments/departments_page_00022.json.b64",
+      "section": "departments",
+      "endpoint": "/api/departments/search",
+      "http_status": 200,
+      "page": 22,
+      "meta": {
+        "total_count": 1448745,
+        "total_pages": 28975,
+        "current_page": 22
+      },
+      "item_count": 50
+    },
+    {
+      "file": "departments_page_00023.json",
+      "drive_upload_name": "departments_page_00023.json.b64",
+      "raw_bytes": 45197,
+      "gzip_bytes": 4032,
+      "raw_sha256": "8cb78d66ec8f79597c06cd3119e435514396d0e76be10d1de6164b48a0c44384",
+      "gzip_sha256": "4a17310e7c3bf9a84c6976ec310bebf35682181a38f30a2d3ba1ce033a33754d",
+      "local_gz_path": "/workspace/musubu-data/section_departments/departments_page_00023.json",
+      "local_b64_path": "/workspace/musubu-data/section_departments/departments_page_00023.json.b64",
+      "section": "departments",
+      "endpoint": "/api/departments/search",
+      "http_status": 200,
+      "page": 23,
+      "meta": {
+        "total_count": 1448745,
+        "total_pages": 28975,
+        "current_page": 23
+      },
+      "item_count": 50
+    },
+    {
+      "file": "departments_page_00024.json",
+      "drive_upload_name": "departments_page_00024.json.b64",
+      "raw_bytes": 49700,
+      "gzip_bytes": 3689,
+      "raw_sha256": "a34ba082aad6609f29a8eed8d30615ef93c260c46b68a50c29b75a1db9b313cf",
+      "gzip_sha256": "fa1f40c8074882e0003fc5b811366c976924b78a8e114d22d1cd375e1ff350c7",
+      "local_gz_path": "/workspace/musubu-data/section_departments/departments_page_00024.json",
+      "local_b64_path": "/workspace/musubu-data/section_departments/departments_page_00024.json.b64",
+      "section": "departments",
+      "endpoint": "/api/departments/search",
+      "http_status": 200,
+      "page": 24,
+      "meta": {
+        "total_count": 1448745,
+        "total_pages": 28975,
+        "current_page": 24
+      },
+      "item_count": 50
+    },
+    {
+      "file": "departments_page_00025.json",
+      "drive_upload_name": "departments_page_00025.json.b64",
+      "raw_bytes": 43457,
+      "gzip_bytes": 3621,
+      "raw_sha256": "3bc6eb747a255ff37e7f02cf78ea2cf2acad49d6b67151e7b1ef1cf8b18d6326",
+      "gzip_sha256": "c2b5683595c1f32daa82baed6e4a6eabd908b4a7b581b71e50424721ccf16c86",
+      "local_gz_path": "/workspace/musubu-data/section_departments/departments_page_00025.json",
+      "local_b64_path": "/workspace/musubu-data/section_departments/departments_page_00025.json.b64",
+      "section": "departments",
+      "endpoint": "/api/departments/search",
+      "http_status": 200,
+      "page": 25,
+      "meta": {
+        "total_count": 1448745,
+        "total_pages": 28975,
+        "current_page": 25
+      },
+      "item_count": 50
+    },
+    {
+      "file": "departments_page_00026.json",
+      "drive_upload_name": "departments_page_00026.json.b64",
+      "raw_bytes": 44430,
+      "gzip_bytes": 3295,
+      "raw_sha256": "8488558712f193b831fc50ca1405910f99e3defac2accfe041405662ff88056c",
+      "gzip_sha256": "76f42cf08786a03060238997f40cd339a3c9caf8db102a060dbf9850513ccf8e",
+      "local_gz_path": "/workspace/musubu-data/section_departments/departments_page_00026.json",
+      "local_b64_path": "/workspace/musubu-data/section_departments/departments_page_00026.json.b64",
+      "section": "departments",
+      "endpoint": "/api/departments/search",
+      "http_status": 200,
+      "page": 26,
+      "meta": {
+        "total_count": 1448745,
+        "total_pages": 28975,
+        "current_page": 26
+      },
+      "item_count": 50
+    },
+    {
+      "file": "departments_page_00027.json",
+      "drive_upload_name": "departments_page_00027.json.b64",
+      "raw_bytes": 44382,
+      "gzip_bytes": 3110,
+      "raw_sha256": "685cc8dc9e26bbc1f6db9cb83eabf70b6427ad537ef0f9b29d85a3c230bc35da",
+      "gzip_sha256": "fcc41d61f1fa52a43b29a1380c71054a965448e7399375b35fda2c6c29f744cd",
+      "local_gz_path": "/workspace/musubu-data/section_departments/departments_page_00027.json",
+      "local_b64_path": "/workspace/musubu-data/section_departments/departments_page_00027.json.b64",
+      "section": "departments",
+      "endpoint": "/api/departments/search",
+      "http_status": 200,
+      "page": 27,
+      "meta": {
+        "total_count": 1448745,
+        "total_pages": 28975,
+        "current_page": 27
+      },
+      "item_count": 50
+    },
+    {
+      "file": "departments_page_00028.json",
+      "drive_upload_name": "departments_page_00028.json.b64",
+      "raw_bytes": 46947,
+      "gzip_bytes": 3541,
+      "raw_sha256": "7cf427ce62d2f0bf0829f77c838e8411ec479c91c7782557e499d5579fa71b98",
+      "gzip_sha256": "321698b030bc647651e7760aeac4de0fc7e7f945fa76aa92de1958267385bad9",
+      "local_gz_path": "/workspace/musubu-data/section_departments/departments_page_00028.json",
+      "local_b64_path": "/workspace/musubu-data/section_departments/departments_page_00028.json.b64",
+      "section": "departments",
+      "endpoint": "/api/departments/search",
+      "http_status": 200,
+      "page": 28,
+      "meta": {
+        "total_count": 1448745,
+        "total_pages": 28975,
+        "current_page": 28
+      },
+      "item_count": 50
+    },
+    {
+      "file": "departments_page_00029.json",
+      "drive_upload_name": "departments_page_00029.json.b64",
+      "raw_bytes": 48610,
+      "gzip_bytes": 3464,
+      "raw_sha256": "265c235bc9173d6bd77177da9e021d909812e92aea26c44f234cf2634e3e3466",
+      "gzip_sha256": "26e5d562dd45df3c05905d379853b4d94f75c502f334d9220d57d1ba376bfc2f",
+      "local_gz_path": "/workspace/musubu-data/section_departments/departments_page_00029.json",
+      "local_b64_path": "/workspace/musubu-data/section_departments/departments_page_00029.json.b64",
+      "section": "departments",
+      "endpoint": "/api/departments/search",
+      "http_status": 200,
+      "page": 29,
+      "meta": {
+        "total_count": 1448745,
+        "total_pages": 28975,
+        "current_page": 29
+      },
+      "item_count": 50
+    },
+    {
+      "file": "departments_page_00030.json",
+      "drive_upload_name": "departments_page_00030.json.b64",
+      "raw_bytes": 47461,
+      "gzip_bytes": 4237,
+      "raw_sha256": "27876a6540a106ef5da6ba2e5afa60c1207c04acf78d9f34f8e34663100b61ee",
+      "gzip_sha256": "90166fcbb125c8c62e3bf0b01dafa4ccb0a9a289ec77c0d826894ea780bd61e5",
+      "local_gz_path": "/workspace/musubu-data/section_departments/departments_page_00030.json",
+      "local_b64_path": "/workspace/musubu-data/section_departments/departments_page_00030.json.b64",
+      "section": "departments",
+      "endpoint": "/api/departments/search",
+      "http_status": 200,
+      "page": 30,
+      "meta": {
+        "total_count": 1448745,
+        "total_pages": 28975,
+        "current_page": 30
+      },
+      "item_count": 50
+    }
+  ]
+}
