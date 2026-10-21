@@ -16,7 +16,7 @@ for tar_name in "$@"; do
   if [[ ! -f "$qdir/manifest.json" ]]; then
     arch="$ROOT/archives/key_people/$tar_name"
     [[ -f "$arch" ]] || { echo "missing $arch"; exit 1; }
-    python3 /workspace/scripts/musubu_prepare_parts4k_queue.py "$arch"
+    python3 /workspace/scripts/musubu_prepare_parts4k_queue.py "$arch" >/dev/null
   fi
   parts="$(python3 -c "import json;print(json.load(open('$qdir/manifest.json'))['part_count'])")"
   echo "=== $tar_name parts=$parts $(date -Is) ==="
