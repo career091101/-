@@ -52,26 +52,40 @@ def rclone(*args: str, timeout: int = 180) -> bytes:
     )
 
 
-def upload_and_id(local: Path, title: str, parent: str) -> str:
-    rclone(
-        "copyto",
-        str(local),
-        f"{REMOTE}:{title}",
-        f"--drive-root-folder-id={parent}",
-    )
-    time.sleep(2)
-    file_id = (
-        rclone(
+def drive_file_id(title: str, parent: str) -> str | None:
+    proc = subprocess.run(
+        [
+            *RCLONE_BASE,
             "lsf",
             f"--drive-root-folder-id={parent}",
             "--files-only",
             "--format",
             "i",
             f"{REMOTE}:{title}",
-        )
-        .decode()
-        .strip()
+        ],
+        capture_output=True,
+        timeout=120,
     )
+    if proc.returncode != 0:
+        return None
+    out = proc.stdout.decode().strip()
+    return out or None
+
+
+def upload_and_id(local: Path, title: str, parent: str) -> str:
+    existing = drive_file_id(title, parent)
+    if existing:
+        time.sleep(1)
+        return existing
+    rclone(
+        "copyto",
+        str(local),
+        f"{REMOTE}:{title}",
+        f"--drive-root-folder-id={parent}",
+        timeout=300,
+    )
+    time.sleep(2)
+    file_id = drive_file_id(title, parent)
     if not file_id:
         raise SystemExit(f"no file id after upload {title}")
     return file_id
@@ -91,7 +105,7 @@ def readback_text(title: str, parent: str) -> str:
                     f"{REMOTE}:{title}",
                     str(tmp_path),
                     f"--drive-root-folder-id={parent}",
-                    timeout=180,
+                    timeout=300,
                 )
                 return tmp_path.read_text()
             finally:
